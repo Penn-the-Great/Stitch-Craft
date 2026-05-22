@@ -852,7 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SliderPrefabSpawner
   sliderFaderPrefab: {fileID: 7514083883174622369, guid: 41d4a22e26e334455a8dde8c5c465b4b, type: 3}
-  nextSceneName: Shop
+  nextSceneName: Chapter Select
 --- !u!1 &1831831680
 GameObject:
   m_ObjectHideFlags: 0
