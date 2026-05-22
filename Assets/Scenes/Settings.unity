@@ -296,9 +296,10 @@ GameObject:
   - component: {fileID: 322862945}
   - component: {fileID: 322862944}
   - component: {fileID: 322862946}
+  - component: {fileID: 322862947}
   m_Layer: 0
   m_Name: Music
-  m_TagString: Untagged
+  m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -427,6 +428,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9be6d7b5fba44ed8b8aa12039a516e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BGmusic
+--- !u!114 &322862947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322862943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 300317230a32144669ff93bf621f5ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicVolumeSlider
+  volumeSlider: {fileID: 364746941}
 --- !u!1 &364746939
 GameObject:
   m_ObjectHideFlags: 0
