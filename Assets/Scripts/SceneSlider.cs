@@ -8,12 +8,32 @@ public class SceneSlider : MonoBehaviour
     [SerializeField] private float slideDuration = 0.7f;
     [SerializeField] private string sceneToLoad; // set this when you spawn
     private RectTransform rectTransform;
+    private RectTransform canvasRectTransform;
+    private float screenHeight;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        // Start above the screen
-        rectTransform.anchoredPosition = new Vector2(0, rectTransform.rect.height);
+        GameObject sliderCanvasObj = GameObject.FindGameObjectWithTag("Slider Canvas");
+        if (sliderCanvasObj != null)
+        {
+            canvasRectTransform = sliderCanvasObj.GetComponent<RectTransform>();
+            if (canvasRectTransform != null)
+            {
+                screenHeight = canvasRectTransform.rect.height;
+            }
+            else
+            {
+                Debug.LogError("Slider Canvas does not have RectTransform!");
+                screenHeight = 1080f; // fallback
+            }
+        } else {
+            Debug.LogError("No Slider Canvas (with tag) found!");
+            screenHeight = 1080f; // fallback
+        }
+
+        // Start above the screen, regardless
+        rectTransform.anchoredPosition = new Vector2(0, screenHeight);
     }
 
     public void BeginTransition(string nextScene)
@@ -24,7 +44,7 @@ public class SceneSlider : MonoBehaviour
 
     private IEnumerator SlideAndChangeScene()
     {
-        // Slide down
+        // Slide down to cover screen
         yield return StartCoroutine(SlideTo(Vector2.zero, slideDuration));
 
         // Load scene
@@ -32,13 +52,11 @@ public class SceneSlider : MonoBehaviour
         while (!op.isDone)
             yield return null;
 
-        // Wait one frame for safety
-        yield return null;
+        yield return null; // wait for new scene frame
 
-        // Slide up
-        yield return StartCoroutine(SlideTo(new Vector2(0, rectTransform.rect.height), slideDuration));
+        // Slide up and off screen
+        yield return StartCoroutine(SlideTo(new Vector2(0, screenHeight), slideDuration));
 
-        // Destroy fader
         Destroy(gameObject);
     }
 
@@ -48,19 +66,18 @@ public class SceneSlider : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < duration)
         {
-                elapsed += Time.unscaledDeltaTime;
-        float t = Mathf.Clamp01(elapsed / duration);
-        float easedT = EaseInOut(t); // <--- the magic
-        rectTransform.anchoredPosition = Vector2.Lerp(start, targetPosition, easedT);
-        yield return null;
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            float easedT = EaseInOut(t);
+            rectTransform.anchoredPosition = Vector2.Lerp(start, targetPosition, easedT);
+            yield return null;
         }
         rectTransform.anchoredPosition = targetPosition;
     }
 
     private float EaseInOut(float t)
-{
-    // S-curve ease: SmoothStep
-    return t * t * (3f - 2f * t);
-    // Or use: return 0.5f - 0.5f * Mathf.Cos(Mathf.PI * t); // Sine
-}
+    {
+        // S-curve ease: SmoothStep
+        return t * t * (3f - 2f * t);
+    }
 }

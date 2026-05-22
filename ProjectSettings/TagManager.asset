@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Music
+  - Slider Canvas
   layers:
   - Default
   - TransparentFX
