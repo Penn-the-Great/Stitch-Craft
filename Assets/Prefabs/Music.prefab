@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &970393968702371190
+--- !u!1 &8400154269766446607
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3630267417052802718}
-  - component: {fileID: 7538106007926449945}
-  - component: {fileID: 8759269555230131057}
-  - component: {fileID: 8514327874200473764}
+  - component: {fileID: 4317101903781870375}
+  - component: {fileID: 1465840966490630788}
+  - component: {fileID: 5192689727685424237}
   m_Layer: 0
   m_Name: Music
   m_TagString: Music
@@ -19,28 +18,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3630267417052802718
+--- !u!4 &4317101903781870375
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970393968702371190}
+  m_GameObject: {fileID: 8400154269766446607}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.67453, y: -3.18383, z: 0}
+  m_LocalPosition: {x: -9.9872, y: -4.68982, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &7538106007926449945
+--- !u!82 &1465840966490630788
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970393968702371190}
+  m_GameObject: {fileID: 8400154269766446607}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8296616959309636335, guid: 091a52fa0fac14f428a1d33c1dbc2c5b, type: 2}
@@ -131,28 +130,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8759269555230131057
+--- !u!114 &5192689727685424237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970393968702371190}
+  m_GameObject: {fileID: 8400154269766446607}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c9be6d7b5fba44ed8b8aa12039a516e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BGmusic
---- !u!114 &8514327874200473764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970393968702371190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 300317230a32144669ff93bf621f5ce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MusicVolumeSlider
-  volumeSlider: {fileID: 0}
