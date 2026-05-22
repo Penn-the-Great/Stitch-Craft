@@ -1,57 +1,67 @@
-using UnityEngine;  
-using UnityEngine.EventSystems;  
-using UnityEngine.SceneManagement;
-  
-// Attach this C# script to your Windows Panel or its title bar  
-public class HangerDragger : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
-{  
+using UnityEngine;
+using UnityEngine.EventSystems;
 
-    public float returnSpeed = 10f;
-    private bool shouldReturn = false;
-    private Camera mainCamera;
+public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+{
+    private RectTransform rectTransform;
+    private Canvas canvas;
+    private float targetY;
+    private bool isDragging = false;
+    private Vector2 dragOffset;
 
-    void Start()
+    [SerializeField] private float lerpSpeed = 10f;
+
+    void Awake()
     {
-        mainCamera = Camera.main;
-      
+        rectTransform = GetComponent<RectTransform>();
+        canvas = GetComponentInParent<Canvas>();
+        targetY = rectTransform.anchoredPosition.y;
     }
 
-       public void OnPointerDown(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Pointer Down");
-        // Optional: Add logic if needed when starting to drag
+        isDragging = true;
+        // Get local pointer position within the image's parent
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            rectTransform.parent as RectTransform, // very important: parent, not self
+            eventData.position,
+            eventData.pressEventCamera,
+            out var localPointerPos
+        );
+        // The offset from the anchor to the cursor (grab point)
+        dragOffset = rectTransform.anchoredPosition - localPointerPos;
     }
 
-  
-
-      public void OnPointerUp(PointerEventData eventData)
+    public void OnDrag(PointerEventData eventData)
     {
-        // Start returning when mouse is released
-        shouldReturn = true;
-        Debug.Log("Return");
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            rectTransform.parent as RectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out var localPointerPos
+        );
+        // The new anchoredPosition is where the mouse is, plus the saved offset
+        rectTransform.anchoredPosition = localPointerPos + dragOffset;
     }
 
-
-    public void OnDrag(PointerEventData eventData)  
-    {  
-    // Get the current mouse position from the event data
-    Vector3 mouseScreenPosition = eventData.position;
-    // Convert screen position to world position
-    Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mouseScreenPosition);
-    // Keep the original Z position
-    mouseWorldPosition.z = transform.position.z;
-    // Set the object's position directly to follow the mouse precisely
-    transform.position = mouseWorldPosition;
-    }  
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        isDragging = false;
+    }
 
     void Update()
     {
-        if(shouldReturn)
+        if (!isDragging && Mathf.Abs(rectTransform.anchoredPosition.y - targetY) > 0.1f)
         {
-             transform.position = Vector3.Lerp(transform.position, transform.position, Time.deltaTime * returnSpeed);
+            Vector2 pos = rectTransform.anchoredPosition;
+            pos.y = Mathf.Lerp(pos.y, targetY, Time.deltaTime * lerpSpeed);
+            rectTransform.anchoredPosition = pos;
         }
-      
-        
+        if (!isDragging && Mathf.Abs(rectTransform.anchoredPosition.y - targetY) <= 0.1f)
+        {
+            Vector2 pos = rectTransform.anchoredPosition;
+            pos.y = targetY;
+            rectTransform.anchoredPosition = pos;
+        }
     }
-
 }
