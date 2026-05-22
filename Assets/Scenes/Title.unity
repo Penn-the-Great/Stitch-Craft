@@ -459,7 +459,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: f09a1512d5c3d45d0a8ed58884e5a165, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 116fd4184f5b04158b934e9c5bfa7b62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -478,8 +478,8 @@ Transform:
   m_GameObject: {fileID: 670221078}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.84, z: 0}
-  m_LocalScale: {x: 8.8, y: 10.3, z: 1}
+  m_LocalPosition: {x: 0.1238, y: 0.9944, z: 0}
+  m_LocalScale: {x: 2.5804324, y: 2.2067485, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -520,8 +520,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -490.6, y: -442.1}
-  m_SizeDelta: {x: 434.5, y: 231}
+  m_AnchoredPosition: {x: 81, y: -147}
+  m_SizeDelta: {x: 247.2, y: 124.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &792158375
 MonoBehaviour:
@@ -846,8 +846,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300.3, y: 241.3}
-  m_SizeDelta: {x: 836.1, y: 811.7}
+  m_AnchoredPosition: {x: -228, y: 105.3}
+  m_SizeDelta: {x: 347.7, y: 297.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1061350974
 MonoBehaviour:
@@ -923,8 +923,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -490.6, y: -221.3}
-  m_SizeDelta: {x: 434.5, y: 231}
+  m_AnchoredPosition: {x: -206.3, y: -147}
+  m_SizeDelta: {x: 247.2, y: 124.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1094046909
 MonoBehaviour:
@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
