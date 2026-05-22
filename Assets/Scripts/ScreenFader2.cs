@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class ScreenFader : MonoBehaviour
 {
     public Image fadeImage;
-    [SerializeField] private string sceneToFade;
+    [SerializeField] int sceneToLoad = 0;
+    private Coroutine fadeLoopCoroutine;
 
     void Awake()
     {
@@ -18,29 +19,35 @@ public class ScreenFader : MonoBehaviour
         }
     }
 
-    public void FadeButtonClick()
+    // Call this method to fade and load a scene
+    public void FadeAndLoadScene(float duration)
     {
-        StartCoroutine(FadeInOut(1f, 2f));
-    }
-
-    public void StartFadeIn(float duration)
-    {
-        StartCoroutine(FadeIn(duration));
-        Debug.Log("Fading");
-    }
-
-    public IEnumerator FadeAndLoadScene(float fadeDuration, bool fadeOutOnNewScene = true)
-    {
-        // Use unscaled delta time so fade works even when game is paused
-        yield return StartCoroutine(FadeInUnscaled(fadeDuration));
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToFade);
-
-        if (fadeOutOnNewScene)
+        if (fadeLoopCoroutine != null)
         {
-            // Reset timeScale before fading out on new scene
-            Time.timeScale = 1f;
-            yield return StartCoroutine(FadeOut(fadeDuration));
+            StopCoroutine(fadeLoopCoroutine);
         }
+        StartCoroutine(FadeAndLoadSceneCoroutine(duration));
+        Debug.Log($"Fading and loading scene: {sceneToLoad}");
+    }
+
+    // Coroutine that handles fading and scene loading
+    private IEnumerator FadeAndLoadSceneCoroutine(float duration)
+    {
+        // Fade IN before loading
+        yield return StartCoroutine(FadeIn(duration));
+        
+        // Load the scene
+        SceneManager.LoadScene(sceneToLoad);
+        
+        // IMPORTANT: The coroutine continues after LoadScene because of DontDestroyOnLoad
+        // Now fade OUT on the new scene
+        yield return StartCoroutine(FadeOut(duration));
+    }
+
+    void FadeAndLoad(float duration)
+    {
+        StartCoroutine(FadeIn(2f));
+        Debug.Log("Fading");
     }
 
     public IEnumerator FadeInOut(float fadeDuration, float waitTime)
@@ -49,27 +56,13 @@ public class ScreenFader : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         yield return StartCoroutine(FadeOut(fadeDuration));
 
-        StartCoroutine(FadeInOut(1f, 2f));
+        fadeLoopCoroutine = StartCoroutine(FadeInOut(1f, 2f));
     }
 
     public IEnumerator FadeIn(float duration)
     {
         Color c = fadeImage.color;
         for (float t = 0; t < duration; t += Time.deltaTime)
-        {
-            c.a = Mathf.Lerp(0, 1, t / duration);
-            fadeImage.color = c;
-            yield return null;
-        }
-        c.a = 1;
-        fadeImage.color = c;
-    }
-
-    // Fade in using unscaled delta time (works when game is paused)
-    public IEnumerator FadeInUnscaled(float duration)
-    {
-        Color c = fadeImage.color;
-        for (float t = 0; t < duration; t += Time.unscaledDeltaTime)
         {
             c.a = Mathf.Lerp(0, 1, t / duration);
             fadeImage.color = c;
