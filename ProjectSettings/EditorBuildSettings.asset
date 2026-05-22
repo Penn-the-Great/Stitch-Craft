@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Settings.unity
     guid: 31999070e422b4e199ffd6a612482bab
   - enabled: 1
+    path: Assets/Scenes/Chapter Select.unity
+    guid: 88b5c4928266248979dc235ec96896e2
+  - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 19a56eead218d40c7a1e3be790690f1c
   - enabled: 1
