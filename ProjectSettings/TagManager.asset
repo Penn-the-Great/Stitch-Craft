@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Music
   - Slider Canvas
+  - HoverUI
   layers:
   - Default
   - TransparentFX
