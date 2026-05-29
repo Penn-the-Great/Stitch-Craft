@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
 public class TopProperty : MonoBehaviour
 {
+
+    public string presetName;
     public string displayName;
     public Color color;
     public string material;

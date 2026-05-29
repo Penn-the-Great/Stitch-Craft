@@ -8,39 +8,50 @@ public class HoverUI : MonoBehaviour
     public GameObject propertyPanel;
     private Vector3 targetPosition;
     private bool isShowing = false;
+    private RectTransform currentRect;
+        public TextMeshProUGUI pieceText, nameText, materialText, styleText, gradeText;
+    public Image colorImage;
 
     void Update()
     {
-        if (isShowing)
-        {
-            // Interpolate panel's position toward the target position (smooth)
-            propertyPanel.transform.position = Vector3.Lerp(
-                propertyPanel.transform.position,
-                targetPosition,
-                Time.deltaTime * 12f // 12 = speed, make higher for faster response
-            );
-        }
+    if (isShowing && currentRect != null)
+    {
+        UpdateTargetPosition(currentRect); // Always update target position
+        propertyPanel.transform.position = Vector3.Lerp(
+            propertyPanel.transform.position, targetPosition, Time.deltaTime * 12f);
+    }
     }
 
     public void Show(TopProperty tp, RectTransform hangerRect)
     {
-        // ... fill in text/colors ...
+    
+        pieceText.text = $"Type: {tp.piece}";
+        nameText.text     = $"Name: {tp.displayName}";
+        materialText.text = $"Material: {tp.material}";
+        styleText.text    = $"Style: {tp.style}";
+        gradeText.text    = $"Grade: {tp.grade}";
+        colorImage.color  = tp.color;
 
-        Vector3[] corners = new Vector3[4];
-        hangerRect.GetWorldCorners(corners);
-        Vector3 topCenter = (corners[1] + corners[2]) / 2f;
-        topCenter.y += 40f; // Offset above (tweak as needed)
-
-        targetPosition = topCenter;
-        isShowing = true;
-        // Enable if using pointer alpha/canvas group etc.
-        propertyPanel.SetActive(true);
+    currentRect = hangerRect;
+    UpdateTargetPosition(currentRect);
+    propertyPanel.transform.position = targetPosition; // Instantly snap
+    isShowing = true;
+    propertyPanel.SetActive(true);
     }
+
+    void UpdateTargetPosition(RectTransform hangerRect)
+{
+    Vector3[] corners = new Vector3[4];
+    hangerRect.GetWorldCorners(corners);
+    targetPosition = (corners[1] + corners[2]) / 2f;
+    targetPosition.y += 40f;
+}
 
     public void Hide()
     {
-        isShowing = false;
-        propertyPanel.transform.position = new Vector2(-10000, -10000);
-        // Or hide with alpha/canvas group as discussed previously
+     isShowing = false;
+    propertyPanel.transform.position = new Vector2(-10000, -10000);
+
+    currentRect = null;
     }
 }

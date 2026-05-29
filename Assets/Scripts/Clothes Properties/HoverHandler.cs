@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler
 {
     private TopProperty tp;
+        private bool isPointerOver = false;
+    private bool isDragging = false;
 
     void Awake()
     {
@@ -13,46 +15,39 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GameObject propertyPanel = GameObject.FindGameObjectWithTag("HoverUI");
-        Debug.Log("Enter");
-
-        if (propertyPanel != null)
-        {
-            var hoverUI = propertyPanel.GetComponent<HoverUI>();
-            if (hoverUI != null && tp != null)
-            {
-                hoverUI.Show(tp, GetComponent<RectTransform>());
-            }
-            else
-            {
-                Debug.LogWarning("HoverUI component or TopProperty (tp) is null.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No GameObject found with tag 'HoverUI'");
-        }
+        isPointerOver = true;
+        ShowPanel();
     }
-
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameObject propertyPanel = GameObject.FindGameObjectWithTag("HoverUI");
+        isPointerOver = false;
+        if (!isDragging) HidePanel();
+    }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        isDragging = true;
+        ShowPanel();
+    }
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        isDragging = false;
+        if (!isPointerOver) HidePanel();
+    }
 
-        if (propertyPanel != null)
-        {
-            var hoverUI = propertyPanel.GetComponent<HoverUI>();
-            if (hoverUI != null)
-            {
-                hoverUI.Hide();
-            }
-            else
-            {
-                Debug.LogWarning("HoverUI component is null.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No GameObject found with tag 'HoverUI'");
-        }
+    void ShowPanel()
+    {
+        var propertyPanel = GameObject.FindGameObjectWithTag("HoverUI");
+        var hoverUI = propertyPanel?.GetComponent<HoverUI>();
+        var myRect = GetComponent<RectTransform>();
+        if (hoverUI != null && tp != null && myRect != null)
+            hoverUI.Show(tp, myRect);
+    }
+
+    void HidePanel()
+    {
+        var propertyPanel = GameObject.FindGameObjectWithTag("HoverUI");
+        var hoverUI = propertyPanel?.GetComponent<HoverUI>();
+        if (hoverUI != null)
+            hoverUI.Hide();
     }
 }

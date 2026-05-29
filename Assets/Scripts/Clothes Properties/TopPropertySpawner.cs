@@ -1,15 +1,19 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Only needed if you want to target a specific scene
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;  // Only needed if you want to target a specific scene
 
 public class TopPropertySpawner : MonoBehaviour
 {
     public GameObject prefabToSpawn;
+     
     public Canvas targetCanvas;
     private string[] topNames = { "Tank Top", "Vest Top", "Button up", "Sweater", "Blouse", "Basic shirt" };
 private string[] bottomNames = { "Jeans", "Slackd", "Shorts", "Harem Pants", "Skirt", "tights" };
 private string[] hatNames = { "Cowboy hat", "Fedora", "Flat cap", "Beret", "Sun Hat", "Top Hat" };
 private string[] shoeNames = { "Sneakers", "Boots", "Loafers", "Sandals", "Heels", "Fancy" };
 private string[] fullNames = { "Jumpsuit", "Overall", "Dress", "Morph suit", "Robe", "Suit Set" };
+
+
    
     public void SpawnOnCanvas(Vector2 anchoredPosition)
     {
@@ -96,18 +100,51 @@ private string[] fullNames = { "Jumpsuit", "Overall", "Dress", "Morph suit", "Ro
             var tp = obj.GetComponent<TopProperty>();
         if (tp != null)
         {
+            tp.piece = piece;
             tp.displayName = GetRandomDisplayNameByPiece(piece);
             tp.color = Random.ColorHSV();
             tp.material = RandomMaterial();
             tp.style = RandomStyle();
             tp.grade = RandomGrade();
+                    if (piece.ToLower() == "hat" || piece.ToLower() == "shoe")
+        {
+            tp.material = "N/A";
+        }
            
-            // Optionally call tp.ApplyProperties(tp) if needed by your UI
+
         }
     }
 
+    public void SpawnWithOverrides(ClothingOverrides overrides = null)
+{
+    // Randomize all properties by default
+    string piece = RandomPiece();
+    string displayName = GetRandomDisplayNameByPiece(piece);
+    Color color = Random.ColorHSV();
+    string material = RandomMaterial();
+    string style = RandomStyle();
+    char grade = RandomGrade();
+
+    // Apply any overrides if set
+    if (overrides != null) {
+        if (overrides.overridePiece)        piece        = overrides.piece;
+        if (overrides.overrideDisplayName)  displayName  = overrides.displayName;
+        if (overrides.overrideColor)        color        = overrides.color;
+        if (overrides.overrideMaterial)     material     = overrides.material;
+        if (overrides.overrideStyle)        style        = overrides.style;
+        if (overrides.overrideGrade)        grade        = overrides.grade;
+    }
+
+    // Now spawn
+    float minX = -300f, maxX = 300f, randomX = Random.Range(minX, maxX), fixedY = 0f;
+    GameObject obj = InstantiateToCanvas(new Vector2(randomX, fixedY));
+    SetPresetProperties(obj, piece, displayName, color, material, style, grade);
+}
+
+
         public void SpawnPresetOnCanvas()
     {
+         
 
             float minX = -300f;
     float maxX = 300f;
@@ -129,6 +166,11 @@ private string[] fullNames = { "Jumpsuit", "Overall", "Dress", "Morph suit", "Ro
             rt.anchoredPosition = anchoredPosition;
         return obj;
     }
+    private string RandomPiece()
+{
+    string[] pieces = { "top", "bottom", "hat", "shoe", "full" };
+    return pieces[Random.Range(0, pieces.Length)];
+}
 
         // Button hook examples:
     public void SpawnRandomTop()    { SpawnRandomOnCanvas("top"); }
@@ -136,4 +178,7 @@ private string[] fullNames = { "Jumpsuit", "Overall", "Dress", "Morph suit", "Ro
     public void SpawnRandomHat()    { SpawnRandomOnCanvas("hat"); }
     public void SpawnRandomShoe()   { SpawnRandomOnCanvas("shoe"); }
     public void SpawnRandomFull()   { SpawnRandomOnCanvas("full"); }
+    public void SpawnRandomAny()    {
+string randomPiece = RandomPiece();
+    SpawnRandomOnCanvas(randomPiece);}
 }
