@@ -310,7 +310,6 @@ GameObject:
   m_Component:
   - component: {fileID: 759306316}
   - component: {fileID: 759306315}
-  - component: {fileID: 759306314}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -318,14 +317,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &759306314
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 759306313}
-  m_Enabled: 1
 --- !u!20 &759306315
 Camera:
   m_ObjectHideFlags: 0
@@ -495,7 +486,8 @@ GameObject:
   - component: {fileID: 1972403492}
   - component: {fileID: 1972403491}
   - component: {fileID: 1972403490}
-  - component: {fileID: 1972403489}
+  - component: {fileID: 1972403493}
+  - component: {fileID: 1972403494}
   m_Layer: 5
   m_Name: X
   m_TagString: Untagged
@@ -522,20 +514,6 @@ RectTransform:
   m_AnchoredPosition: {x: 340, y: 193}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1972403489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972403487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af35a2ae9d4a8490fb496c42f0ff033e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SliderPrefabSpawner
-  sliderFaderPrefab: {fileID: 7514083883174622369, guid: 41d4a22e26e334455a8dde8c5c465b4b, type: 3}
-  nextSceneName: Shop
 --- !u!114 &1972403490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,9 +558,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1972403489}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
+      - m_Target: {fileID: 1972403493}
+        m_TargetAssemblyTypeName: ShopNavigation, Assembly-CSharp
+        m_MethodName: ReturnToMainShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -630,6 +608,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972403487}
   m_CullTransparentMesh: 1
+--- !u!114 &1972403493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972403487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75264b5aae86e4b71b98ab18ad209905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopNavigation
+--- !u!114 &1972403494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972403487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af35a2ae9d4a8490fb496c42f0ff033e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SliderPrefabSpawner
+  sliderFaderPrefab: {fileID: 7514083883174622369, guid: 41d4a22e26e334455a8dde8c5c465b4b, type: 3}
+  nextSceneName: Shop
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

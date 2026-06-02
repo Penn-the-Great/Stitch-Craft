@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 1629053653}
   - component: {fileID: 1629053652}
   - component: {fileID: 1629053651}
+  - component: {fileID: 1629053655}
   m_Layer: 5
   m_Name: X
   m_TagString: Untagged
@@ -488,9 +489,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1629053651}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
+      - m_Target: {fileID: 1629053655}
+        m_TargetAssemblyTypeName: ShopNavigation, Assembly-CSharp
+        m_MethodName: ReturnToMainShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -538,6 +539,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629053649}
   m_CullTransparentMesh: 1
+--- !u!114 &1629053655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629053649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75264b5aae86e4b71b98ab18ad209905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopNavigation
 --- !u!1 &1952841498
 GameObject:
   m_ObjectHideFlags: 0

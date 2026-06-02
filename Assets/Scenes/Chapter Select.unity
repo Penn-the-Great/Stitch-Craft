@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 24618966}
   - component: {fileID: 24618965}
   - component: {fileID: 24618964}
-  - component: {fileID: 24618968}
   m_Layer: 5
   m_Name: Chapter 4
   m_TagString: Untagged
@@ -217,31 +216,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 24618966}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 24618964}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 24618968}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &24618966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,19 +255,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24618962}
   m_CullTransparentMesh: 1
---- !u!114 &24618968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 24618962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
 --- !u!1 &43015934
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +721,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &154357258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154357260}
+  - component: {fileID: 154357259}
+  m_Layer: 0
+  m_Name: Persistent data handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &154357259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154357258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856d899a6ccee4191b7aa9dc07acc739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PersistentGameData
+  selectedChapter: 1
+--- !u!4 &154357260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154357258}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 705, y: 440.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &247274889
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,7 +916,6 @@ GameObject:
   - component: {fileID: 255564670}
   - component: {fileID: 255564669}
   - component: {fileID: 255564668}
-  - component: {fileID: 255564672}
   m_Layer: 5
   m_Name: Chapter 9
   m_TagString: Untagged
@@ -994,31 +1000,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 255564670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 255564668}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 255564672}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 9
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &255564670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,19 +1039,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255564666}
   m_CullTransparentMesh: 1
---- !u!114 &255564672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255564666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
 --- !u!1 &432319169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,7 +1189,6 @@ GameObject:
   - component: {fileID: 452353744}
   - component: {fileID: 452353743}
   - component: {fileID: 452353742}
-  - component: {fileID: 452353746}
   m_Layer: 5
   m_Name: Chapter 7
   m_TagString: Untagged
@@ -1305,31 +1273,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 452353744}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 452353742}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 452353746}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 7
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &452353744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1368,19 +1312,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452353740}
   m_CullTransparentMesh: 1
---- !u!114 &452353746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452353740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
 --- !u!1 &466903544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,7 +1472,6 @@ GameObject:
   - component: {fileID: 627055090}
   - component: {fileID: 627055089}
   - component: {fileID: 627055088}
-  - component: {fileID: 627055092}
   m_Layer: 5
   m_Name: Chapter 8
   m_TagString: Untagged
@@ -1626,31 +1556,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 627055090}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 627055088}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 627055092}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &627055090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1689,19 +1595,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627055086}
   m_CullTransparentMesh: 1
---- !u!114 &627055092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627055086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
 --- !u!1 &751173253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,7 +1882,6 @@ GameObject:
   - component: {fileID: 900897796}
   - component: {fileID: 900897795}
   - component: {fileID: 900897794}
-  - component: {fileID: 900897798}
   m_Layer: 5
   m_Name: Freeplay
   m_TagString: Untagged
@@ -2074,31 +1966,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 900897796}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 900897794}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 900897798}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 11
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &900897796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2137,19 +2005,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900897792}
   m_CullTransparentMesh: 1
---- !u!114 &900897798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900897792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
 --- !u!1 &1020166014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,7 +2018,6 @@ GameObject:
   - component: {fileID: 1020166018}
   - component: {fileID: 1020166017}
   - component: {fileID: 1020166016}
-  - component: {fileID: 1020166020}
   m_Layer: 5
   m_Name: Chapter 6
   m_TagString: Untagged
@@ -2248,31 +2102,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1020166018}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1020166016}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1020166020}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1020166018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2311,19 +2141,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020166014}
   m_CullTransparentMesh: 1
---- !u!114 &1020166020
+--- !u!1 &1092148841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1092148843}
+  - component: {fileID: 1092148842}
+  m_Layer: 0
+  m_Name: Chapter select handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1092148842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020166014}
+  m_GameObject: {fileID: 1092148841}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
+  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelectUI
+  chapter1Button: {fileID: 1804125771}
+  chapter2Button: {fileID: 1919081283}
+  chapter3Button: {fileID: 1746603925}
+  chapter4Button: {fileID: 24618965}
+  chapter5Button: {fileID: 1914911432}
+  chapter6Button: {fileID: 1020166017}
+  chapter7Button: {fileID: 452353743}
+  chapter8Button: {fileID: 627055089}
+  chapter9Button: {fileID: 255564669}
+  chapter10Button: {fileID: 1612523072}
+  FreePlayButton: {fileID: 900897795}
+--- !u!4 &1092148843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092148841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 705, y: 440.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1229319381
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,7 +2940,6 @@ GameObject:
   - component: {fileID: 1612523073}
   - component: {fileID: 1612523072}
   - component: {fileID: 1612523071}
-  - component: {fileID: 1612523075}
   m_Layer: 5
   m_Name: Chapter 10
   m_TagString: Untagged
@@ -3153,31 +3024,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1612523073}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1612523071}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1612523075}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1612523073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3216,19 +3063,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612523069}
   m_CullTransparentMesh: 1
---- !u!114 &1612523075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1612523069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
 --- !u!1 &1746603922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3242,7 +3076,6 @@ GameObject:
   - component: {fileID: 1746603926}
   - component: {fileID: 1746603925}
   - component: {fileID: 1746603924}
-  - component: {fileID: 1746603928}
   m_Layer: 5
   m_Name: Chapter 3
   m_TagString: Untagged
@@ -3327,31 +3160,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1746603926}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1746603924}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1746603928}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1746603926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3390,19 +3199,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746603922}
   m_CullTransparentMesh: 1
---- !u!114 &1746603928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746603922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
 --- !u!1 &1771364832
 GameObject:
   m_ObjectHideFlags: 0
@@ -3553,7 +3349,6 @@ GameObject:
   - component: {fileID: 1804125772}
   - component: {fileID: 1804125771}
   - component: {fileID: 1804125774}
-  - component: {fileID: 1804125775}
   m_Layer: 5
   m_Name: Chapter 1
   m_TagString: Untagged
@@ -3637,18 +3432,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1804125775}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1804125772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3701,19 +3484,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SliderPrefabSpawner
   sliderFaderPrefab: {fileID: 7514083883174622369, guid: 41d4a22e26e334455a8dde8c5c465b4b, type: 3}
   nextSceneName: Shop
---- !u!114 &1804125775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804125769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
 --- !u!1 &1914911429
 GameObject:
   m_ObjectHideFlags: 0
@@ -3727,7 +3497,6 @@ GameObject:
   - component: {fileID: 1914911433}
   - component: {fileID: 1914911432}
   - component: {fileID: 1914911431}
-  - component: {fileID: 1914911435}
   m_Layer: 5
   m_Name: Chapter 5
   m_TagString: Untagged
@@ -3812,31 +3581,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1914911433}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1914911431}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1914911435}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1914911433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3875,19 +3620,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914911429}
   m_CullTransparentMesh: 1
---- !u!114 &1914911435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914911429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
 --- !u!1 &1919081280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3901,7 +3633,6 @@ GameObject:
   - component: {fileID: 1919081284}
   - component: {fileID: 1919081283}
   - component: {fileID: 1919081282}
-  - component: {fileID: 1919081286}
   m_Layer: 5
   m_Name: Chapter 2
   m_TagString: Untagged
@@ -3986,31 +3717,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1919081284}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1919081282}
-        m_TargetAssemblyTypeName: SliderPrefabSpawner, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1919081286}
-        m_TargetAssemblyTypeName: ChapterSelect, Assembly-CSharp
-        m_MethodName: SetChapter
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1919081284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4049,19 +3756,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919081280}
   m_CullTransparentMesh: 1
---- !u!114 &1919081286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919081280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c86d4eba9ac45db903b35703530630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChapterSelect
-  Chapter: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4070,3 +3764,5 @@ SceneRoots:
   - {fileID: 1442672683}
   - {fileID: 43015937}
   - {fileID: 123345941}
+  - {fileID: 154357260}
+  - {fileID: 1092148843}

@@ -539,7 +539,6 @@ GameObject:
   m_Component:
   - component: {fileID: 847193310}
   - component: {fileID: 847193309}
-  - component: {fileID: 847193308}
   - component: {fileID: 847193307}
   - component: {fileID: 847193306}
   m_Layer: 0
@@ -574,18 +573,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlobalButtonSound
   buttonClickClip: {fileID: 8300000, guid: c74a72e00d34948538e096e085c10013, type: 3}
---- !u!114 &847193308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847193305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9c78e53c5e934886b0e18b8f9e23eeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SFX
 --- !u!82 &847193309
 AudioSource:
   m_ObjectHideFlags: 0
@@ -691,12 +678,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847193305}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.9872, y: -4.68982, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1227886406}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1061350972
 GameObject:
@@ -920,6 +907,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SliderPrefabSpawner
   sliderFaderPrefab: {fileID: 7514083883174622369, guid: 41d4a22e26e334455a8dde8c5c465b4b, type: 3}
   nextSceneName: Chapter Select
+--- !u!4 &1227886406 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4317101903781870375, guid: 5e5262811b5144eb18827a807b0b76fd, type: 3}
+  m_PrefabInstance: {fileID: 2769370600128587257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1765604687
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +924,7 @@ GameObject:
   - component: {fileID: 1765604691}
   - component: {fileID: 1765604690}
   - component: {fileID: 1765604689}
-  - component: {fileID: 1765604688}
+  - component: {fileID: 1765604693}
   m_Layer: 5
   m_Name: Slider canvas (3)
   m_TagString: Slider Canvas
@@ -940,18 +932,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1765604688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765604687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cad0a759c48de40a9b25974746a62baa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Stay
 --- !u!114 &1765604689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,6 +1014,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1765604693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765604687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ceed15ed1c6b4aeeace7606f1175b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DontDestroy
 --- !u!1 &1831831680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1131,65 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1929610266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1929610269}
+  - component: {fileID: 1929610268}
+  - component: {fileID: 1929610270}
+  m_Layer: 0
+  m_Name: Transition handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1929610268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929610266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b239ac85a5fd24283882631e81424282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionManager
+  sliderFaderPrefab: {fileID: 7514083883174622369, guid: 41d4a22e26e334455a8dde8c5c465b4b, type: 3}
+--- !u!4 &1929610269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929610266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 540.56757, y: 437, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1929610270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929610266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad0a759c48de40a9b25974746a62baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stay
+  destroyScene: 
 --- !u!1001 &2769370600128587257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1193,7 +1244,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4317101903781870375, guid: 5e5262811b5144eb18827a807b0b76fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 847193310}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e5262811b5144eb18827a807b0b76fd, type: 3}
 --- !u!1660057539 &9223372036854775807
@@ -1204,5 +1258,5 @@ SceneRoots:
   - {fileID: 1831831684}
   - {fileID: 670221080}
   - {fileID: 2769370600128587257}
-  - {fileID: 847193310}
   - {fileID: 1765604692}
+  - {fileID: 1929610269}

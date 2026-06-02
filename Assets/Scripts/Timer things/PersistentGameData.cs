@@ -8,7 +8,6 @@ public class PersistentGameData : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton pattern: persist across scenes
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);

@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class SceneSlider : MonoBehaviour
 {
     [SerializeField] private float slideDuration = 0.7f;
-    [SerializeField] private string sceneToLoad; // set this when you spawn
+    [SerializeField] private string sceneToLoad;
+    private LoadSceneMode loadMode = LoadSceneMode.Single;
     private RectTransform rectTransform;
     private RectTransform canvasRectTransform;
     private float screenHeight;
@@ -25,36 +26,40 @@ public class SceneSlider : MonoBehaviour
             else
             {
                 Debug.LogError("Slider Canvas does not have RectTransform!");
-                screenHeight = 1080f; // fallback
+                screenHeight = 1080f;
             }
         } else {
             Debug.LogError("No Slider Canvas (with tag) found!");
-            screenHeight = 1080f; // fallback
+            screenHeight = 1080f;
         }
 
-        // Start above the screen, regardless
         rectTransform.anchoredPosition = new Vector2(0, screenHeight);
     }
 
+    // Original method - single scene load
     public void BeginTransition(string nextScene)
     {
+        BeginTransition(nextScene, LoadSceneMode.Single);
+    }
+
+    // New overload - supports additive loading
+    public void BeginTransition(string nextScene, LoadSceneMode mode)
+    {
         sceneToLoad = nextScene;
+        loadMode = mode;
         StartCoroutine(SlideAndChangeScene());
     }
 
     private IEnumerator SlideAndChangeScene()
     {
-        // Slide down to cover screen
         yield return StartCoroutine(SlideTo(Vector2.zero, slideDuration));
 
-        // Load scene
-        AsyncOperation op = SceneManager.LoadSceneAsync(sceneToLoad);
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneToLoad, loadMode);
         while (!op.isDone)
             yield return null;
 
-        yield return null; // wait for new scene frame
+        yield return null;
 
-        // Slide up and off screen
         yield return StartCoroutine(SlideTo(new Vector2(0, screenHeight), slideDuration));
 
         Destroy(gameObject);
@@ -77,7 +82,6 @@ public class SceneSlider : MonoBehaviour
 
     private float EaseInOut(float t)
     {
-        // S-curve ease: SmoothStep
         return t * t * (3f - 2f * t);
     }
 }
