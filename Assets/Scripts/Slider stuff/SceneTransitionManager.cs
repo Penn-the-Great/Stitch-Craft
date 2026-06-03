@@ -27,6 +27,14 @@ public class SceneTransitionManager : MonoBehaviour
         StartCoroutine(DoTransition(sceneName, mode));
     }
 
+    /// <summary>
+    /// Unload a specific scene
+    /// </summary>
+    public void UnloadScene(string sceneName)
+    {
+        StartCoroutine(DoUnload(sceneName));
+    }
+
     private System.Collections.IEnumerator DoTransition(string sceneName, LoadSceneMode mode)
     {
         if (sliderFaderPrefab)
@@ -48,5 +56,28 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(sceneName, mode);
+    }
+
+    private System.Collections.IEnumerator DoUnload(string sceneName)
+    {
+        if (sliderFaderPrefab)
+        {
+            var canvas = GameObject.FindGameObjectWithTag("Slider Canvas")?.transform 
+                      ?? FindObjectOfType<Canvas>()?.transform;
+            
+            if (canvas)
+            {
+                var faderObj = Instantiate(sliderFaderPrefab, canvas);
+                var fader = faderObj.GetComponent<SceneSlider>();
+                
+                if (fader)
+                {
+                    fader.BeginUnload(sceneName);
+                    yield break;
+                }
+            }
+        }
+
+        yield return SceneManager.UnloadSceneAsync(sceneName);
     }
 }

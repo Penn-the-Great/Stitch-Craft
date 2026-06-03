@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class ShopNavigation : MonoBehaviour
 {
 
+  
+
     public void GoToDesk()
     {
         SceneTransitionManager.Instance.TransitionToScene("Desk", LoadSceneMode.Additive);
@@ -29,9 +31,29 @@ public class ShopNavigation : MonoBehaviour
         SceneTransitionManager.Instance.TransitionToScene("Stitching table", LoadSceneMode.Additive);
     }
 
-    public void ReturnToMainShop()
+      public void LeaveDesk()
     {
-       SceneTransitionManager.Instance.TransitionToScene("Shop", LoadSceneMode.Single);
+        SceneTransitionManager.Instance.UnloadScene("Desk");
+    }
+
+    public void LeaveCompiler()
+    {
+        SceneTransitionManager.Instance.UnloadScene("Compiler");
+    }
+
+    public void LeaveMeeting()
+    {
+        SceneTransitionManager.Instance.UnloadScene("Meeting room");
+    }
+
+    public void LeaveStorage()
+    {
+        SceneTransitionManager.Instance.UnloadScene("Storage");
+    }
+
+    public void LeaveStitching()
+    {
+        SceneTransitionManager.Instance.UnloadScene("Stitching table");
     }
 
     public void GoToEndScene()

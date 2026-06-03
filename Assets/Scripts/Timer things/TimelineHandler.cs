@@ -42,6 +42,7 @@ public class TimelineHandler : MonoBehaviour
     private bool waitingToStartWeek = false;
     private Coroutine timesUpCoroutine;
     private bool weekEndTriggered = false;
+    private float lastDebugLogTime = 0f;
 
 
 
@@ -63,10 +64,16 @@ public class TimelineHandler : MonoBehaviour
     void Update()
     {
         if (!timerRunning) return;
-
-        float deltaTime = debugMode ? Time.deltaTime * debugTimerSpeed : Time.deltaTime;
+        float debugSpeed = debugMode ? (PersistentGameData.Instance?.debugTimerSpeed ?? debugTimerSpeed) : 1f;
+         float deltaTime = debugMode ? Time.unscaledDeltaTime * debugSpeed : Time.unscaledDeltaTime;
         timer -= deltaTime;
         totalChapterTime += deltaTime;
+
+     if (debugMode && Time.time - lastDebugLogTime >= 1f)
+    {
+        Debug.Log($"⏱️ Timer: {timer:F2} seconds remaining | Week {currentWeek}");
+        lastDebugLogTime = Time.time;
+    }
 
     if (timer <= 0f && !weekEndTriggered)
     {
@@ -184,6 +191,7 @@ public void TransitionToNextScene()
             currentWeek++;
             UpdateWeekLabel();
             timer = weekLengthSeconds;
+            weekEndTriggered = false; 
             onWeekTimerStart?.Invoke();
         }
     }

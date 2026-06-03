@@ -7,7 +7,9 @@ public class SceneSlider : MonoBehaviour
 {
     [SerializeField] private float slideDuration = 0.7f;
     [SerializeField] private string sceneToLoad;
+    private string sceneToUnload;
     private LoadSceneMode loadMode = LoadSceneMode.Single;
+    private bool isUnloading = false;
     private RectTransform rectTransform;
     private RectTransform canvasRectTransform;
     private float screenHeight;
@@ -47,6 +49,15 @@ public class SceneSlider : MonoBehaviour
     {
         sceneToLoad = nextScene;
         loadMode = mode;
+        isUnloading = false;
+        StartCoroutine(SlideAndChangeScene());
+    }
+
+    // New method - unload a scene
+    public void BeginUnload(string nextScene)
+    {
+        sceneToUnload = nextScene;
+        isUnloading = true;
         StartCoroutine(SlideAndChangeScene());
     }
 
@@ -54,9 +65,18 @@ public class SceneSlider : MonoBehaviour
     {
         yield return StartCoroutine(SlideTo(Vector2.zero, slideDuration));
 
-        AsyncOperation op = SceneManager.LoadSceneAsync(sceneToLoad, loadMode);
-        while (!op.isDone)
-            yield return null;
+        if (isUnloading)
+        {
+            AsyncOperation op = SceneManager.UnloadSceneAsync(sceneToUnload);
+            while (!op.isDone)
+                yield return null;
+        }
+        else
+        {
+            AsyncOperation op = SceneManager.LoadSceneAsync(sceneToLoad, loadMode);
+            while (!op.isDone)
+                yield return null;
+        }
 
         yield return null;
 
