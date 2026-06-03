@@ -925,6 +925,7 @@ GameObject:
   - component: {fileID: 1765604690}
   - component: {fileID: 1765604689}
   - component: {fileID: 1765604693}
+  - component: {fileID: 1765604694}
   m_Layer: 5
   m_Name: Slider canvas (3)
   m_TagString: Slider Canvas
@@ -1026,6 +1027,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ceed15ed1c6b4aeeace7606f1175b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DontDestroy
+--- !u!114 &1765604694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765604687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad0a759c48de40a9b25974746a62baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stay
 --- !u!1 &1831831680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,10 +1199,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1929610266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cad0a759c48de40a9b25974746a62baa, type: 3}
+  m_Script: {fileID: 11500000, guid: cc948b3af80194fe598ef31f059bba67, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Stay
-  destroyScene: 
+  m_EditorClassIdentifier: Assembly-CSharp::StayTransition
 --- !u!1001 &2769370600128587257
 PrefabInstance:
   m_ObjectHideFlags: 0
