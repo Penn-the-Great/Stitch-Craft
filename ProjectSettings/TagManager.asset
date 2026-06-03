@@ -8,6 +8,8 @@ TagManager:
   - Slider Canvas
   - HoverUI
   - NavigationHandler
+  - StorageCanvas
+  - WorkspaceCanvas
   layers:
   - Default
   - TransparentFX

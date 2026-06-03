@@ -907,6 +907,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SliderPrefabSpawner
   sliderFaderPrefab: {fileID: 7514083883174622369, guid: 41d4a22e26e334455a8dde8c5c465b4b, type: 3}
   nextSceneName: Chapter Select
+--- !u!1 &1222112046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1222112049}
+  - component: {fileID: 1222112047}
+  - component: {fileID: 1222112050}
+  m_Layer: 0
+  m_Name: Storage Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1222112047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222112046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3ecee8d18f44daeb18254b0bc46c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StorageManager
+--- !u!4 &1222112049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222112046}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 1.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1222112050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222112046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf99a8fff8464c5995f489aa0cbeba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StayStorageMan
 --- !u!4 &1227886406 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4317101903781870375, guid: 5e5262811b5144eb18827a807b0b76fd, type: 3}
@@ -924,7 +981,6 @@ GameObject:
   - component: {fileID: 1765604691}
   - component: {fileID: 1765604690}
   - component: {fileID: 1765604689}
-  - component: {fileID: 1765604693}
   - component: {fileID: 1765604694}
   m_Layer: 5
   m_Name: Slider canvas (3)
@@ -1015,18 +1071,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1765604693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765604687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ceed15ed1c6b4aeeace7606f1175b5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DontDestroy
 --- !u!114 &1765604694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1272,3 +1316,4 @@ SceneRoots:
   - {fileID: 2769370600128587257}
   - {fileID: 1765604692}
   - {fileID: 1929610269}
+  - {fileID: 1222112049}

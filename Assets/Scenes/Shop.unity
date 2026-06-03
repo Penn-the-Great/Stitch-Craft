@@ -4446,6 +4446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7880972574147159115, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_TagString
+      value: WorkspaceCanvas
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

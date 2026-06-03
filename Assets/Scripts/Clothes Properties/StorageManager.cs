@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 /// <summary>
 /// Manages persistent storage of hanger objects across scenes.
@@ -39,7 +38,7 @@ public class StorageManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds a clothing item to storage when player leaves scene
+    /// Adds a clothing item to storage
     /// </summary>
     public void AddItemToStorage(TopProperty property)
     {
@@ -58,7 +57,7 @@ public class StorageManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes an item from storage (when player takes it out)
+    /// Removes an item from storage by index
     /// </summary>
     public void RemoveItemFromStorage(int index)
     {
@@ -86,7 +85,7 @@ public class StorageManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Clears all storage (optional reset function)
+    /// Clears all storage
     /// </summary>
     public void ClearStorage()
     {
