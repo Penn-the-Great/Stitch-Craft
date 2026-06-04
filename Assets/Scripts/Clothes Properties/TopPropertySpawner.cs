@@ -7,6 +7,16 @@ public class TopPropertySpawner : MonoBehaviour
     public GameObject prefabToSpawn;
      
     public Canvas targetCanvas;
+    [Header("Economy")]
+    [SerializeField] private bool requireBudget = true;
+    [SerializeField] private int topCost = 20;
+    [SerializeField] private int bottomCost = 25;
+    [SerializeField] private int hatCost = 12;
+    [SerializeField] private int shoeCost = 18;
+    [SerializeField] private int fullOutfitCost = 45;
+    [SerializeField] private int gradeAExtraCost = 20;
+    [SerializeField] private int gradeBExtraCost = 12;
+    [SerializeField] private int gradeCExtraCost = 6;
     private string[] topNames = { "Tank Top", "Vest Top", "Button up", "Sweater", "Blouse", "Basic shirt" };
 private string[] bottomNames = { "Jeans", "Slackd", "Shorts", "Harem Pants", "Skirt", "tights" };
 private string[] hatNames = { "Cowboy hat", "Fedora", "Flat cap", "Beret", "Sun Hat", "Top Hat" };
@@ -31,7 +41,7 @@ private string[] fullNames = { "Jumpsuit", "Overall", "Dress", "Morph suit", "Ro
     }
  }
 
-    public void SetPresetProperties(GameObject obj, string piece, string displayName, Color color, string material, string style, char grade)
+    public void SetPresetProperties(GameObject obj, string piece, string displayName, Color color, string material, string style, char grade, int cost = 0)
     {
         var tp = obj.GetComponent<TopProperty>();
         if (tp != null)
@@ -42,6 +52,7 @@ private string[] fullNames = { "Jumpsuit", "Overall", "Dress", "Morph suit", "Ro
             tp.material = material;
             tp.style = style;
             tp.grade = grade;
+            tp.cost = cost > 0 ? cost : CalculateCost(piece, grade);
             
             // Optionally call tp.ApplyProperties(tp) if needed by your UI
         }
@@ -95,17 +106,28 @@ private string[] fullNames = { "Jumpsuit", "Overall", "Dress", "Morph suit", "Ro
     // Fixed Y (the row of hangers)
     float fixedY = 0f;
 
+        string displayName = GetRandomDisplayNameByPiece(piece);
+        Color color = Random.ColorHSV();
+        string material = RandomMaterial();
+        string style = RandomStyle();
+        char grade = RandomGrade();
+        int cost = CalculateCost(piece, grade);
+
+        if (!TryPayForSpawn(cost))
+            return;
+
         GameObject obj = InstantiateToCanvas(new Vector2(randomX, fixedY));
 
             var tp = obj.GetComponent<TopProperty>();
         if (tp != null)
         {
             tp.piece = piece;
-            tp.displayName = GetRandomDisplayNameByPiece(piece);
-            tp.color = Random.ColorHSV();
-            tp.material = RandomMaterial();
-            tp.style = RandomStyle();
-            tp.grade = RandomGrade();
+            tp.displayName = displayName;
+            tp.color = color;
+            tp.material = material;
+            tp.style = style;
+            tp.grade = grade;
+            tp.cost = cost;
                     if (piece.ToLower() == "hat" || piece.ToLower() == "shoe")
         {
             tp.material = "N/A";
@@ -135,10 +157,14 @@ private string[] fullNames = { "Jumpsuit", "Overall", "Dress", "Morph suit", "Ro
         if (overrides.overrideGrade)        grade        = overrides.grade;
     }
 
+    int cost = CalculateCost(piece, grade);
+    if (!TryPayForSpawn(cost))
+        return;
+
     // Now spawn
     float minX = -300f, maxX = 300f, randomX = Random.Range(minX, maxX), fixedY = 0f;
     GameObject obj = InstantiateToCanvas(new Vector2(randomX, fixedY));
-    SetPresetProperties(obj, piece, displayName, color, material, style, grade);
+    SetPresetProperties(obj, piece, displayName, color, material, style, grade, cost);
 }
 
 
@@ -153,8 +179,12 @@ private string[] fullNames = { "Jumpsuit", "Overall", "Dress", "Morph suit", "Ro
     // Fixed Y (the row of hangers)
     float fixedY = 0f;
 
+        int cost = CalculateCost("Top", 'A');
+        if (!TryPayForSpawn(cost))
+            return;
+
         GameObject obj = InstantiateToCanvas(new Vector2(randomX, fixedY)); // change position if needed
-        SetPresetProperties(obj, "Top", "Basic shirt", Color.white, "Cotton", "Modern", 'A');
+        SetPresetProperties(obj, "Top", "Basic shirt", Color.white, "Cotton", "Modern", 'A', cost);
     }
 
         private GameObject InstantiateToCanvas(Vector2 anchoredPosition)
@@ -171,6 +201,52 @@ private string[] fullNames = { "Jumpsuit", "Overall", "Dress", "Morph suit", "Ro
     string[] pieces = { "top", "bottom", "hat", "shoe", "full" };
     return pieces[Random.Range(0, pieces.Length)];
 }
+
+    private int CalculateCost(string piece, char grade)
+    {
+        int baseCost;
+        switch (piece.ToLower())
+        {
+            case "top":
+                baseCost = topCost;
+                break;
+            case "bottom":
+                baseCost = bottomCost;
+                break;
+            case "hat":
+                baseCost = hatCost;
+                break;
+            case "shoe":
+                baseCost = shoeCost;
+                break;
+            case "full":
+                baseCost = fullOutfitCost;
+                break;
+            default:
+                baseCost = topCost;
+                break;
+        }
+
+        switch (char.ToUpper(grade))
+        {
+            case 'A':
+                return baseCost + gradeAExtraCost;
+            case 'B':
+                return baseCost + gradeBExtraCost;
+            case 'C':
+                return baseCost + gradeCExtraCost;
+            default:
+                return baseCost;
+        }
+    }
+
+    private bool TryPayForSpawn(int cost)
+    {
+        if (!requireBudget || ChapterBudgetManager.Instance == null)
+            return true;
+
+        return ChapterBudgetManager.Instance.TrySpend(cost);
+    }
 
         // Button hook examples:
     public void SpawnRandomTop()    { SpawnRandomOnCanvas("top"); }

@@ -10,6 +10,7 @@ TagManager:
   - NavigationHandler
   - StorageCanvas
   - WorkspaceCanvas
+  - BudgetLabel
   layers:
   - Default
   - TransparentFX

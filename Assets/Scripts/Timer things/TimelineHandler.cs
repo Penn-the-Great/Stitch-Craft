@@ -45,6 +45,16 @@ public class TimelineHandler : MonoBehaviour
     private float lastDebugLogTime = 0f;
 
 
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     void Start()
     {
@@ -79,6 +89,9 @@ public class TimelineHandler : MonoBehaviour
     {
         weekEndTriggered = true;
         timer = 0f;
+        if (DeskPurchaseManager.Instance != null)
+            DeskPurchaseManager.Instance.AdvanceDeliveriesOneWeek();
+
         onWeekEnd?.Invoke();
 
         if (timesUpCoroutine != null)
@@ -107,6 +120,7 @@ public class TimelineHandler : MonoBehaviour
                 {
                     currentWeek++;
                     UpdateWeekLabel();
+                    RefreshWeeklySystems();
                     timer = weekLengthSeconds;
                     Debug.Log($"⏭️ DEBUG: Advanced to Week {currentWeek}");
                 }
@@ -114,10 +128,11 @@ public class TimelineHandler : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.C))
             {
-                currentWeek = weeksThisChapter - 1;
-                UpdateWeekLabel();
-                timer = weekLengthSeconds;
-                Debug.Log($"🏁 DEBUG: Skipped to last week (Week {currentWeek})");
+            currentWeek = weeksThisChapter - 1;
+            UpdateWeekLabel();
+            RefreshWeeklySystems();
+            timer = weekLengthSeconds;
+            Debug.Log($"🏁 DEBUG: Skipped to last week (Week {currentWeek})");
             }
         }
     }
@@ -190,6 +205,7 @@ public void TransitionToNextScene()
         {
             currentWeek++;
             UpdateWeekLabel();
+            RefreshWeeklySystems();
             timer = weekLengthSeconds;
             weekEndTriggered = false; 
             onWeekTimerStart?.Invoke();
@@ -199,9 +215,13 @@ public void TransitionToNextScene()
     public void PrepareChapter()
     {
         SetWeeksForChapter();
+        if (ChapterBudgetManager.Instance != null)
+            ChapterBudgetManager.Instance.BeginChapter(chapter);
+
         currentWeek = 1;
         totalChapterTime = 0f;
         UpdateWeekLabel();
+        RefreshWeeklySystems();
         waitingToStartWeek = true;
         timerRunning = false;
         weekEndTriggered = false;
@@ -233,8 +253,18 @@ public void TransitionToNextScene()
             weekLabel.text = $"Week {currentWeek}";
     }
 
+    private void RefreshWeeklySystems()
+    {
+        if (DeskStorefrontManager.Instance != null)
+            DeskStorefrontManager.Instance.GenerateWeeklyOffers(chapter, currentWeek);
+
+        if (DeskCalendarManager.Instance != null)
+            DeskCalendarManager.Instance.RefreshCalendarDisplay();
+    }
+
     public float GetTimeLeftThisWeek() => timer;
     public int GetCurrentWeek() => currentWeek;
     public int GetCurrentChapter() => chapter;
+    public int GetWeeksThisChapter() => weeksThisChapter;
     public float GetTotalChapterTime() => totalChapterTime;
 }

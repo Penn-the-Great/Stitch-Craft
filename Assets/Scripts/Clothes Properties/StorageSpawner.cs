@@ -73,6 +73,7 @@ public class StorageSpawner : MonoBehaviour
                 newProperties.material = item.material;
                 newProperties.style = item.style;
                 newProperties.grade = item.grade;
+                newProperties.cost = item.cost;
             }
 
             // Configure the hanger as in storage

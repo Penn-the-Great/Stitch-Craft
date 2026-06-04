@@ -783,6 +783,147 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &502308859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 502308861}
+  - component: {fileID: 502308860}
+  - component: {fileID: 502308862}
+  - component: {fileID: 502308864}
+  - component: {fileID: 502308863}
+  m_Layer: 0
+  m_Name: Money manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &502308860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502308859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b966844a570f4410a855640347a713e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChapterBudgetManager
+  chapterBudgets: 580200002c0100008a020000bc020000bc020000ee020000ee0200002003000020030000c8000000
+  freePlayBudget: 1000
+  budgetLabel: {fileID: 1762220206}
+  autoFindBudgetLabel: 1
+  budgetLabelTag: BudgetLabel
+  budgetPrefix: 
+  budgetSuffix: Monies
+  budgetFormat: '{0}{1}{2}'
+  onBudgetChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onNotEnoughBudget:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &502308861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502308859}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &502308862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502308859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08220dd66ce4c4e68a7fb157fa74672a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeskPurchaseManager
+  cheapCostumeBaseCost: 30
+  expensiveCostumeBaseCost: 60
+  gradeAExtraCost: 10
+  gradeBExtraCost: 5
+  gradeCExtraCost: 2
+  cheapCostumeDeliveryWeeks: 3
+  expensiveCostumeDeliveryWeeks: 1
+  fabricBundleCost: 30
+  fabricBundleAmount: 5
+  fabricLabel: {fileID: 0}
+  pendingDeliveriesLabel: {fileID: 0}
+  onPurchaseMade:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeliveryArrived:
+    m_PersistentCalls:
+      m_Calls: []
+  onFabricChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &502308863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502308859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd054d0f840824334aa6703086b2f9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeskCalendarManager
+  calendarText: {fileID: 0}
+  emptyWeekText: No events
+--- !u!114 &502308864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502308859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c20311ce74f48cea050adb801454e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeskStorefrontManager
+  clothingOfferCount: 5
+  fabricOfferCount: 5
+  clothingPiecesByOfferIndex:
+  - top
+  - bottom
+  - hat
+  - shoe
+  - full
+  fastDeliveryExtraCost: 30
+  slowDeliveryWeeks: 3
+  fastDeliveryWeeks: 1
+  gradeAExtraCost: 15
+  gradeBExtraCost: 10
+  gradeCExtraCost: 5
+  minFabricAmount: 1
+  maxFabricAmount: 1
+  fabricCostPerUnit: 15
+  chapterRequirements: []
+  requiredAttributeChance: 0.7
 --- !u!1 &509116775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,7 +1892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504dcbbe822b54cbea6141d330461c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneVisibility
-  targetSceneName: Shop
 --- !u!1 &855659997
 GameObject:
   m_ObjectHideFlags: 0
@@ -4354,6 +4494,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4070026137878200524, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4070026137878200524, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 123
+      objectReference: {fileID: 0}
     - target: {fileID: 4312237400158570771, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4442,6 +4590,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartWeekTimer
       objectReference: {fileID: 0}
+    - target: {fileID: 7834469290138106685, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_TagString
+      value: BudgetLabel
+      objectReference: {fileID: 0}
     - target: {fileID: 7880972574147159115, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
       propertyPath: m_Name
       value: Player canvas
@@ -4463,6 +4615,17 @@ GameObject:
 --- !u!114 &1762220205 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8826226235304211506, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+  m_PrefabInstance: {fileID: 1762220203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &1762220206 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8194800812212333684, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
   m_PrefabInstance: {fileID: 1762220203}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -5085,3 +5248,4 @@ SceneRoots:
   - {fileID: 1284318424}
   - {fileID: 1214516290}
   - {fileID: 28399844}
+  - {fileID: 502308861}

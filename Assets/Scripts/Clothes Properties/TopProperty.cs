@@ -12,6 +12,7 @@ public class TopProperty : MonoBehaviour
     public string style;
     public char grade;
     public string piece;
+    public int cost;
 
 }
 
@@ -23,6 +24,7 @@ public class CustomPropertiesBehaviour : MonoBehaviour
     public string style;
     public char grade;
     public string piece;
+    public int cost;
 
 
     public void ApplyProperties(TopProperty properties)
@@ -33,10 +35,8 @@ public class CustomPropertiesBehaviour : MonoBehaviour
         style = properties.style;
         grade = properties.grade;
         piece = properties.piece;
+        cost = properties.cost;
         // Apply values to visuals/UI/etc. here
     }
 }
-
-
-
 

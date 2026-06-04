@@ -917,7 +917,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1222112049}
   - component: {fileID: 1222112047}
-  - component: {fileID: 1222112050}
   m_Layer: 0
   m_Name: Storage Manager
   m_TagString: Untagged
@@ -952,18 +951,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1222112050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1222112046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaf99a8fff8464c5995f489aa0cbeba1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StayStorageMan
 --- !u!4 &1227886406 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4317101903781870375, guid: 5e5262811b5144eb18827a807b0b76fd, type: 3}

@@ -243,6 +243,7 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
             newProperties.material = properties.material;
             newProperties.style = properties.style;
             newProperties.grade = properties.grade;
+            newProperties.cost = properties.cost;
         }
 
         DraggableLerpImage draggable = newHanger.GetComponent<DraggableLerpImage>();
@@ -292,6 +293,7 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
             newProperties.material = properties.material;
             newProperties.style = properties.style;
             newProperties.grade = properties.grade;
+            newProperties.cost = properties.cost;
         }
 
         DraggableLerpImage draggable = newHanger.GetComponent<DraggableLerpImage>();

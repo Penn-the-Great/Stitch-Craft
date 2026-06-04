@@ -18,6 +18,7 @@ public class StorageManager : MonoBehaviour
         public string material;
         public string style;
         public char grade;
+        public int cost;
     }
 
     private List<StoredClothingItem> storedItems = new List<StoredClothingItem>();
@@ -49,9 +50,16 @@ public class StorageManager : MonoBehaviour
             color = property.color,
             material = property.material,
             style = property.style,
-            grade = property.grade
+            grade = property.grade,
+            cost = property.cost
         };
 
+        storedItems.Add(item);
+        SaveStorageToJson();
+    }
+
+    public void AddItemToStorage(StoredClothingItem item)
+    {
         storedItems.Add(item);
         SaveStorageToJson();
     }
