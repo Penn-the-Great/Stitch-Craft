@@ -821,7 +821,7 @@ MonoBehaviour:
   autoFindBudgetLabel: 1
   budgetLabelTag: BudgetLabel
   budgetPrefix: 
-  budgetSuffix: Monies
+  budgetSuffix: ' Monies'
   budgetFormat: '{0}{1}{2}'
   onBudgetChanged:
     m_PersistentCalls:
@@ -1330,6 +1330,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565694247}
   m_CullTransparentMesh: 1
+--- !u!1 &711782267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 711782269}
+  - component: {fileID: 711782268}
+  m_Layer: 0
+  m_Name: Fabric Inventory manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &711782268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711782267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936471f65976c469c8e81d2aeb33550d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FabricInventoryManager
+  fabrics:
+  - material: Cotton
+    color: {r: 0.5283019, g: 0, b: 0, a: 0}
+    amount: 3
+  - material: Silk
+    color: {r: 0.1533019, g: 0.17121631, b: 0.5, a: 0}
+    amount: 2
+  - material: Wool
+    color: {r: 0.47559968, g: 0.7075472, b: 0.45056072, a: 0}
+    amount: 4
+--- !u!4 &711782269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711782267}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 252.30548, y: 657.5186, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &722181456
 GameObject:
   m_ObjectHideFlags: 0
@@ -4602,6 +4656,30 @@ PrefabInstance:
       propertyPath: m_TagString
       value: WorkspaceCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8194800812212333684, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_fontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194800812212333684, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_margin.w
+      value: 4.4784374
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194800812212333684, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_margin.z
+      value: 10.863014
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194800812212333684, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171046405297007314, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171046405297007314, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -7.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5249,3 +5327,4 @@ SceneRoots:
   - {fileID: 1214516290}
   - {fileID: 28399844}
   - {fileID: 502308861}
+  - {fileID: 711782269}

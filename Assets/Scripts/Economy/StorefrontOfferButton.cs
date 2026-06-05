@@ -68,8 +68,10 @@ public class StorefrontOfferButton : MonoBehaviour
 
         if (colorImage != null)
         {
+            Color visibleColor = offer.color;
+            visibleColor.a = 1f;
             colorImage.gameObject.SetActive(true);
-            colorImage.color = offer.color;
+            colorImage.color = visibleColor;
         }
 
         string text = $"{offer.displayName}\n{offer.piece} | Grade {offer.grade}\n{offer.material} | {offer.style}\n${offer.cost} | {offer.deliveryWeeks} week delivery";
@@ -85,11 +87,17 @@ public class StorefrontOfferButton : MonoBehaviour
             return;
         }
 
-        string text = $"{offer.displayName}\n{offer.amount} fabric\n${offer.cost}";
         if (colorImage != null)
-            colorImage.gameObject.SetActive(false);
+        {
+            Color visibleColor = offer.color;
+            visibleColor.a = 1f;
+            colorImage.color = visibleColor;
+            colorImage.gameObject.SetActive(true);
+        }
 
-        SetDisplay(text, !offer.purchased);
+        string text = $"{offer.displayName}\n${offer.cost}";
+
+      SetDisplay(text, !offer.purchased);
     }
 
     private void SetDisplay(string text, bool canBuy)

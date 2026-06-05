@@ -98,7 +98,7 @@ public class DeskStorefrontManager : MonoBehaviour
     {
         ClothingOffer offer = GetClothingOffer(index);
         if (offer == null || offer.purchased || DeskPurchaseManager.Instance == null)
-            return;
+                 return;
 
         bool purchased = DeskPurchaseManager.Instance.BuySpecificCostume(
             offer.ToStoredClothingItem(),
@@ -121,7 +121,8 @@ public class DeskStorefrontManager : MonoBehaviour
 
         bool purchased = DeskPurchaseManager.Instance.BuySpecificFabric(
             offer.displayName,
-            offer.amount,
+            offer.material,
+            offer.color,
             offer.cost
         );
 
@@ -160,14 +161,15 @@ public class DeskStorefrontManager : MonoBehaviour
     private FabricOffer CreateFabricOffer()
     {
         string material = RandomMaterial();
-        int amount = Random.Range(minFabricAmount, maxFabricAmount + 1);
-        int cost = amount * fabricCostPerUnit;
+        Color color = Random.ColorHSV();
+        color.a = 1f;
+        int cost = Random.Range(minFabricAmount, maxFabricAmount + 1) * fabricCostPerUnit;
 
         return new FabricOffer
         {
             displayName = $"{material} fabric",
             material = material,
-            amount = amount,
+            color = color,
             cost = cost
         };
     }
@@ -347,12 +349,12 @@ public class DeskStorefrontManager : MonoBehaviour
         }
     }
 
-    [System.Serializable]
+     [System.Serializable]
     public class FabricOffer
     {
         public string displayName;
         public string material;
-        public int amount;
+        public Color color;
         public int cost;
         public bool purchased;
     }
@@ -371,3 +373,9 @@ public class DeskStorefrontManager : MonoBehaviour
         public Color requiredColor = Color.white;
     }
 }
+
+
+
+
+
+

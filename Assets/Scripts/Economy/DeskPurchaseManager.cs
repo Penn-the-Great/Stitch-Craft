@@ -88,12 +88,17 @@ public class DeskPurchaseManager : MonoBehaviour
         return true;
     }
 
-    public bool BuySpecificFabric(string displayName, int amount, int cost)
+    public bool BuySpecificFabric(string displayName, string material, Color color, int cost)
     {
         if (!TryPay(cost))
             return false;
 
-        AddFabric(amount);
+        if (FabricInventoryManager.Instance != null)
+            FabricInventoryManager.Instance.AddFabric(material, color);
+        else
+            Debug.LogWarning("No FabricInventoryManager found. Fabric purchase could not be added to inventory.");
+
+        AddFabric(1);
         onPurchaseMade?.Invoke();
         return true;
     }
@@ -193,7 +198,7 @@ public class DeskPurchaseManager : MonoBehaviour
 
     private void AddDeliveryCalendarEvent(StorageManager.StoredClothingItem item, int deliveryWeeks)
     {
-        if (DeskCalendarManager.Instance == null || TimelineHandler.Instance == null)
+       if (DeskCalendarManager.Instance == null || TimelineHandler.Instance == null)
             return;
 
         int chapter = TimelineHandler.Instance.GetCurrentChapter();
