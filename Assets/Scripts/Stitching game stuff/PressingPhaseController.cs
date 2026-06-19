@@ -20,6 +20,8 @@ public class PressingPhaseController : MonoBehaviour
     [SerializeField] private float puffMoveDistance = 26f;
     [SerializeField] private float puffLifetime = 0.22f;
     [SerializeField] private Vector2 puffScaleRange = new Vector2(0.35f, 0.65f);
+    [SerializeField] private float puffPieceSize = 48f;
+    [SerializeField] private float puffScaleGrowth = 1.4f;
 
     private int circlesFinished = 0;
 
@@ -98,7 +100,7 @@ public class PressingPhaseController : MonoBehaviour
         burstRect.anchoredPosition = new Vector2(localPosition.x, localPosition.y);
 
         UIPuffBurst burst = burstObject.GetComponent<UIPuffBurst>();
-        burst.Play(spriteToUse, puffCount, puffSpreadRadius, puffMoveDistance, puffLifetime, puffScaleRange);
+        burst.Play(spriteToUse, puffCount, puffSpreadRadius, puffMoveDistance, puffLifetime, puffScaleRange, puffPieceSize, puffScaleGrowth);
     }
 
 

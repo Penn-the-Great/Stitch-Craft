@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class UIPuffBurst : MonoBehaviour
 {
+    private const float MinLifetime = 0.01f;
+
     private struct PuffPiece
     {
         public RectTransform rect;
@@ -18,9 +20,9 @@ public class UIPuffBurst : MonoBehaviour
     private float moveDistance;
     private float timer;
 
-    public void Play(Sprite sprite, int count, float spreadRadius, float moveDistance, float lifetime, Vector2 scaleRange)
+    public void Play(Sprite sprite, int count, float spreadRadius, float moveDistance, float lifetime, Vector2 scaleRange, float pieceSize, float scaleGrowth)
     {
-        this.lifetime = Mathf.Max(0.01f, lifetime);
+        this.lifetime = Mathf.Max(MinLifetime, lifetime);
         this.moveDistance = Mathf.Max(0f, moveDistance);
         timer = 0f;
 
@@ -39,10 +41,13 @@ public class UIPuffBurst : MonoBehaviour
             float angle = Random.Range(0f, Mathf.PI * 2f);
             Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
             Vector2 startOffset = direction * Random.Range(0f, Mathf.Max(0f, spreadRadius));
-            float startScale = Random.Range(scaleRange.x, scaleRange.y);
+            float minScale = Mathf.Min(scaleRange.x, scaleRange.y);
+            float maxScale = Mathf.Max(scaleRange.x, scaleRange.y);
+            float startScale = Random.Range(minScale, maxScale);
             pieceRect.anchoredPosition = startOffset;
             pieceRect.localScale = Vector3.one * startScale;
-            pieceRect.sizeDelta = new Vector2(48f, 48f);
+            float clampedPieceSize = Mathf.Max(1f, pieceSize);
+            pieceRect.sizeDelta = new Vector2(clampedPieceSize, clampedPieceSize);
 
             pieces.Add(new PuffPiece
             {
@@ -68,7 +73,7 @@ public class UIPuffBurst : MonoBehaviour
                 continue;
 
             piece.rect.anchoredPosition = piece.startPosition + piece.direction * moveDistance * progress;
-            piece.rect.localScale = Vector3.one * Mathf.Lerp(piece.startScale, piece.startScale * 1.4f, progress);
+            piece.rect.localScale = Vector3.one * Mathf.Lerp(piece.startScale, piece.startScale * Mathf.Max(1f, scaleGrowth), progress);
 
             if (piece.group != null)
                 piece.group.alpha = alpha;
