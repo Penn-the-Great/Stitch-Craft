@@ -5,8 +5,10 @@ public class TimingPhaseController : MonoBehaviour
     [SerializeField] private StitchingMinigameManager manager;
     [SerializeField] private RectTransform movingMarker;
     [SerializeField] private RectTransform successZone;
+    [SerializeField] private RectTransform movementBounds;
 
     [SerializeField] private float speed = 300f;
+    [SerializeField] private float movementPadding = 16f;
     [SerializeField] private float missPenalty = 10f;
     [SerializeField] private int requiredHits = 3;
 
@@ -29,30 +31,71 @@ public class TimingPhaseController : MonoBehaviour
 
     private void MoveMarker()
     {
+        if (movingMarker == null)
+            return;
+
         Vector2 position = movingMarker.anchoredPosition;
-        position.x += direction * speed * Time.deltaTime;
+        position.y += direction * speed * Time.deltaTime;
 
-        if(position.x > 300f)
-        direction = -1;
+        GetVerticalMovementRange(out float minY, out float maxY);
 
-        if (position.x < -300f)
-        direction = 1;
+        if (position.y >= maxY)
+        {
+            position.y = maxY;
+            direction = -1;
+        }
+
+        if (position.y <= minY)
+        {
+            position.y = minY;
+            direction = 1;
+        }
 
         movingMarker.anchoredPosition = position;
     }
 
+    private void GetVerticalMovementRange(out float minY, out float maxY)
+    {
+        RectTransform bounds = movementBounds != null ? movementBounds : movingMarker.parent as RectTransform;
+        if (bounds == null)
+        {
+            minY = -300f;
+            maxY = 300f;
+            return;
+        }
+
+        float halfBoundsHeight = bounds.rect.height * 0.5f;
+        float halfMarkerHeight = movingMarker.rect.height * 0.5f;
+        float effectivePadding = Mathf.Max(0f, movementPadding);
+
+        minY = -halfBoundsHeight + halfMarkerHeight + effectivePadding;
+        maxY = halfBoundsHeight - halfMarkerHeight - effectivePadding;
+
+        if (minY > maxY)
+        {
+            float centerY = (minY + maxY) * 0.5f;
+            minY = centerY;
+            maxY = centerY;
+        }
+    }
+
     public void PressTimingButton()
     {
-        float markerX = movingMarker.position.x;
-        float zoneLeft = successZone.position.x - successZone.rect.width / 2f;
-        float zoneRight = successZone.position.x + successZone.rect.width / 2f;
+        if (movingMarker == null || successZone == null)
+            return;
 
-        if (markerX >= zoneLeft && markerX <= zoneRight)
+        float markerTop = movingMarker.anchoredPosition.y + movingMarker.rect.height * 0.5f;
+        float markerBottom = movingMarker.anchoredPosition.y - movingMarker.rect.height * 0.5f;
+
+        float zoneTop = successZone.anchoredPosition.y + successZone.rect.height * 0.5f;
+        float zoneBottom = successZone.anchoredPosition.y - successZone.rect.height * 0.5f;
+
+        if (markerTop >= zoneBottom && markerBottom <= zoneTop)
         {
             hits++;
 
             if (hits >= requiredHits)
-            manager.StartPressingPhase();
+                manager.StartPressingPhase();
         }
         else
         {
