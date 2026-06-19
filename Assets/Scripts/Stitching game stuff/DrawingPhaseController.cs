@@ -3,40 +3,29 @@ using UnityEngine.UI;
 
 public class DrawingPhaseController : MonoBehaviour
 {
-    [Header("References")]
+    [Header("Core References")]
     [SerializeField] private StitchingMinigameManager manager;
     [SerializeField] private Image guideImage;
     [SerializeField] private Camera uiCamera;
-    [SerializeField] private Image progressFill;
     [SerializeField] private StitchingUILineRenderer uiLineRenderer;
-    [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private Camera drawingCamera;
+    [SerializeField] private Image progressFill;
 
-    [Header("Scoring / Guide")]
+    [Header("Phase 1 Timing")]
+    [SerializeField] private float phase1DurationSeconds = 10f;
+
+    [Header("Countdown Visual (optional, 1 sprite per second)")]
+    [SerializeField] private Image countdownImage;
+    [SerializeField] private Sprite[] countdownFrames; // e.g. [10,9,8,...,1]
+
+    [Header("Guide Sensor / Accuracy")]
     [SerializeField] private float missPenalty = 3f;
     [SerializeField] private float missCooldown = 0.25f;
     [SerializeField] private float alphaThreshold = 0.1f;
     [SerializeField] private int sensorRadiusPixels = 12;
     [SerializeField] private bool penalizeEmptySpaceInsideGuide = false;
 
-    [Header("Line")]
-    [SerializeField] private float lineZDistance = 5f;
-    [SerializeField] private float minLinePointDistance = 0.05f;
-    [SerializeField] private float lineWidth = 0.05f;
-
-    [Header("Phase 1 Timer")]
-    [SerializeField] private float phase1DurationSeconds = 10f;
-
-    [Header("Countdown Visual (1 frame per second)")]
-    [SerializeField] private Image countdownImage;         // UI Image to show countdown frames
-    [SerializeField] private Sprite[] countdownFrames;     // index 0 = "10", index 9 = "1" (or however you arrange)
-
-    private bool isDrawing = false;
-    private float nextMissTime = 0f;
-
-    private Vector3 lastLineWorldPoint;
-    private bool hasLastLinePoint = false;
-
+    private bool isDrawing;
+    private float nextMissTime;
     private float phase1TimeRemaining;
     private bool timingPhaseStarted;
 
@@ -44,9 +33,7 @@ public class DrawingPhaseController : MonoBehaviour
     {
         isDrawing = false;
         nextMissTime = 0f;
-        hasLastLinePoint = false;
         timingPhaseStarted = false;
-
         phase1TimeRemaining = phase1DurationSeconds;
 
         ClearDrawnLine();
@@ -56,18 +43,13 @@ public class DrawingPhaseController : MonoBehaviour
 
     private void Update()
     {
-        // 1) Timer always runs, regardless of drawing
-        TickPhase1Timer();
+        TickPhaseTimer();
 
         if (timingPhaseStarted)
             return;
 
-        // 2) Drawing input (cosmetic or gameplay) is separate
         if (Input.GetMouseButtonDown(0))
-        {
             isDrawing = true;
-            hasLastLinePoint = false;
-        }
 
         if (Input.GetMouseButtonUp(0))
             isDrawing = false;
@@ -75,14 +57,14 @@ public class DrawingPhaseController : MonoBehaviour
         if (!isDrawing)
             return;
 
-        // Optional: keep scoring logic based on guide
-        CheckGuideSensor();
+        // Cosmetic line drawing (UI only)
+        AddUILinePointAtMouse();
 
-        // Cosmetic line always draws while holding mouse
-        AddLinePointAtMouse();
+        // Optional: keep guide penalty logic
+        CheckGuideSensorForPenalty();
     }
 
-    private void TickPhase1Timer()
+    private void TickPhaseTimer()
     {
         if (timingPhaseStarted)
             return;
@@ -101,13 +83,11 @@ public class DrawingPhaseController : MonoBehaviour
         }
     }
 
-    private void CheckGuideSensor()
+    private void CheckGuideSensorForPenalty()
     {
         bool isInsideGuideRect;
         bool isCloseToGuideLine = IsMouseCloseToGuideLine(out isInsideGuideRect);
 
-        // No longer controls phase transition timing
-        // Keep only accuracy penalties, if desired.
         if (isCloseToGuideLine)
             return;
 
@@ -124,7 +104,9 @@ public class DrawingPhaseController : MonoBehaviour
     private bool IsMouseCloseToGuideLine(out bool isInsideGuideRect)
     {
         isInsideGuideRect = false;
-        if (guideImage == null) return false;
+
+        if (guideImage == null)
+            return false;
 
         RectTransform guideRect = guideImage.rectTransform;
         Vector2 localPoint;
@@ -159,7 +141,7 @@ public class DrawingPhaseController : MonoBehaviour
         }
         catch (UnityException)
         {
-            Debug.LogWarning("Drawing guide texture is not readable. Enable Read/Write on the sprite texture.");
+            Debug.LogWarning("Guide texture not readable. Enable Read/Write on texture import settings.");
             return false;
         }
     }
@@ -173,8 +155,7 @@ public class DrawingPhaseController : MonoBehaviour
         int maxX = Mathf.Min(Mathf.FloorToInt(textureRect.xMax) - 1, centerX + sensorRadiusPixels);
         int minY = Mathf.Max(Mathf.FloorToInt(textureRect.y), centerY - sensorRadiusPixels);
         int maxY = Mathf.Min(Mathf.FloorToInt(textureRect.yMax) - 1, centerY + sensorRadiusPixels);
-
-        int radiusSquared = sensorRadiusPixels * sensorRadiusPixels;
+        int radiusSq = sensorRadiusPixels * sensorRadiusPixels;
 
         for (int y = minY; y <= maxY; y++)
         {
@@ -182,7 +163,9 @@ public class DrawingPhaseController : MonoBehaviour
             {
                 int dx = x - centerX;
                 int dy = y - centerY;
-                if (dx * dx + dy * dy > radiusSquared) continue;
+
+                if (dx * dx + dy * dy > radiusSq)
+                    continue;
 
                 if (texture.GetPixel(x, y).a >= alphaThreshold)
                     return true;
@@ -192,89 +175,48 @@ public class DrawingPhaseController : MonoBehaviour
         return false;
     }
 
-    private void UpdateProgressFill()
+    private void AddUILinePointAtMouse()
     {
-        if (progressFill != null && phase1DurationSeconds > 0f)
-        {
-            float elapsed = phase1DurationSeconds - phase1TimeRemaining;
-            progressFill.fillAmount = Mathf.Clamp01(elapsed / phase1DurationSeconds);
-        }
-    }
-
-    private void UpdateCountdownVisual()
-    {
-        if (countdownImage == null || countdownFrames == null || countdownFrames.Length == 0)
+        if (uiLineRenderer == null)
             return;
 
-        // Example for 10s timer:
-        // remaining 10..9.001 -> frame 0
-        // remaining 9..8.001  -> frame 1
-        // ...
-        // remaining 1..0      -> frame 9
-        int elapsedWholeSeconds = Mathf.FloorToInt(phase1DurationSeconds - Mathf.Ceil(phase1TimeRemaining));
-        int frameIndex = Mathf.Clamp(elapsedWholeSeconds, 0, countdownFrames.Length - 1);
-        countdownImage.sprite = countdownFrames[frameIndex];
-    }
+        RectTransform lineRect = uiLineRenderer.rectTransform;
+        Vector2 localPoint;
+        Camera cameraToUse = uiCamera;
 
-    private void AddLinePointAtMouse()
-    {
-        if (uiLineRenderer != null)
+        if (cameraToUse == null)
         {
-            RectTransform lineRect = uiLineRenderer.rectTransform;
-            Vector2 localPoint;
-            Camera cameraToUse = uiCamera;
-
-            if (cameraToUse == null && lineRect.GetComponentInParent<Canvas>() != null)
-            {
-                Canvas canvas = lineRect.GetComponentInParent<Canvas>();
-                if (canvas.renderMode != RenderMode.ScreenSpaceOverlay)
-                    cameraToUse = canvas.worldCamera;
-            }
-
-            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(lineRect, Input.mousePosition, cameraToUse, out localPoint))
-                uiLineRenderer.AddPoint(localPoint);
-
-            return;
+            Canvas canvas = lineRect.GetComponentInParent<Canvas>();
+            if (canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay)
+                cameraToUse = canvas.worldCamera;
         }
 
-        if (lineRenderer == null) return;
-
-        Camera cam = drawingCamera != null ? drawingCamera : Camera.main;
-        if (cam == null) return;
-
-        Vector3 mp = Input.mousePosition;
-        mp.z = lineZDistance;
-        Vector3 worldPoint = cam.ScreenToWorldPoint(mp);
-
-        if (!hasLastLinePoint)
-        {
-            lineRenderer.startWidth = lineWidth;
-            lineRenderer.endWidth = lineWidth;
-
-            lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, worldPoint);
-            lineRenderer.SetPosition(1, worldPoint + new Vector3(0.1f, 0f, 0f));
-
-            lastLineWorldPoint = worldPoint;
-            hasLastLinePoint = true;
-            return;
-        }
-
-        if (Vector3.Distance(worldPoint, lastLineWorldPoint) < minLinePointDistance)
-            return;
-
-        int nextIndex = lineRenderer.positionCount;
-        lineRenderer.positionCount = nextIndex + 1;
-        lineRenderer.SetPosition(nextIndex, worldPoint);
-        lastLineWorldPoint = worldPoint;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(lineRect, Input.mousePosition, cameraToUse, out localPoint))
+            uiLineRenderer.AddPoint(localPoint);
     }
 
     private void ClearDrawnLine()
     {
         if (uiLineRenderer != null)
             uiLineRenderer.ClearLine();
+    }
 
-        if (lineRenderer != null)
-            lineRenderer.positionCount = 0;
+    private void UpdateProgressFill()
+    {
+        if (progressFill == null || phase1DurationSeconds <= 0f)
+            return;
+
+        float elapsed = phase1DurationSeconds - phase1TimeRemaining;
+        progressFill.fillAmount = Mathf.Clamp01(elapsed / phase1DurationSeconds);
+    }
+
+    private void UpdateCountdownVisual()
+    {
+        if (countdownImage == null || countdownFrames == null || countdownFrames.Length == 0 || phase1DurationSeconds <= 0f)
+            return;
+
+        int elapsedWholeSeconds = Mathf.FloorToInt(phase1DurationSeconds - Mathf.Ceil(phase1TimeRemaining));
+        int frameIndex = Mathf.Clamp(elapsedWholeSeconds, 0, countdownFrames.Length - 1);
+        countdownImage.sprite = countdownFrames[frameIndex];
     }
 }

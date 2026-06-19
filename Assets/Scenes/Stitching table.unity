@@ -1185,7 +1185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309091420}
   - component: {fileID: 309091419}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1240,7 +1240,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_Sprite: {fileID: 21300000, guid: f8f4236e8c95e40a2833c629ea43a4ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1260,7 +1260,7 @@ Transform:
   m_GameObject: {fileID: 309091418}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 3.425, y: 2.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3222,7 +3222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1134771255
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3231,7 +3231,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134771254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3261,7 +3261,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4269,7 +4269,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1341881765}
   - component: {fileID: 1341881767}
-  - component: {fileID: 1341881766}
+  - component: {fileID: 1341881769}
+  - component: {fileID: 1341881768}
   m_Layer: 0
   m_Name: CosmeticLine
   m_TagString: Untagged
@@ -4277,41 +4278,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1341881765
-Transform:
+--- !u!224 &1341881765
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341881764}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -298.5, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1134771255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1341881766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1341881764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6195978608c8e420a917ced04a6baff4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CosmeticLineDrawer
-  drawingCamera: {fileID: 1952841500}
-  zDistance: 10
-  minPointDistance: 0.1
-  lineWidth: 0.1
-  clearOnEnable: 1
-  drawOnlyInBounds: 0
-  bounds2D: {fileID: 0}
-  bounds3D: {fileID: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -298.5}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!120 &1341881767
 LineRenderer:
   serializedVersion: 3
@@ -4338,8 +4323,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 87d038a05ff454827b704d33af5ff11a, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4360,8 +4344,8 @@ LineRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 2
+  m_SortingOrder: 5
+  m_MaskInteraction: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -4385,25 +4369,25 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 1}
-      key1: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0, g: 0, b: 0, a: 1}
+      key1: {r: 0, g: 0, b: 0, a: 1}
+      key2: {r: 0.9433962, g: 0.8865562, b: 0.28034887, a: 1}
+      key3: {r: 0.8962264, g: 0.48616055, b: 0.48616055, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 0
-      ctime3: 0
+      ctime2: 65535
+      ctime3: 62837
       ctime4: 0
       ctime5: 0
       ctime6: 0
       ctime7: 0
       atime0: 0
       atime1: 65535
-      atime2: 0
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
@@ -4423,6 +4407,44 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1341881768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341881764}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f833f615dd547408d2e92e3e4893dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StitchingUILineRenderer
+  m_Material: {fileID: 2100000, guid: 87d038a05ff454827b704d33af5ff11a, type: 2}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  thickness: 8
+  minPointDistance: 6
+--- !u!114 &1341881769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341881764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6195978608c8e420a917ced04a6baff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CosmeticLineDrawer
+  drawingCamera: {fileID: 1952841500}
+  zDistance: 10
+  minPointDistance: 0.1
+  lineWidth: 0.05
+  clearOnEnable: 1
+  drawOnlyInBounds: 0
+  bounds2D: {fileID: 0}
+  bounds3D: {fileID: 0}
 --- !u!1 &1360398670
 GameObject:
   m_ObjectHideFlags: 0
@@ -5538,21 +5560,16 @@ MonoBehaviour:
   manager: {fileID: 1704812435}
   guideImage: {fileID: 1263360632}
   uiCamera: {fileID: 1952841500}
+  uiLineRenderer: {fileID: 1341881768}
   progressFill: {fileID: 0}
-  uiLineRenderer: {fileID: 0}
-  lineRenderer: {fileID: 0}
-  drawingCamera: {fileID: 1952841500}
-  missPenalty: 5
-  missCooldown: 0.25
-  alphaThreshold: 0.01
-  sensorRadiusPixels: 1
-  penalizeEmptySpaceInsideGuide: 0
-  lineZDistance: 0
-  minLinePointDistance: 8
-  lineWidth: 0.05
   phase1DurationSeconds: 10
   countdownImage: {fileID: 1933874207}
   countdownFrames: []
+  missPenalty: 5
+  missCooldown: 0.25
+  alphaThreshold: 5.8
+  sensorRadiusPixels: 1
+  penalizeEmptySpaceInsideGuide: 0
 --- !u!1 &1730768722
 GameObject:
   m_ObjectHideFlags: 0
@@ -5796,7 +5813,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1859737307
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6010,7 +6027,7 @@ Transform:
   m_GameObject: {fileID: 1952841498}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6210,8 +6227,8 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1952841501}
   - {fileID: 309091420}
+  - {fileID: 1952841501}
   - {fileID: 799705657}
   - {fileID: 1704812436}
   - {fileID: 1965352354}

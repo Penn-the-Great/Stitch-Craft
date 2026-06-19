@@ -13,6 +13,10 @@ public class StitchingUILineRenderer : Graphic
     {
         base.Awake();
         raycastTarget = false;
+
+        // Force fully opaque by default at runtime
+        if (color.a < 1f)
+            color = new Color(color.r, color.g, color.b, 1f);
     }
 
     public void ClearLine()
@@ -47,11 +51,12 @@ public class StitchingUILineRenderer : Graphic
         Vector2 normal = new Vector2(-direction.y, direction.x) * (thickness * 0.5f);
 
         int startIndex = vh.currentVertCount;
+        Color32 c = color; // picks up alpha exactly from Graphic color
 
-        vh.AddVert(start - normal, color, Vector2.zero);
-        vh.AddVert(start + normal, color, Vector2.zero);
-        vh.AddVert(end + normal, color, Vector2.zero);
-        vh.AddVert(end - normal, color, Vector2.zero);
+        vh.AddVert(start - normal, c, Vector2.zero);
+        vh.AddVert(start + normal, c, Vector2.zero);
+        vh.AddVert(end + normal, c, Vector2.zero);
+        vh.AddVert(end - normal, c, Vector2.zero);
 
         vh.AddTriangle(startIndex, startIndex + 1, startIndex + 2);
         vh.AddTriangle(startIndex, startIndex + 2, startIndex + 3);
