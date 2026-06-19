@@ -3,55 +3,102 @@ using UnityEngine.UI;
 
 public class DrawingPhaseController : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private StitchingMinigameManager manager;
     [SerializeField] private Image guideImage;
     [SerializeField] private Camera uiCamera;
     [SerializeField] private Image progressFill;
-    [SerializeField] private float requiredDrawingSeconds = 3f;
+    [SerializeField] private StitchingUILineRenderer uiLineRenderer;
+    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private Camera drawingCamera;
+
+    [Header("Scoring / Guide")]
     [SerializeField] private float missPenalty = 3f;
     [SerializeField] private float missCooldown = 0.25f;
     [SerializeField] private float alphaThreshold = 0.1f;
     [SerializeField] private int sensorRadiusPixels = 12;
     [SerializeField] private bool penalizeEmptySpaceInsideGuide = false;
-    [SerializeField] private StitchingUILineRenderer uiLineRenderer;
-    [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private Camera drawingCamera;
+
+    [Header("Line")]
     [SerializeField] private float lineZDistance = 5f;
-    [SerializeField] private float minLinePointDistance = 0.05f;    
-[SerializeField] private float lineWidth = 0.05f;
+    [SerializeField] private float minLinePointDistance = 0.05f;
+    [SerializeField] private float lineWidth = 0.05f;
+
+    [Header("Phase 1 Timer")]
+    [SerializeField] private float phase1DurationSeconds = 10f;
+
+    [Header("Countdown Visual (1 frame per second)")]
+    [SerializeField] private Image countdownImage;         // UI Image to show countdown frames
+    [SerializeField] private Sprite[] countdownFrames;     // index 0 = "10", index 9 = "1" (or however you arrange)
 
     private bool isDrawing = false;
-    private float validDrawingTime = 0f;
     private float nextMissTime = 0f;
 
     private Vector3 lastLineWorldPoint;
-private bool hasLastLinePoint = false;
+    private bool hasLastLinePoint = false;
 
-private void OnEnable()
-{
-    isDrawing = false;
-    validDrawingTime = 0f;
-    nextMissTime = 0f;
-    ClearDrawnLine();
-    hasLastLinePoint = false;
-    UpdateProgressFill();
-}
+    private float phase1TimeRemaining;
+    private bool timingPhaseStarted;
+
+    private void OnEnable()
+    {
+        isDrawing = false;
+        nextMissTime = 0f;
+        hasLastLinePoint = false;
+        timingPhaseStarted = false;
+
+        phase1TimeRemaining = phase1DurationSeconds;
+
+        ClearDrawnLine();
+        UpdateProgressFill();
+        UpdateCountdownVisual();
+    }
 
     private void Update()
     {
-if (Input.GetMouseButtonDown(0))
-{
-    isDrawing = true;
-    hasLastLinePoint = false;
-}
+        // 1) Timer always runs, regardless of drawing
+        TickPhase1Timer();
+
+        if (timingPhaseStarted)
+            return;
+
+        // 2) Drawing input (cosmetic or gameplay) is separate
+        if (Input.GetMouseButtonDown(0))
+        {
+            isDrawing = true;
+            hasLastLinePoint = false;
+        }
 
         if (Input.GetMouseButtonUp(0))
             isDrawing = false;
 
         if (!isDrawing)
-        return;
+            return;
 
+        // Optional: keep scoring logic based on guide
         CheckGuideSensor();
+
+        // Cosmetic line always draws while holding mouse
+        AddLinePointAtMouse();
+    }
+
+    private void TickPhase1Timer()
+    {
+        if (timingPhaseStarted)
+            return;
+
+        phase1TimeRemaining -= Time.deltaTime;
+        if (phase1TimeRemaining < 0f)
+            phase1TimeRemaining = 0f;
+
+        UpdateProgressFill();
+        UpdateCountdownVisual();
+
+        if (phase1TimeRemaining <= 0f)
+        {
+            timingPhaseStarted = true;
+            manager.StartTimingPhase();
+        }
     }
 
     private void CheckGuideSensor()
@@ -59,18 +106,10 @@ if (Input.GetMouseButtonDown(0))
         bool isInsideGuideRect;
         bool isCloseToGuideLine = IsMouseCloseToGuideLine(out isInsideGuideRect);
 
-if (isCloseToGuideLine)
-{
-    
-
-    validDrawingTime += Time.deltaTime;
-    UpdateProgressFill();
-
-    if (validDrawingTime >= requiredDrawingSeconds)
-        manager.StartTimingPhase();
-
-    return;
-}
+        // No longer controls phase transition timing
+        // Keep only accuracy penalties, if desired.
+        if (isCloseToGuideLine)
+            return;
 
         if (isInsideGuideRect && !penalizeEmptySpaceInsideGuide)
             return;
@@ -80,19 +119,12 @@ if (isCloseToGuideLine)
             manager.DeductAccuracy(missPenalty);
             nextMissTime = Time.time + missCooldown;
         }
-
-        if(isDrawing = true)
-        {
-            AddLinePointAtMouse();
-        }
     }
 
     private bool IsMouseCloseToGuideLine(out bool isInsideGuideRect)
     {
         isInsideGuideRect = false;
-
-        if (guideImage == null)
-            return false;
+        if (guideImage == null) return false;
 
         RectTransform guideRect = guideImage.rectTransform;
         Vector2 localPoint;
@@ -127,7 +159,7 @@ if (isCloseToGuideLine)
         }
         catch (UnityException)
         {
-            Debug.LogWarning("Drawing guide texture is not readable. Enable Read/Write on the sprite texture for dotted-line sensing.");
+            Debug.LogWarning("Drawing guide texture is not readable. Enable Read/Write on the sprite texture.");
             return false;
         }
     }
@@ -136,21 +168,21 @@ if (isCloseToGuideLine)
     {
         Texture2D texture = sprite.texture;
         Rect textureRect = sprite.textureRect;
+
         int minX = Mathf.Max(Mathf.FloorToInt(textureRect.x), centerX - sensorRadiusPixels);
         int maxX = Mathf.Min(Mathf.FloorToInt(textureRect.xMax) - 1, centerX + sensorRadiusPixels);
         int minY = Mathf.Max(Mathf.FloorToInt(textureRect.y), centerY - sensorRadiusPixels);
         int maxY = Mathf.Min(Mathf.FloorToInt(textureRect.yMax) - 1, centerY + sensorRadiusPixels);
+
         int radiusSquared = sensorRadiusPixels * sensorRadiusPixels;
 
         for (int y = minY; y <= maxY; y++)
         {
             for (int x = minX; x <= maxX; x++)
             {
-                int distanceX = x - centerX;
-                int distanceY = y - centerY;
-
-                if (distanceX * distanceX + distanceY * distanceY > radiusSquared)
-                    continue;
+                int dx = x - centerX;
+                int dy = y - centerY;
+                if (dx * dx + dy * dy > radiusSquared) continue;
 
                 if (texture.GetPixel(x, y).a >= alphaThreshold)
                     return true;
@@ -162,87 +194,87 @@ if (isCloseToGuideLine)
 
     private void UpdateProgressFill()
     {
-        if (progressFill != null)
-            progressFill.fillAmount = Mathf.Clamp01(validDrawingTime / requiredDrawingSeconds);
+        if (progressFill != null && phase1DurationSeconds > 0f)
+        {
+            float elapsed = phase1DurationSeconds - phase1TimeRemaining;
+            progressFill.fillAmount = Mathf.Clamp01(elapsed / phase1DurationSeconds);
+        }
     }
 
-private void AddLinePointAtMouse()
-{
-    if (uiLineRenderer != null)
+    private void UpdateCountdownVisual()
     {
-        RectTransform lineRect = uiLineRenderer.rectTransform;
-        Vector2 localPoint;
-        Camera cameraToUse = uiCamera;
+        if (countdownImage == null || countdownFrames == null || countdownFrames.Length == 0)
+            return;
 
-        if (cameraToUse == null && lineRect.GetComponentInParent<Canvas>() != null)
+        // Example for 10s timer:
+        // remaining 10..9.001 -> frame 0
+        // remaining 9..8.001  -> frame 1
+        // ...
+        // remaining 1..0      -> frame 9
+        int elapsedWholeSeconds = Mathf.FloorToInt(phase1DurationSeconds - Mathf.Ceil(phase1TimeRemaining));
+        int frameIndex = Mathf.Clamp(elapsedWholeSeconds, 0, countdownFrames.Length - 1);
+        countdownImage.sprite = countdownFrames[frameIndex];
+    }
+
+    private void AddLinePointAtMouse()
+    {
+        if (uiLineRenderer != null)
         {
-            Canvas canvas = lineRect.GetComponentInParent<Canvas>();
-            if (canvas.renderMode != RenderMode.ScreenSpaceOverlay)
-                cameraToUse = canvas.worldCamera;
+            RectTransform lineRect = uiLineRenderer.rectTransform;
+            Vector2 localPoint;
+            Camera cameraToUse = uiCamera;
+
+            if (cameraToUse == null && lineRect.GetComponentInParent<Canvas>() != null)
+            {
+                Canvas canvas = lineRect.GetComponentInParent<Canvas>();
+                if (canvas.renderMode != RenderMode.ScreenSpaceOverlay)
+                    cameraToUse = canvas.worldCamera;
+            }
+
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(lineRect, Input.mousePosition, cameraToUse, out localPoint))
+                uiLineRenderer.AddPoint(localPoint);
+
+            return;
         }
 
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(lineRect, Input.mousePosition, cameraToUse, out localPoint))
-            uiLineRenderer.AddPoint(localPoint);
+        if (lineRenderer == null) return;
 
-        return;
+        Camera cam = drawingCamera != null ? drawingCamera : Camera.main;
+        if (cam == null) return;
+
+        Vector3 mp = Input.mousePosition;
+        mp.z = lineZDistance;
+        Vector3 worldPoint = cam.ScreenToWorldPoint(mp);
+
+        if (!hasLastLinePoint)
+        {
+            lineRenderer.startWidth = lineWidth;
+            lineRenderer.endWidth = lineWidth;
+
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, worldPoint);
+            lineRenderer.SetPosition(1, worldPoint + new Vector3(0.1f, 0f, 0f));
+
+            lastLineWorldPoint = worldPoint;
+            hasLastLinePoint = true;
+            return;
+        }
+
+        if (Vector3.Distance(worldPoint, lastLineWorldPoint) < minLinePointDistance)
+            return;
+
+        int nextIndex = lineRenderer.positionCount;
+        lineRenderer.positionCount = nextIndex + 1;
+        lineRenderer.SetPosition(nextIndex, worldPoint);
+        lastLineWorldPoint = worldPoint;
     }
 
-    if (lineRenderer == null)
-        return;
-
-    Camera worldLineCamera = drawingCamera;
-
-    if (worldLineCamera == null)
-        worldLineCamera = Camera.main;
-
-    if (worldLineCamera == null)
-        return;
-
-    Vector3 mousePosition = Input.mousePosition;
-    mousePosition.z = lineZDistance;
-
-    Vector3 worldPoint = worldLineCamera.ScreenToWorldPoint(mousePosition);
-
- if (!hasLastLinePoint)
-{
-    lineRenderer.startWidth = lineWidth;
-    lineRenderer.endWidth = lineWidth;
-
-    Vector3 firstPoint = worldPoint;
-    Vector3 secondPoint = worldPoint + new Vector3(0.1f, 0f, 0f);
-
-    lineRenderer.positionCount = 2;
-    lineRenderer.SetPosition(0, firstPoint);
-    lineRenderer.SetPosition(1, secondPoint);
-
-    lastLineWorldPoint = worldPoint;
-    hasLastLinePoint = true;
-    return;
-}
-
-    if (Vector3.Distance(worldPoint, lastLineWorldPoint) < minLinePointDistance)
-        return;
-
-    int nextIndex = lineRenderer.positionCount;
-    lineRenderer.positionCount = nextIndex + 1;
-    lineRenderer.SetPosition(nextIndex, worldPoint);
-
-    lastLineWorldPoint = worldPoint;
-}
-
-private void ClearDrawnLine()
-{
-    if (uiLineRenderer != null)
-        uiLineRenderer.ClearLine();
-
-    if (lineRenderer != null)
+    private void ClearDrawnLine()
     {
-        lineRenderer.startWidth = 1f;
-        lineRenderer.endWidth = 1f;
+        if (uiLineRenderer != null)
+            uiLineRenderer.ClearLine();
+
+        if (lineRenderer != null)
+            lineRenderer.positionCount = 0;
     }
-}
-
-
-
-
 }
