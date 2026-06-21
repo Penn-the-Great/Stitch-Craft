@@ -63,12 +63,12 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 5.2, y: 52.96, z: 6.08, w: 7.49}
+  m_RaycastPadding: {x: 5.21, y: 58.3, z: 13, w: 3.79}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7fa27d5470ab54c69ae2d974c635e60a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf62dc8ec75aa4afd81cdb542f002315, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!114 &8502214174314299338
 MonoBehaviour:
@@ -91,8 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HangerDragger
   lerpSpeed: 5
-  primarySnapY: -228
-  secondarySnapY: 50
+  primarySnapY: -261.5
+  secondarySnapY: 0
   snapThreshold: 50
   storageCanvasTag: StorageCanvas
   storageSceneName: Storage
@@ -129,3 +129,4 @@ MonoBehaviour:
   style: 
   grade: 0
   piece: 
+  cost: 0
