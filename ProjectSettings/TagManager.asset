@@ -11,6 +11,7 @@ TagManager:
   - StorageCanvas
   - WorkspaceCanvas
   - BudgetLabel
+  - ChapterObjectiveUI
   layers:
   - Default
   - TransparentFX

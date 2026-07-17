@@ -10,6 +10,10 @@ public class DeskStorefrontManager : MonoBehaviour
     [SerializeField] private int fabricOfferCount = 5;
     [SerializeField] private string[] clothingPiecesByOfferIndex = { "top", "bottom", "hat", "shoe", "full" };
 
+    [Header("Color Pools (Inspector Controlled)")]
+    [SerializeField] private List<Color> allowedClothingColors = new List<Color>();
+    [SerializeField] private List<Color> allowedFabricColors = new List<Color>();
+
     [Header("Clothing Price Settings")]
     [SerializeField] private int fastDeliveryExtraCost = 25;
     [SerializeField] private int slowDeliveryWeeks = 3;
@@ -37,12 +41,7 @@ public class DeskStorefrontManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -69,46 +68,24 @@ public class DeskStorefrontManager : MonoBehaviour
         clothingOffers.Clear();
         fabricOffers.Clear();
 
-        for (int i = 0; i < clothingOfferCount; i++)
-            clothingOffers.Add(CreateClothingOffer(i));
-
-        for (int i = 0; i < fabricOfferCount; i++)
-            fabricOffers.Add(CreateFabricOffer());
+        for (int i = 0; i < clothingOfferCount; i++) clothingOffers.Add(CreateClothingOffer(i));
+        for (int i = 0; i < fabricOfferCount; i++) fabricOffers.Add(CreateFabricOffer());
 
         RefreshOfferButtons();
     }
 
-    public ClothingOffer GetClothingOffer(int index)
-    {
-        if (index < 0 || index >= clothingOffers.Count)
-            return null;
-
-        return clothingOffers[index];
-    }
-
-    public FabricOffer GetFabricOffer(int index)
-    {
-        if (index < 0 || index >= fabricOffers.Count)
-            return null;
-
-        return fabricOffers[index];
-    }
+    public ClothingOffer GetClothingOffer(int index) => (index < 0 || index >= clothingOffers.Count) ? null : clothingOffers[index];
+    public FabricOffer GetFabricOffer(int index) => (index < 0 || index >= fabricOffers.Count) ? null : fabricOffers[index];
 
     public void BuyClothingOffer(int index)
     {
         ClothingOffer offer = GetClothingOffer(index);
-        if (offer == null || offer.purchased || DeskPurchaseManager.Instance == null)
-                 return;
+        if (offer == null || offer.purchased || DeskPurchaseManager.Instance == null) return;
 
         bool purchased = DeskPurchaseManager.Instance.BuySpecificCostume(
-            offer.ToStoredClothingItem(),
-            offer.cost,
-            offer.deliveryWeeks
-        );
+            offer.ToStoredClothingItem(), offer.cost, offer.deliveryWeeks);
 
-        if (!purchased)
-            return;
-
+        if (!purchased) return;
         offer.purchased = true;
         RefreshOfferButtons();
     }
@@ -116,19 +93,12 @@ public class DeskStorefrontManager : MonoBehaviour
     public void BuyFabricOffer(int index)
     {
         FabricOffer offer = GetFabricOffer(index);
-        if (offer == null || offer.purchased || DeskPurchaseManager.Instance == null)
-            return;
+        if (offer == null || offer.purchased || DeskPurchaseManager.Instance == null) return;
 
         bool purchased = DeskPurchaseManager.Instance.BuySpecificFabric(
-            offer.displayName,
-            offer.material,
-            offer.color,
-            offer.cost
-        );
+            offer.displayName, offer.material, offer.color, offer.cost);
 
-        if (!purchased)
-            return;
-
+        if (!purchased) return;
         offer.purchased = true;
         RefreshOfferButtons();
     }
@@ -138,18 +108,17 @@ public class DeskStorefrontManager : MonoBehaviour
         ChapterRequirement requirement = GetRequirementForChapter(generatedChapter);
         string piece = GetPieceForOfferIndex(offerIndex);
         char grade = PickWeightedGrade(requirement);
+
         bool fastDelivery = Random.value > 0.5f;
         int deliveryWeeks = fastDelivery ? fastDeliveryWeeks : slowDeliveryWeeks;
         int cost = GetPieceBaseCost(piece) + GetGradeExtraCost(grade);
-
-        if (fastDelivery)
-            cost += fastDeliveryExtraCost;
+        if (fastDelivery) cost += fastDeliveryExtraCost;
 
         return new ClothingOffer
         {
             piece = piece,
             displayName = GetRandomDisplayNameByPiece(piece),
-            color = PickWeightedColor(requirement),
+            color = PickWeightedClothingColor(requirement),
             material = UsesFabricMaterial(piece) ? PickWeightedMaterial(requirement) : "N/A",
             style = PickWeightedStyle(requirement),
             grade = grade,
@@ -161,8 +130,7 @@ public class DeskStorefrontManager : MonoBehaviour
     private FabricOffer CreateFabricOffer()
     {
         string material = RandomMaterial();
-        Color color = Random.ColorHSV();
-        color.a = 1f;
+        Color color = RandomFabricColor();
         int cost = Random.Range(minFabricAmount, maxFabricAmount + 1) * fabricCostPerUnit;
 
         return new FabricOffer
@@ -174,22 +142,49 @@ public class DeskStorefrontManager : MonoBehaviour
         };
     }
 
+    private Color PickRandomFromList(List<Color> pool, Color fallback)
+    {
+        if (pool == null || pool.Count == 0) return fallback;
+        Color c = pool[Random.Range(0, pool.Count)];
+        c.a = 1f;
+        return c;
+    }
+
+    private Color RandomClothingColor() => PickRandomFromList(allowedClothingColors, Color.white);
+    private Color RandomFabricColor() => PickRandomFromList(allowedFabricColors, Color.gray);
+
+    private Color PickWeightedClothingColor(ChapterRequirement requirement)
+    {
+        if (requirement != null && requirement.useRequiredColor && Random.value <= requiredAttributeChance)
+        {
+            // If a required color exists, pick from pool with same family if possible.
+            ColorFamily requiredFamily = ColorFamilyUtil.GetFamily(requirement.requiredColor);
+            List<Color> familyMatches = new List<Color>();
+            for (int i = 0; i < allowedClothingColors.Count; i++)
+            {
+                if (ColorFamilyUtil.GetFamily(allowedClothingColors[i]) == requiredFamily)
+                    familyMatches.Add(allowedClothingColors[i]);
+            }
+
+            if (familyMatches.Count > 0)
+                return familyMatches[Random.Range(0, familyMatches.Count)];
+
+            return requirement.requiredColor; // fallback if no pool match
+        }
+
+        return RandomClothingColor();
+    }
+
     private int GetPieceBaseCost(string piece)
     {
         switch (piece.ToLower())
         {
-            case "top":
-                return 20;
-            case "bottom":
-                return 25;
-            case "hat":
-                return 12;
-            case "shoe":
-                return 18;
-            case "full":
-                return 45;
-            default:
-                return 20;
+            case "top": return 20;
+            case "bottom": return 25;
+            case "hat": return 12;
+            case "shoe": return 18;
+            case "full": return 45;
+            default: return 20;
         }
     }
 
@@ -197,14 +192,10 @@ public class DeskStorefrontManager : MonoBehaviour
     {
         switch (char.ToUpper(grade))
         {
-            case 'A':
-                return gradeAExtraCost;
-            case 'B':
-                return gradeBExtraCost;
-            case 'C':
-                return gradeCExtraCost;
-            default:
-                return 0;
+            case 'A': return gradeAExtraCost;
+            case 'B': return gradeBExtraCost;
+            case 'C': return gradeCExtraCost;
+            default: return 0;
         }
     }
 
@@ -218,23 +209,13 @@ public class DeskStorefrontManager : MonoBehaviour
     {
         if (requirement != null && requirement.useRequiredGrade && Random.value <= requiredAttributeChance)
             return requirement.requiredGrade;
-
         return RandomGrade();
-    }
-
-    private Color PickWeightedColor(ChapterRequirement requirement)
-    {
-        if (requirement != null && requirement.useRequiredColor && Random.value <= requiredAttributeChance)
-            return requirement.requiredColor;
-
-        return Random.ColorHSV();
     }
 
     private string PickWeightedMaterial(ChapterRequirement requirement)
     {
         if (requirement != null && requirement.useRequiredMaterial && Random.value <= requiredAttributeChance)
             return requirement.requiredMaterial;
-
         return RandomMaterial();
     }
 
@@ -242,7 +223,6 @@ public class DeskStorefrontManager : MonoBehaviour
     {
         if (requirement != null && requirement.useRequiredStyle && Random.value <= requiredAttributeChance)
             return requirement.requiredStyle;
-
         return RandomStyle();
     }
 
@@ -256,21 +236,14 @@ public class DeskStorefrontManager : MonoBehaviour
     {
         if (offerIndex >= 0 && offerIndex < clothingPiecesByOfferIndex.Length && !string.IsNullOrEmpty(clothingPiecesByOfferIndex[offerIndex]))
             return clothingPiecesByOfferIndex[offerIndex];
-
         return RandomPiece();
     }
 
     private ChapterRequirement GetRequirementForChapter(int chapter)
     {
-        if (chapterRequirements == null)
-            return null;
-
+        if (chapterRequirements == null) return null;
         for (int i = 0; i < chapterRequirements.Length; i++)
-        {
-            if (chapterRequirements[i] != null && chapterRequirements[i].chapter == chapter)
-                return chapterRequirements[i];
-        }
-
+            if (chapterRequirements[i] != null && chapterRequirements[i].chapter == chapter) return chapterRequirements[i];
         return null;
     }
 
@@ -278,47 +251,29 @@ public class DeskStorefrontManager : MonoBehaviour
     {
         switch (piece.ToLower())
         {
-            case "top":
-                return PickRandom("Tank Top", "Vest Top", "Button up", "Sweater", "Blouse", "Basic shirt");
-            case "bottom":
-                return PickRandom("Jeans", "Slacks", "Shorts", "Harem Pants", "Skirt", "Tights");
-            case "hat":
-                return PickRandom("Cowboy hat", "Fedora", "Flat cap", "Beret", "Sun Hat", "Top Hat");
-            case "shoe":
-                return PickRandom("Sneakers", "Boots", "Loafers", "Sandals", "Heels", "Fancy Shoes");
-            case "full":
-                return PickRandom("Jumpsuit", "Overalls", "Dress", "Morph suit", "Robe", "Suit Set");
-            default:
-                return "Clothing Item";
+            case "top": return PickRandom("Tank Top", "Vest Top", "Button up", "Sweater", "Blouse", "Basic shirt");
+            case "bottom": return PickRandom("Jeans", "Slacks", "Shorts", "Harem Pants", "Skirt", "Tights");
+            case "hat": return PickRandom("Cowboy hat", "Fedora", "Flat cap", "Beret", "Sun Hat", "Top Hat");
+            case "shoe": return PickRandom("Sneakers", "Boots", "Loafers", "Sandals", "Heels", "Fancy Shoes");
+            case "full": return PickRandom("Jumpsuit", "Overalls", "Dress", "Morph suit", "Robe", "Suit Set");
+            default: return "Clothing Item";
         }
     }
 
-    private string RandomMaterial()
-    {
-        return PickRandom("Cotton", "Leather", "Wool", "Fur", "Silk");
-    }
-
-    private string RandomStyle()
-    {
-        return PickRandom("Ren", "1890's", "1920's", "1960's", "Modern", "Futuristic", "Fantasy");
-    }
-
-    private string PickRandom(params string[] options)
-    {
-        return options[Random.Range(0, options.Length)];
-    }
+    private string RandomMaterial() => PickRandom("Cotton", "Leather", "Wool", "Fur", "Silk");
+    private string RandomStyle() => PickRandom("Ren", "1890's", "1920's", "1960's", "Modern", "Futuristic", "Fantasy");
+    private string PickRandom(params string[] options) => options[Random.Range(0, options.Length)];
 
     private bool UsesFabricMaterial(string piece)
     {
-        string lowerPiece = piece.ToLower();
-        return lowerPiece != "hat" && lowerPiece != "shoe";
+        string p = piece.ToLower();
+        return p != "hat" && p != "shoe";
     }
 
     private void RefreshOfferButtons()
     {
         StorefrontOfferButton[] buttons = FindObjectsOfType<StorefrontOfferButton>();
-        foreach (StorefrontOfferButton button in buttons)
-            button.Refresh();
+        foreach (StorefrontOfferButton button in buttons) button.Refresh();
     }
 
     [System.Serializable]
@@ -349,7 +304,7 @@ public class DeskStorefrontManager : MonoBehaviour
         }
     }
 
-     [System.Serializable]
+    [System.Serializable]
     public class FabricOffer
     {
         public string displayName;
@@ -373,9 +328,3 @@ public class DeskStorefrontManager : MonoBehaviour
         public Color requiredColor = Color.white;
     }
 }
-
-
-
-
-
-

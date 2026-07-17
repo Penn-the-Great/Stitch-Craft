@@ -112,6 +112,9 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         isDragging = false;
 
+        if (TryMoveToCompiler(eventData))
+            return;
+
         // Check threshold on release
         float currentY = rectTransform.anchoredPosition.y;
         bool isStorageSceneLoaded = SceneManager.GetSceneByName(storageSceneName).isLoaded;
@@ -143,6 +146,33 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
         // If not moved to storage/workspace, just snap to current target
         targetY = isInStorage ? secondarySnapY : primarySnapY;
         if (debugMode) Debug.Log($"Released outside threshold. Snapping to Y: {targetY}, Is in storage: {isInStorage}");
+    }
+
+    private bool TryMoveToCompiler(PointerEventData eventData)
+    {
+        if (CompilerManager.Instance == null)
+            return false;
+
+        bool droppedOnCompiler = CompilerManager.Instance.IsPointerOverDropArea(
+            eventData.position,
+            eventData.pressEventCamera
+        );
+
+        if (!droppedOnCompiler)
+            return false;
+
+        TopProperty properties = GetComponent<TopProperty>();
+        if (properties == null)
+        {
+            if (debugMode) Debug.LogError("No TopProperty component found!");
+            return false;
+        }
+
+        bool movedToCompiler = CompilerManager.Instance.AddHangerToMannequin(properties);
+        if (movedToCompiler)
+            Destroy(gameObject);
+
+        return movedToCompiler;
     }
 
     private void MoveToStorage()

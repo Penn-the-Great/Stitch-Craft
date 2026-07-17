@@ -2154,8 +2154,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1092148843}
   - component: {fileID: 1092148842}
+  - component: {fileID: 1092148844}
   m_Layer: 0
-  m_Name: Chapter select handler
+  m_Name: Chapter select handler/Objectives manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2184,6 +2185,7 @@ MonoBehaviour:
   chapter9Button: {fileID: 255564669}
   chapter10Button: {fileID: 1612523072}
   FreePlayButton: {fileID: 900897795}
+  objectiveManager: {fileID: 1092148844}
 --- !u!4 &1092148843
 Transform:
   m_ObjectHideFlags: 0
@@ -2199,6 +2201,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1092148844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092148841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881ff41a5333840cd944863a3a78366f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChapterObjectiveManager
+  chapters:
+  - {fileID: 11400000, guid: 183ac8a33bd3a4dc8a46824f3d03c9b9, type: 2}
+  - {fileID: 11400000, guid: 5cd0b6c26d7624f41a70013cab70fa39, type: 2}
+  - {fileID: 11400000, guid: 81bc83fd1143d49d6b5f5309a44b947c, type: 2}
+  - {fileID: 11400000, guid: ac2fa52fb7e534d5891c24bfe0cddce7, type: 2}
+  - {fileID: 11400000, guid: b1e7f3d11c56b41bbb855d7f1683a2f4, type: 2}
+  - {fileID: 11400000, guid: 265d913b1b0e8440e822600561bb2f57, type: 2}
+  - {fileID: 11400000, guid: 359706e2ce2794ed7bf89f80065b34d2, type: 2}
+  - {fileID: 11400000, guid: 260f20e5f59ed441bad30199578db983, type: 2}
+  - {fileID: 11400000, guid: e451dd491dcdd495a8639df744e4de11, type: 2}
+  - {fileID: 11400000, guid: aaaac33a9f43646909e4eaab919c9f2e, type: 2}
+  useActorsMetric: 1
+  objectiveUITag: ChapterObjectiveUI
 --- !u!1 &1229319381
 GameObject:
   m_ObjectHideFlags: 0
@@ -3568,6 +3595,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1092148844}
+        m_TargetAssemblyTypeName: ChapterObjectiveManager, Assembly-CSharp
+        m_MethodName: SelectChapter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

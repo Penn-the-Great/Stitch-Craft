@@ -38,6 +38,9 @@ public class ShopNavigation : MonoBehaviour
 
     public void LeaveCompiler()
     {
+        if (CompilerManager.Instance != null)
+            CompilerManager.Instance.ReturnAllWornPiecesToHangers();
+
         SceneTransitionManager.Instance.UnloadScene("Compiler");
     }
 

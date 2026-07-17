@@ -34,6 +34,16 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (!isPointerOver) HidePanel();
     }
 
+    private void OnDisable()
+    {
+        HidePanelIfActive();
+    }
+
+    private void OnDestroy()
+    {
+        HidePanelIfActive();
+    }
+
     void ShowPanel()
     {
         var propertyPanel = GameObject.FindGameObjectWithTag("HoverUI");
@@ -49,5 +59,14 @@ public class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         var hoverUI = propertyPanel?.GetComponent<HoverUI>();
         if (hoverUI != null)
             hoverUI.Hide();
+    }
+
+    private void HidePanelIfActive()
+    {
+        if (!isPointerOver && !isDragging) return;
+
+        HidePanel();
+        isPointerOver = false;
+        isDragging = false;
     }
 }
