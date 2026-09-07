@@ -16,6 +16,20 @@ public class CompilerManager : MonoBehaviour
         public Sprite sprite;
     }
 
+    [System.Serializable]
+    public class PieceSize
+    {
+        public string piece; // e.g. "Blouse", "T-shirt", or fallback keys like "top"
+        public Vector2 widthHeight = new Vector2(300f, 300f); // x = width, y = height
+    }
+
+    [System.Serializable]
+    public class PiecePosition
+    {
+        public string piece; // e.g. "Blouse", "T-shirt", or fallback keys like "top"
+        public Vector2 anchoredPosition = Vector2.zero;
+    }
+
     [Header("Drop Area")]
     public RectTransform mannequinDropArea;
 
@@ -31,6 +45,14 @@ public class CompilerManager : MonoBehaviour
 
     [Header("Sprites")]
     public PieceSprite[] pieceSprites;
+
+    [Header("Per-Variant Width/Height Overrides")]
+    [SerializeField] private PieceSize[] pieceSizes;
+    [SerializeField] private Vector2 defaultWidthHeight = new Vector2(300f, 300f);
+
+    [Header("Per-Variant Position Overrides (Canvas Anchored)")]
+    [SerializeField] private PiecePosition[] piecePositions;
+    [SerializeField] private Vector2 defaultAnchoredPosition = Vector2.zero;
 
     [Header("UI")]
     public Button submitButton;
@@ -54,6 +76,12 @@ public class CompilerManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
         FindHangerCanvasIfNeeded();
     }
@@ -108,7 +136,7 @@ public class CompilerManager : MonoBehaviour
         if (mannequinClothingPrefab == null || mannequinRoot == null) return false;
 
         if (string.IsNullOrWhiteSpace(properties.piece)) return false;
-        string pieceKey = properties.piece.ToLowerInvariant();
+        string pieceKey = NormalizePieceKey(properties.piece);
 
         if (wornPieces.ContainsKey(pieceKey))
             RemoveWornPiece(pieceKey);
@@ -126,13 +154,42 @@ public class CompilerManager : MonoBehaviour
         GameObject clothingObject = Instantiate(mannequinClothingPrefab, mannequinRoot);
         clothingObject.name = properties.displayName;
 
+        RectTransform rt = clothingObject.GetComponent<RectTransform>();
+        if (rt != null)
+        {
+            // Position: variant first, then normalized piece fallback
+            Vector2 position = GetAnchoredPositionForPiece(properties.displayName);
+            if (position == defaultAnchoredPosition)
+                position = GetAnchoredPositionForPiece(pieceKey);
+            rt.anchoredPosition = position;
+
+            // Size: variant first, then normalized piece fallback
+            Vector2 size = GetWidthHeightForPiece(properties.displayName);
+            if (size == defaultWidthHeight)
+                size = GetWidthHeightForPiece(pieceKey);
+            rt.sizeDelta = size; // x = width, y = height
+        }
+
         TopProperty newProperties = clothingObject.GetComponent<TopProperty>();
         CopyProperties(properties, newProperties);
 
         Image image = clothingObject.GetComponent<Image>();
         if (image != null)
         {
-            image.sprite = GetSpriteForPiece(properties.piece);
+            // Sprite: variant first, then normalized piece fallback
+            Sprite sprite = GetSpriteForPiece(properties.displayName);
+            if (sprite == null)
+                sprite = GetSpriteForPiece(pieceKey);
+
+            if (sprite == null)
+            {
+                Debug.LogWarning(
+                    $"[CompilerManager] No sprite match. displayName='{properties.displayName}', piece='{properties.piece}'. " +
+                    "Check pieceSprites[].piece values in inspector."
+                );
+            }
+
+            image.sprite = sprite;
             image.color = properties.color;
         }
 
@@ -155,7 +212,8 @@ public class CompilerManager : MonoBehaviour
         if (properties == null) return;
 
         if (string.IsNullOrWhiteSpace(properties.piece)) return;
-        string pieceKey = properties.piece.ToLowerInvariant();
+        string pieceKey = NormalizePieceKey(properties.piece);
+
         wornPieces.Remove(pieceKey);
 
         SpawnReturnedHanger(properties, GetReturnedHangerPosition(screenPosition, eventCamera));
@@ -190,22 +248,6 @@ public class CompilerManager : MonoBehaviour
         }
 
         RefreshSubmitButton();
-    }
-
-    private void SubmitCurrentCostume()
-    {
-        if (!CanSubmit() || isSliding) return;
-
-        submittedCostumes++;
-        RefreshCounter();
-
-        if (submittedCostumes >= requiredCostumes)
-        {
-            EndChapterNow();
-            return;
-        }
-
-        StartCoroutine(SlideOutfitAway());
     }
 
     private IEnumerator SlideOutfitAway()
@@ -257,8 +299,23 @@ public class CompilerManager : MonoBehaviour
     {
         bool hasFull = wornPieces.ContainsKey("full");
         bool hasTopAndBottom = wornPieces.ContainsKey("top") && wornPieces.ContainsKey("bottom");
-
         return hasFull || hasTopAndBottom;
+    }
+
+    private void SubmitCurrentCostume()
+    {
+        if (!CanSubmit() || isSliding) return;
+
+        submittedCostumes++;
+        RefreshCounter();
+
+        if (submittedCostumes >= requiredCostumes)
+        {
+            EndChapterNow();
+            return;
+        }
+
+        StartCoroutine(SlideOutfitAway());
     }
 
     private void RefreshSubmitButton()
@@ -320,7 +377,6 @@ public class CompilerManager : MonoBehaviour
     {
         Vector2 position = returnedHangerStartPosition;
         position.x += returnIndex * returnedHangerSpacing;
-
         SpawnReturnedHanger(properties, position);
     }
 
@@ -371,19 +427,68 @@ public class CompilerManager : MonoBehaviour
         wornPieces.Remove(pieceKey);
     }
 
+    private string NormalizePieceKey(string piece)
+    {
+        if (string.IsNullOrWhiteSpace(piece)) return string.Empty;
+
+        string p = piece.Trim().ToLowerInvariant();
+        if (p == "shoes") p = "shoe";
+        if (p == "pants") p = "bottom";
+        return p;
+    }
+
+    // Compares against pieceSprites[].piece
     private Sprite GetSpriteForPiece(string piece)
     {
         if (string.IsNullOrWhiteSpace(piece)) return null;
         if (pieceSprites == null) return null;
 
+        string key = piece.Trim();
+
         foreach (PieceSprite pieceSprite in pieceSprites)
         {
             if (pieceSprite == null || pieceSprite.sprite == null) continue;
-            if (string.Equals(pieceSprite.piece, piece, System.StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(pieceSprite.piece?.Trim(), key, System.StringComparison.OrdinalIgnoreCase))
                 return pieceSprite.sprite;
         }
 
         return null;
+    }
+
+    // Compares against pieceSizes[].piece
+    private Vector2 GetWidthHeightForPiece(string pieceName)
+    {
+        if (string.IsNullOrWhiteSpace(pieceName) || pieceSizes == null)
+            return defaultWidthHeight;
+
+        string key = pieceName.Trim();
+
+        foreach (PieceSize ps in pieceSizes)
+        {
+            if (ps == null || string.IsNullOrWhiteSpace(ps.piece)) continue;
+            if (string.Equals(ps.piece.Trim(), key, System.StringComparison.OrdinalIgnoreCase))
+                return ps.widthHeight;
+        }
+
+        return defaultWidthHeight;
+    }
+
+    // Compares against piecePositions[].piece
+    private Vector2 GetAnchoredPositionForPiece(string pieceName)
+    {
+        if (string.IsNullOrWhiteSpace(pieceName) || piecePositions == null)
+            return defaultAnchoredPosition;
+
+        string key = pieceName.Trim();
+
+        foreach (PiecePosition pp in piecePositions)
+        {
+            if (pp == null || string.IsNullOrWhiteSpace(pp.piece)) continue;
+            if (string.Equals(pp.piece.Trim(), key, System.StringComparison.OrdinalIgnoreCase))
+                return pp.anchoredPosition;
+        }
+
+        return defaultAnchoredPosition;
     }
 
     private void CopyProperties(TopProperty from, TopProperty to)
@@ -404,12 +509,8 @@ public class CompilerManager : MonoBehaviour
         shouldReturnWornPieces = false;
 
         if (TimelineHandler.Instance != null)
-        {
             TimelineHandler.Instance.TransitionToNextScene();
-        }
         else
-        {
             SceneManager.LoadScene("Dialogue and end");
-        }
     }
 }
