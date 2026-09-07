@@ -2,7 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// Spawns stored clothing items when storage scene loads
+/// Spawns stored clothing items when Storage scene loads.
+/// Now listens for DeskPurchaseManager.onDeliveryArrived so deliveries show up immediately
+/// when the Storage scene is loaded (or already open).
 /// </summary>
 public class StorageSpawner : MonoBehaviour
 {
@@ -25,7 +27,70 @@ public class StorageSpawner : MonoBehaviour
             return;
         }
 
-        // Spawn all stored items
+        // Spawn all stored items on start
+        SpawnStoredItems();
+
+        // Subscribe to delivery events so new purchases appear immediately
+        TrySubscribeToDelivery();
+    }
+
+    private void OnEnable()
+    {
+        TrySubscribeToDelivery();
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeFromDelivery();
+    }
+
+    void OnDestroy()
+    {
+        UnsubscribeFromDelivery();
+    }
+
+    private void TrySubscribeToDelivery()
+    {
+        if (DeskPurchaseManager.Instance != null)
+        {
+            DeskPurchaseManager.Instance.onDeliveryArrived.AddListener(OnDeliveryArrived);
+            if (debugMode) Debug.Log("StorageSpawner: subscribed to onDeliveryArrived");
+        }
+    }
+
+    private void UnsubscribeFromDelivery()
+    {
+        if (DeskPurchaseManager.Instance != null)
+        {
+            DeskPurchaseManager.Instance.onDeliveryArrived.RemoveListener(OnDeliveryArrived);
+            if (debugMode) Debug.Log("StorageSpawner: unsubscribed from onDeliveryArrived");
+        }
+    }
+
+    private void OnDeliveryArrived()
+    {
+        if (debugMode) Debug.Log("OnDeliveryArrived: refreshing storage hangers.");
+        RefreshStoredHangers();
+    }
+
+    // Destroys existing in-storage hangers and respawns stored items from StorageManager
+    private void RefreshStoredHangers()
+    {
+        if (storageCanvas == null)
+        {
+            if (debugMode) Debug.LogError("Storage canvas not assigned for refresh!");
+            return;
+        }
+
+        // Destroy existing storage hangers (only the ones that are in storage)
+        DraggableLerpImage[] allHangers = storageCanvas.GetComponentsInChildren<DraggableLerpImage>(true);
+        foreach (DraggableLerpImage hanger in allHangers)
+        {
+            if (hanger.IsInStorage)
+                Destroy(hanger.gameObject);
+        }
+
+        // Spawn fresh set from StorageManager
         SpawnStoredItems();
     }
 
@@ -80,7 +145,7 @@ public class StorageSpawner : MonoBehaviour
             DraggableLerpImage draggable = newHanger.GetComponent<DraggableLerpImage>();
             if (draggable != null)
             {
-                draggable.IsInStorage = true; 
+                draggable.IsInStorage = true;
             }
 
             if (debugMode) Debug.Log($"Spawned stored item: {storedItems[i].displayName}");

@@ -204,9 +204,9 @@ GameObject:
   m_Component:
   - component: {fileID: 56513339}
   - component: {fileID: 56513343}
-  - component: {fileID: 56513342}
   - component: {fileID: 56513341}
   - component: {fileID: 56513340}
+  - component: {fileID: 56513344}
   m_Layer: 5
   m_Name: Clothes 1
   m_TagString: Untagged
@@ -252,6 +252,8 @@ MonoBehaviour:
   button: {fileID: 56513341}
   offerText: {fileID: 397364744}
   colorImage: {fileID: 1715919872}
+  iconImage: {fileID: 0}
+  pieceIcons: []
   canvasGroup: {fileID: 0}
   emptyText: No offer
 --- !u!114 &56513341
@@ -294,7 +296,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 56513342}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -310,36 +312,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &56513342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 56513338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94de6deec7b954552ab9ff0df4ae27be, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &56513343
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -348,6 +320,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56513338}
   m_CullTransparentMesh: 1
+--- !u!114 &56513344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56513338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 151e909f4a2ac4f7d90a9fc42aec5183, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &81155661
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,9 +352,9 @@ GameObject:
   m_Component:
   - component: {fileID: 81155662}
   - component: {fileID: 81155666}
-  - component: {fileID: 81155665}
   - component: {fileID: 81155664}
   - component: {fileID: 81155663}
+  - component: {fileID: 81155667}
   m_Layer: 5
   m_Name: Fabric 3
   m_TagString: Untagged
@@ -406,6 +400,8 @@ MonoBehaviour:
   button: {fileID: 81155664}
   offerText: {fileID: 1235019209}
   colorImage: {fileID: 93711579}
+  iconImage: {fileID: 0}
+  pieceIcons: []
   canvasGroup: {fileID: 0}
   emptyText: No offer
 --- !u!114 &81155664
@@ -448,7 +444,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 81155665}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -464,36 +460,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &81155665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81155661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94de6deec7b954552ab9ff0df4ae27be, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &81155666
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -502,6 +468,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81155661}
   m_CullTransparentMesh: 1
+--- !u!114 &81155667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81155661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 151e909f4a2ac4f7d90a9fc42aec5183, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &93711577
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,9 +849,9 @@ GameObject:
   m_Component:
   - component: {fileID: 243526064}
   - component: {fileID: 243526068}
-  - component: {fileID: 243526067}
   - component: {fileID: 243526066}
   - component: {fileID: 243526065}
+  - component: {fileID: 243526069}
   m_Layer: 5
   m_Name: Clothes 5
   m_TagString: Untagged
@@ -909,6 +897,8 @@ MonoBehaviour:
   button: {fileID: 243526066}
   offerText: {fileID: 138282128}
   colorImage: {fileID: 1223093860}
+  iconImage: {fileID: 0}
+  pieceIcons: []
   canvasGroup: {fileID: 0}
   emptyText: No offer
 --- !u!114 &243526066
@@ -951,7 +941,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 243526067}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -967,36 +957,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &243526067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243526063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94de6deec7b954552ab9ff0df4ae27be, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &243526068
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1005,6 +965,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 243526063}
   m_CullTransparentMesh: 1
+--- !u!114 &243526069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243526063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 151e909f4a2ac4f7d90a9fc42aec5183, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &282967295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,9 +1230,9 @@ GameObject:
   m_Component:
   - component: {fileID: 359341445}
   - component: {fileID: 359341449}
-  - component: {fileID: 359341448}
   - component: {fileID: 359341447}
   - component: {fileID: 359341446}
+  - component: {fileID: 359341450}
   m_Layer: 5
   m_Name: Fabric 5
   m_TagString: Untagged
@@ -1296,6 +1278,8 @@ MonoBehaviour:
   button: {fileID: 359341447}
   offerText: {fileID: 394293893}
   colorImage: {fileID: 656572395}
+  iconImage: {fileID: 0}
+  pieceIcons: []
   canvasGroup: {fileID: 0}
   emptyText: No offer
 --- !u!114 &359341447
@@ -1338,7 +1322,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 359341448}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1354,36 +1338,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &359341448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359341444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94de6deec7b954552ab9ff0df4ae27be, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &359341449
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1392,6 +1346,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359341444}
   m_CullTransparentMesh: 1
+--- !u!114 &359341450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359341444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 151e909f4a2ac4f7d90a9fc42aec5183, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &388662882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,9 +2151,9 @@ GameObject:
   m_Component:
   - component: {fileID: 616849394}
   - component: {fileID: 616849398}
-  - component: {fileID: 616849397}
   - component: {fileID: 616849396}
   - component: {fileID: 616849395}
+  - component: {fileID: 616849399}
   m_Layer: 5
   m_Name: Fabric 2
   m_TagString: Untagged
@@ -2223,6 +2199,8 @@ MonoBehaviour:
   button: {fileID: 616849396}
   offerText: {fileID: 493173946}
   colorImage: {fileID: 1475998028}
+  iconImage: {fileID: 0}
+  pieceIcons: []
   canvasGroup: {fileID: 0}
   emptyText: No offer
 --- !u!114 &616849396
@@ -2265,7 +2243,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 616849397}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2281,36 +2259,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &616849397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616849393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94de6deec7b954552ab9ff0df4ae27be, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &616849398
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2319,6 +2267,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616849393}
   m_CullTransparentMesh: 1
+--- !u!114 &616849399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616849393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 151e909f4a2ac4f7d90a9fc42aec5183, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &656572393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,9 +2374,9 @@ GameObject:
   m_Component:
   - component: {fileID: 715940091}
   - component: {fileID: 715940095}
-  - component: {fileID: 715940094}
   - component: {fileID: 715940093}
   - component: {fileID: 715940092}
+  - component: {fileID: 715940096}
   m_Layer: 5
   m_Name: Clothes 4
   m_TagString: Untagged
@@ -2452,6 +2422,8 @@ MonoBehaviour:
   button: {fileID: 715940093}
   offerText: {fileID: 1169407922}
   colorImage: {fileID: 1648308357}
+  iconImage: {fileID: 0}
+  pieceIcons: []
   canvasGroup: {fileID: 0}
   emptyText: No offer
 --- !u!114 &715940093
@@ -2494,7 +2466,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 715940094}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2510,36 +2482,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &715940094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 715940090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94de6deec7b954552ab9ff0df4ae27be, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &715940095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2548,6 +2490,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715940090}
   m_CullTransparentMesh: 1
+--- !u!114 &715940096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715940090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 151e909f4a2ac4f7d90a9fc42aec5183, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &912874472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,9 +2682,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1015709532}
   - component: {fileID: 1015709536}
-  - component: {fileID: 1015709535}
   - component: {fileID: 1015709534}
   - component: {fileID: 1015709533}
+  - component: {fileID: 1015709537}
   m_Layer: 5
   m_Name: Fabric 1
   m_TagString: Untagged
@@ -2766,6 +2730,8 @@ MonoBehaviour:
   button: {fileID: 1015709534}
   offerText: {fileID: 181937269}
   colorImage: {fileID: 1670386029}
+  iconImage: {fileID: 0}
+  pieceIcons: []
   canvasGroup: {fileID: 0}
   emptyText: No offer
 --- !u!114 &1015709534
@@ -2808,7 +2774,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1015709535}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2824,36 +2790,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1015709535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015709531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94de6deec7b954552ab9ff0df4ae27be, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1015709536
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2862,6 +2798,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015709531}
   m_CullTransparentMesh: 1
+--- !u!114 &1015709537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015709531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 151e909f4a2ac4f7d90a9fc42aec5183, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &1046040034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3022,9 +2980,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1125207587}
   - component: {fileID: 1125207591}
-  - component: {fileID: 1125207590}
   - component: {fileID: 1125207589}
   - component: {fileID: 1125207588}
+  - component: {fileID: 1125207592}
   m_Layer: 5
   m_Name: Clothes 3
   m_TagString: Untagged
@@ -3070,6 +3028,8 @@ MonoBehaviour:
   button: {fileID: 1125207589}
   offerText: {fileID: 1380846423}
   colorImage: {fileID: 2060774961}
+  iconImage: {fileID: 0}
+  pieceIcons: []
   canvasGroup: {fileID: 0}
   emptyText: No offer
 --- !u!114 &1125207589
@@ -3112,7 +3072,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1125207590}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3128,36 +3088,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1125207590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125207586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94de6deec7b954552ab9ff0df4ae27be, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1125207591
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3166,6 +3096,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125207586}
   m_CullTransparentMesh: 1
+--- !u!114 &1125207592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125207586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 151e909f4a2ac4f7d90a9fc42aec5183, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &1147906111
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,9 +3842,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1382367222}
   - component: {fileID: 1382367226}
-  - component: {fileID: 1382367225}
   - component: {fileID: 1382367224}
   - component: {fileID: 1382367223}
+  - component: {fileID: 1382367227}
   m_Layer: 5
   m_Name: Clothes 2
   m_TagString: Untagged
@@ -3938,6 +3890,8 @@ MonoBehaviour:
   button: {fileID: 1382367224}
   offerText: {fileID: 461846481}
   colorImage: {fileID: 430744409}
+  iconImage: {fileID: 0}
+  pieceIcons: []
   canvasGroup: {fileID: 0}
   emptyText: No offer
 --- !u!114 &1382367224
@@ -3980,7 +3934,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1382367225}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3996,36 +3950,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1382367225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382367221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94de6deec7b954552ab9ff0df4ae27be, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1382367226
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4034,6 +3958,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382367221}
   m_CullTransparentMesh: 1
+--- !u!114 &1382367227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382367221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 151e909f4a2ac4f7d90a9fc42aec5183, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &1399789125
 GameObject:
   m_ObjectHideFlags: 0
@@ -4284,9 +4230,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1570541726}
   - component: {fileID: 1570541730}
-  - component: {fileID: 1570541729}
   - component: {fileID: 1570541728}
   - component: {fileID: 1570541727}
+  - component: {fileID: 1570541731}
   m_Layer: 5
   m_Name: Fabric 4
   m_TagString: Untagged
@@ -4332,6 +4278,8 @@ MonoBehaviour:
   button: {fileID: 1570541728}
   offerText: {fileID: 1147906113}
   colorImage: {fileID: 1399789127}
+  iconImage: {fileID: 0}
+  pieceIcons: []
   canvasGroup: {fileID: 0}
   emptyText: No offer
 --- !u!114 &1570541728
@@ -4374,7 +4322,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1570541729}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -4390,36 +4338,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1570541729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570541725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94de6deec7b954552ab9ff0df4ae27be, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1570541730
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4428,6 +4346,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570541725}
   m_CullTransparentMesh: 1
+--- !u!114 &1570541731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570541725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 151e909f4a2ac4f7d90a9fc42aec5183, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &1584306464
 GameObject:
   m_ObjectHideFlags: 0

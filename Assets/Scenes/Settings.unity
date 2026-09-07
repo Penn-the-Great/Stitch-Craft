@@ -209,9 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 17010059}
-  rowIndex: 0
-  rotationSpeed: -28.320889
 --- !u!114 &17010063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,9 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 17010059}
-  rowIndex: 0
-  rotationSpeed: -63.32601
 --- !u!114 &17010064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,9 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 17010059}
-  rowIndex: 0
-  rotationSpeed: 55.256313
 --- !u!1 &35218634
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,9 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 53793266}
-  rowIndex: 0
-  rotationSpeed: -66.230934
 --- !u!114 &53793270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,9 +473,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 53793266}
-  rowIndex: 0
-  rotationSpeed: 20.330103
 --- !u!114 &53793271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,9 +485,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 53793266}
-  rowIndex: 0
-  rotationSpeed: 84.735275
 --- !u!1 &68676440
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,9 +575,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 68676441}
-  rowIndex: 0
-  rotationSpeed: -61.743202
 --- !u!114 &68676445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,9 +587,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 68676441}
-  rowIndex: 0
-  rotationSpeed: 39.37468
 --- !u!114 &68676446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,9 +599,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 68676441}
-  rowIndex: 0
-  rotationSpeed: -84.10502
 --- !u!1 &88286504
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,9 +689,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 88286505}
-  rowIndex: 0
-  rotationSpeed: 22.90937
 --- !u!114 &88286509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,9 +701,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 88286505}
-  rowIndex: 0
-  rotationSpeed: 63.49008
 --- !u!114 &88286510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,9 +713,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 88286505}
-  rowIndex: 0
-  rotationSpeed: 24.642006
 --- !u!1001 &105052876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -896,9 +860,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 118431746}
-  rowIndex: 0
-  rotationSpeed: -77.08446
 --- !u!114 &118431750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,9 +872,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 118431746}
-  rowIndex: 0
-  rotationSpeed: -84.40474
 --- !u!114 &118431751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,9 +884,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 118431746}
-  rowIndex: 0
-  rotationSpeed: -85.940445
 --- !u!1 &146101918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,9 +974,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 146101919}
-  rowIndex: 0
-  rotationSpeed: 19.35286
 --- !u!114 &146101923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,9 +986,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 146101919}
-  rowIndex: 0
-  rotationSpeed: -83.34291
 --- !u!114 &146101924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1049,9 +998,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 146101919}
-  rowIndex: 0
-  rotationSpeed: 53.946964
 --- !u!1 &152578728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,9 +1088,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 152578729}
-  rowIndex: 0
-  rotationSpeed: 33.284763
 --- !u!114 &152578733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1157,9 +1100,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 152578729}
-  rowIndex: 0
-  rotationSpeed: 27.031086
 --- !u!114 &152578734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,9 +1112,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 152578729}
-  rowIndex: 0
-  rotationSpeed: 83.55128
 --- !u!1 &184109013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,9 +1202,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 184109014}
-  rowIndex: 0
-  rotationSpeed: 71.07676
 --- !u!114 &184109018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1280,9 +1214,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 184109014}
-  rowIndex: 0
-  rotationSpeed: 78.85369
 --- !u!114 &184109019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1295,9 +1226,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 184109014}
-  rowIndex: 0
-  rotationSpeed: 40.62203
 --- !u!1 &194078800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,9 +1316,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 194078801}
-  rowIndex: 0
-  rotationSpeed: 40.806236
 --- !u!114 &194078805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,9 +1328,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 194078801}
-  rowIndex: 0
-  rotationSpeed: 44.596756
 --- !u!114 &194078806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1418,9 +1340,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 194078801}
-  rowIndex: 0
-  rotationSpeed: 68.668
 --- !u!1 &216317557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,9 +1505,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 229071832}
-  rowIndex: 0
-  rotationSpeed: 77.811295
 --- !u!114 &229071836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1601,9 +1517,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 229071832}
-  rowIndex: 0
-  rotationSpeed: 38.659824
 --- !u!114 &229071837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1616,9 +1529,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 229071832}
-  rowIndex: 0
-  rotationSpeed: -65.85202
 --- !u!1 &229915030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,7 +1828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 314754613}
   - component: {fileID: 314754615}
-  - component: {fileID: 314754614}
+  - component: {fileID: 314754616}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -1945,36 +1855,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &314754614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314754612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 77cfda0d6dc6047a3baacff245c661c4, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &314754615
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1983,6 +1863,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314754612}
   m_CullTransparentMesh: 1
+--- !u!114 &314754616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314754612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: abeb642df7e5e4543b4bad661507ad62, type: 3}
+  m_PreserveAspect: 0
 --- !u!1 &348141142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,9 +1975,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 348141143}
-  rowIndex: 0
-  rotationSpeed: 53.183002
 --- !u!114 &348141147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2088,9 +1987,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 348141143}
-  rowIndex: 0
-  rotationSpeed: 68.15353
 --- !u!114 &348141148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2103,9 +1999,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 348141143}
-  rowIndex: 0
-  rotationSpeed: -41.588547
 --- !u!1 &348347211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2196,9 +2089,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 348347212}
-  rowIndex: 0
-  rotationSpeed: -35.431534
 --- !u!114 &348347216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2211,9 +2101,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 348347212}
-  rowIndex: 0
-  rotationSpeed: -87.05829
 --- !u!114 &348347217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2226,9 +2113,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 348347212}
-  rowIndex: 0
-  rotationSpeed: 39.410378
 --- !u!1 &364746939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,9 +2331,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 402426596}
-  rowIndex: 0
-  rotationSpeed: 81.53653
 --- !u!114 &402426600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2462,9 +2343,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 402426596}
-  rowIndex: 0
-  rotationSpeed: 18.017744
 --- !u!114 &402426601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2477,9 +2355,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 402426596}
-  rowIndex: 0
-  rotationSpeed: 76.24506
 --- !u!1 &451077888
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,9 +2445,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 451077889}
-  rowIndex: 0
-  rotationSpeed: -51.07349
 --- !u!114 &451077893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2585,9 +2457,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 451077889}
-  rowIndex: 0
-  rotationSpeed: -42.463432
 --- !u!114 &451077894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2600,9 +2469,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 451077889}
-  rowIndex: 0
-  rotationSpeed: 86.39408
 --- !u!1 &480478141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2693,9 +2559,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 480478142}
-  rowIndex: 0
-  rotationSpeed: -49.0514
 --- !u!114 &480478146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2708,9 +2571,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 480478142}
-  rowIndex: 0
-  rotationSpeed: 27.570728
 --- !u!114 &480478147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2723,9 +2583,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 480478142}
-  rowIndex: 0
-  rotationSpeed: 71.76016
 --- !u!1 &533834880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2816,9 +2673,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 533834881}
-  rowIndex: 0
-  rotationSpeed: 29.08528
 --- !u!114 &533834885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2831,9 +2685,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 533834881}
-  rowIndex: 0
-  rotationSpeed: -57.16195
 --- !u!114 &533834886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2846,9 +2697,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 533834881}
-  rowIndex: 0
-  rotationSpeed: 39.12989
 --- !u!1 &551824893
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,9 +2787,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 551824894}
-  rowIndex: 0
-  rotationSpeed: -79.74774
 --- !u!114 &551824898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2954,9 +2799,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 551824894}
-  rowIndex: 0
-  rotationSpeed: 69.5855
 --- !u!114 &551824899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2969,9 +2811,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 551824894}
-  rowIndex: 0
-  rotationSpeed: -66.54879
 --- !u!1 &551969759
 GameObject:
   m_ObjectHideFlags: 0
@@ -3062,9 +2901,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 551969760}
-  rowIndex: 0
-  rotationSpeed: 64.97756
 --- !u!114 &551969764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3077,9 +2913,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 551969760}
-  rowIndex: 0
-  rotationSpeed: -80.36627
 --- !u!114 &551969765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3092,9 +2925,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 551969760}
-  rowIndex: 0
-  rotationSpeed: -59.408943
 --- !u!1 &564877915
 GameObject:
   m_ObjectHideFlags: 0
@@ -3185,9 +3015,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 564877916}
-  rowIndex: 0
-  rotationSpeed: -44.846718
 --- !u!114 &564877920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3200,9 +3027,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 564877916}
-  rowIndex: 0
-  rotationSpeed: 35.985947
 --- !u!114 &564877921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3215,9 +3039,6 @@ MonoBehaviour:
   m_Script: {fileID: 728217228}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 564877916}
-  rowIndex: 0
-  rotationSpeed: 64.690025
 --- !u!1 &671668969
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,9 +3236,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 733715636}
-  rowIndex: 0
-  rotationSpeed: 82.10437
 --- !u!114 &733715640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3430,9 +3248,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 733715636}
-  rowIndex: 0
-  rotationSpeed: 82.38977
 --- !u!114 &733715641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3538,9 +3353,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 836687463}
-  rowIndex: 0
-  rotationSpeed: 64.086296
 --- !u!114 &836687467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3553,9 +3365,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 836687463}
-  rowIndex: 0
-  rotationSpeed: 58.18516
 --- !u!114 &836687468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3661,9 +3470,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 851541744}
-  rowIndex: 0
-  rotationSpeed: 84.416756
 --- !u!114 &851541748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3676,9 +3482,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 851541744}
-  rowIndex: 0
-  rotationSpeed: 18.159338
 --- !u!114 &851541749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3784,9 +3587,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 876420134}
-  rowIndex: 0
-  rotationSpeed: 86.60032
 --- !u!114 &876420138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3799,9 +3599,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 876420134}
-  rowIndex: 0
-  rotationSpeed: -20.200401
 --- !u!114 &876420139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3907,9 +3704,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 878339940}
-  rowIndex: 0
-  rotationSpeed: -79.16575
 --- !u!114 &878339944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3922,9 +3716,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 878339940}
-  rowIndex: 0
-  rotationSpeed: 31.221275
 --- !u!114 &878339945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4167,9 +3958,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 884758050}
-  rowIndex: 0
-  rotationSpeed: 89.531654
 --- !u!114 &884758054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4182,9 +3970,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 884758050}
-  rowIndex: 0
-  rotationSpeed: 80.20853
 --- !u!114 &884758055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4423,9 +4208,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 954397781}
-  rowIndex: 0
-  rotationSpeed: -85.53005
 --- !u!114 &954397785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4438,9 +4220,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 954397781}
-  rowIndex: 0
-  rotationSpeed: -32.02499
 --- !u!114 &954397786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4546,9 +4325,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 964303343}
-  rowIndex: 0
-  rotationSpeed: -15.450102
 --- !u!114 &964303347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4561,9 +4337,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 964303343}
-  rowIndex: 0
-  rotationSpeed: -40.933468
 --- !u!114 &964303348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4669,9 +4442,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 989199322}
-  rowIndex: 0
-  rotationSpeed: 63.331665
 --- !u!114 &989199326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4684,9 +4454,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 989199322}
-  rowIndex: 0
-  rotationSpeed: -71.44491
 --- !u!114 &989199327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4929,9 +4696,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1033427764}
-  rowIndex: 0
-  rotationSpeed: 51.243988
 --- !u!114 &1033427768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4944,9 +4708,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1033427764}
-  rowIndex: 0
-  rotationSpeed: -57.198563
 --- !u!114 &1033427769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5052,9 +4813,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1046358603}
-  rowIndex: 0
-  rotationSpeed: -44.094513
 --- !u!114 &1046358607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5067,9 +4825,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1046358603}
-  rowIndex: 0
-  rotationSpeed: 59.18783
 --- !u!114 &1046358608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5175,9 +4930,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1073466813}
-  rowIndex: 0
-  rotationSpeed: 78.99749
 --- !u!114 &1073466817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5190,9 +4942,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1073466813}
-  rowIndex: 0
-  rotationSpeed: 15.135639
 --- !u!114 &1073466818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5298,9 +5047,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1087587756}
-  rowIndex: 0
-  rotationSpeed: -67.85366
 --- !u!114 &1087587760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5313,9 +5059,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1087587756}
-  rowIndex: 0
-  rotationSpeed: -85.63806
 --- !u!114 &1087587761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5421,9 +5164,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1096352697}
-  rowIndex: 0
-  rotationSpeed: 19.626034
 --- !u!114 &1096352701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5436,9 +5176,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1096352697}
-  rowIndex: 0
-  rotationSpeed: -72.14605
 --- !u!114 &1096352702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5544,9 +5281,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1099575346}
-  rowIndex: 0
-  rotationSpeed: 87.35047
 --- !u!114 &1099575350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5559,9 +5293,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1099575346}
-  rowIndex: 0
-  rotationSpeed: 39.707497
 --- !u!114 &1099575351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5667,9 +5398,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1104150264}
-  rowIndex: 0
-  rotationSpeed: -83.17675
 --- !u!114 &1104150268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5682,9 +5410,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1104150264}
-  rowIndex: 0
-  rotationSpeed: -59.8627
 --- !u!114 &1104150269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5865,9 +5590,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1153702929}
-  rowIndex: 0
-  rotationSpeed: -21.262833
 --- !u!114 &1153702933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5880,9 +5602,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1153702929}
-  rowIndex: 0
-  rotationSpeed: 18.589743
 --- !u!114 &1153702934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5988,9 +5707,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1254892118}
-  rowIndex: 0
-  rotationSpeed: -54.074486
 --- !u!114 &1254892122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6003,9 +5719,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1254892118}
-  rowIndex: 0
-  rotationSpeed: 72.17139
 --- !u!114 &1254892123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6111,9 +5824,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1257818526}
-  rowIndex: 0
-  rotationSpeed: 65.0976
 --- !u!114 &1257818530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6126,9 +5836,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1257818526}
-  rowIndex: 0
-  rotationSpeed: 55.790485
 --- !u!114 &1257818531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6234,9 +5941,6 @@ MonoBehaviour:
   m_Script: {fileID: 1393778084}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1344469980}
-  rowIndex: 0
-  rotationSpeed: -66.11846
 --- !u!114 &1344469984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6249,9 +5953,6 @@ MonoBehaviour:
   m_Script: {fileID: 1369037141}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiagonalGridGenerator/RotatingCell
-  rect: {fileID: 1344469980}
-  rowIndex: 0
-  rotationSpeed: -30.294197
 --- !u!114 &1344469985
 MonoBehaviour:
   m_ObjectHideFlags: 0

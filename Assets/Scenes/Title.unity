@@ -380,9 +380,9 @@ GameObject:
   m_Component:
   - component: {fileID: 792158374}
   - component: {fileID: 792158377}
-  - component: {fileID: 792158376}
   - component: {fileID: 792158375}
   - component: {fileID: 792158378}
+  - component: {fileID: 792158379}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -449,7 +449,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 792158376}
+  m_TargetGraphic: {fileID: 792158379}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -477,36 +477,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &792158376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792158373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e6f6f9af904714999ad1fd12c6badafb, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &792158377
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -529,6 +499,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SliderPrefabSpawner
   sliderFaderPrefab: {fileID: 7514083883174622369, guid: 41d4a22e26e334455a8dde8c5c465b4b, type: 3}
   nextSceneName: Settings
+--- !u!114 &792158379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792158373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 68a8dcca646bb4be48d0146495e90531, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &847193305
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,9 +762,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1094046908}
   - component: {fileID: 1094046911}
-  - component: {fileID: 1094046910}
   - component: {fileID: 1094046909}
   - component: {fileID: 1094046912}
+  - component: {fileID: 1094046913}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -839,7 +831,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1094046910}
+  m_TargetGraphic: {fileID: 1094046913}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -855,36 +847,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1094046910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094046907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3d744d4926a604a9fbeb511c2c8f2486, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1094046911
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -907,6 +869,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SliderPrefabSpawner
   sliderFaderPrefab: {fileID: 7514083883174622369, guid: 41d4a22e26e334455a8dde8c5c465b4b, type: 3}
   nextSceneName: Chapter Select
+--- !u!114 &1094046913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094046907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VectorGraphics::Unity.VectorGraphics.SVGImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3286163911610860551, guid: 5228eb4cb45ea4914a37adfa27b577a2, type: 3}
+  m_PreserveAspect: 1
 --- !u!1 &1222112046
 GameObject:
   m_ObjectHideFlags: 0
