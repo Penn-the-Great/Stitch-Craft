@@ -3,6 +3,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Handles purchases and pending deliveries.
+/// Logs key events and, when delivering, attempts to spawn the delivered item
+/// into an open StorageSpawner so the player sees deliveries immediately.
+/// </summary>
 public class DeskPurchaseManager : MonoBehaviour
 {
     public static DeskPurchaseManager Instance { get; private set; }
@@ -50,37 +55,37 @@ public class DeskPurchaseManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         LoadFabricAmount();
         UpdateDisplays();
+
+        Debug.Log($"DeskPurchaseManager Awake (Instance id {this.GetInstanceID()})");
     }
 
-    public void BuyCheapCostume()
-    {
-        BuyCostume(cheapCostumeBaseCost, cheapCostumeDeliveryWeeks);
-    }
-
-    public void BuyExpensiveCostume()
-    {
-        BuyCostume(expensiveCostumeBaseCost, expensiveCostumeDeliveryWeeks);
-    }
+    public void BuyCheapCostume() => BuyCostume(cheapCostumeBaseCost, cheapCostumeDeliveryWeeks);
+    public void BuyExpensiveCostume() => BuyCostume(expensiveCostumeBaseCost, expensiveCostumeDeliveryWeeks);
 
     public void BuyFabricBundle()
     {
-        if (!TryPay(fabricBundleCost))
-            return;
-
+        if (!TryPay(fabricBundleCost)) return;
         AddFabric(fabricBundleAmount);
         onPurchaseMade?.Invoke();
     }
 
     public bool BuySpecificCostume(StorageManager.StoredClothingItem item, int cost, int deliveryWeeks)
     {
+        Debug.Log($"BuySpecificCostume called for {item?.displayName ?? "null"} cost:{cost} weeks:{deliveryWeeks}");
+
         if (!TryPay(cost))
+        {
+            Debug.Log($"BuySpecificCostume: payment failed for {item?.displayName}");
             return false;
+        }
 
         pendingCostumeDeliveries.Add(new PendingCostumeDelivery
         {
             item = item,
             weeksRemaining = deliveryWeeks
         });
+
+        Debug.Log($"BuySpecificCostume: added pending item {item.displayName} with {deliveryWeeks} weeksRemaining. PendingCount={pendingCostumeDeliveries.Count}");
 
         AddDeliveryCalendarEvent(item, deliveryWeeks);
         UpdateDisplays();
@@ -90,8 +95,7 @@ public class DeskPurchaseManager : MonoBehaviour
 
     public bool BuySpecificFabric(string displayName, string material, Color color, int cost)
     {
-        if (!TryPay(cost))
-            return false;
+        if (!TryPay(cost)) return false;
 
         if (FabricInventoryManager.Instance != null)
             FabricInventoryManager.Instance.AddFabric(material, color);
@@ -105,28 +109,19 @@ public class DeskPurchaseManager : MonoBehaviour
 
     public void AddFabric(int amount)
     {
-        if (amount <= 0)
-            return;
-
+        if (amount <= 0) return;
         fabricAmount += amount;
         SaveFabricAmount();
         UpdateDisplays();
         onFabricChanged?.Invoke(fabricAmount);
     }
 
-    public bool CanSpendFabric(int amount)
-    {
-        return amount <= 0 || fabricAmount >= amount;
-    }
+    public bool CanSpendFabric(int amount) => amount <= 0 || fabricAmount >= amount;
 
     public bool TrySpendFabric(int amount)
     {
-        if (amount <= 0)
-            return true;
-
-        if (!CanSpendFabric(amount))
-            return false;
-
+        if (amount <= 0) return true;
+        if (!CanSpendFabric(amount)) return false;
         fabricAmount -= amount;
         SaveFabricAmount();
         UpdateDisplays();
@@ -136,15 +131,22 @@ public class DeskPurchaseManager : MonoBehaviour
 
     public void AdvanceDeliveriesOneWeek()
     {
+        Debug.Log("AdvanceDeliveriesOneWeek called.");
         for (int i = pendingCostumeDeliveries.Count - 1; i >= 0; i--)
         {
             pendingCostumeDeliveries[i].weeksRemaining--;
+            StorageManager.StoredClothingItem current = pendingCostumeDeliveries[i].item;
 
             if (pendingCostumeDeliveries[i].weeksRemaining <= 0)
             {
-                DeliverCostume(pendingCostumeDeliveries[i].item);
+                Debug.Log($"AdvanceDeliveriesOneWeek: delivering {current.displayName}");
+                DeliverCostume(current);
                 pendingCostumeDeliveries.RemoveAt(i);
                 onDeliveryArrived?.Invoke();
+            }
+            else
+            {
+                Debug.Log($"AdvanceDeliveriesOneWeek: {current.displayName} now has {pendingCostumeDeliveries[i].weeksRemaining} weeks remaining");
             }
         }
 
@@ -156,8 +158,7 @@ public class DeskPurchaseManager : MonoBehaviour
         char grade = RandomGrade();
         int totalCost = baseCost + GetGradeExtraCost(grade);
 
-        if (!TryPay(totalCost))
-            return;
+        if (!TryPay(totalCost)) return;
 
         pendingCostumeDeliveries.Add(new PendingCostumeDelivery
         {
@@ -180,26 +181,40 @@ public class DeskPurchaseManager : MonoBehaviour
         }
 
         bool paid = ChapterBudgetManager.Instance.TrySpend(cost);
-        if (!paid)
-            onPurchaseFailed?.Invoke(cost);
-
+        if (!paid) onPurchaseFailed?.Invoke(cost);
         return paid;
     }
 
     private void DeliverCostume(StorageManager.StoredClothingItem item)
     {
+        Debug.Log($"DeliverCostume: delivering {item.displayName}");
+
         if (StorageManager.Instance == null)
         {
+            Debug.Log("DeliverCostume: StorageManager.Instance is null — creating one.");
             new GameObject("StorageManager").AddComponent<StorageManager>();
         }
 
+        // Persist delivered item
         StorageManager.Instance.AddItemToStorage(item);
+        Debug.Log($"DeliverCostume: persisted item. Storage count now = {StorageManager.Instance.GetStorageCount()}");
+
+        // If Storage scene is open and a StorageSpawner exists, spawn the single delivered item immediately.
+        StorageSpawner spawner = FindObjectOfType<StorageSpawner>();
+        if (spawner != null)
+        {
+            spawner.SpawnSingleItem(item);
+            Debug.Log("DeliverCostume: spawned delivered item into active StorageSpawner.");
+        }
+        else
+        {
+            Debug.Log("DeliverCostume: no StorageSpawner found in scene (Storage scene not open). Item will appear when Storage is opened.");
+        }
     }
 
     private void AddDeliveryCalendarEvent(StorageManager.StoredClothingItem item, int deliveryWeeks)
     {
-       if (DeskCalendarManager.Instance == null || TimelineHandler.Instance == null)
-            return;
+       if (DeskCalendarManager.Instance == null || TimelineHandler.Instance == null) return;
 
         int chapter = TimelineHandler.Instance.GetCurrentChapter();
         int deliveryWeek = TimelineHandler.Instance.GetCurrentWeek() + deliveryWeeks;
@@ -227,14 +242,10 @@ public class DeskPurchaseManager : MonoBehaviour
     {
         switch (char.ToUpper(grade))
         {
-            case 'A':
-                return gradeAExtraCost;
-            case 'B':
-                return gradeBExtraCost;
-            case 'C':
-                return gradeCExtraCost;
-            default:
-                return 0;
+            case 'A': return gradeAExtraCost;
+            case 'B': return gradeBExtraCost;
+            case 'C': return gradeCExtraCost;
+            default: return 0;
         }
     }
 
@@ -254,35 +265,18 @@ public class DeskPurchaseManager : MonoBehaviour
     {
         switch (piece.ToLower())
         {
-            case "top":
-                return PickRandom("Tank Top", "Vest Top", "Button up", "Sweater", "Blouse", "Basic shirt");
-            case "bottom":
-                return PickRandom("Jeans", "Slacks", "Shorts", "Harem Pants", "Skirt", "Tights");
-            case "hat":
-                return PickRandom("Cowboy hat", "Fedora", "Flat cap", "Beret", "Sun Hat", "Top Hat");
-            case "shoe":
-                return PickRandom("Sneakers", "Boots", "Loafers", "Sandals", "Heels", "Fancy Shoes");
-            case "full":
-                return PickRandom("Jumpsuit", "Overalls", "Dress", "Morph suit", "Robe", "Suit Set");
-            default:
-                return "Clothing Item";
+            case "top": return PickRandom("Tank Top", "Vest Top", "Button up", "Sweater", "Blouse", "Basic shirt");
+            case "bottom": return PickRandom("Jeans", "Slacks", "Shorts", "Harem Pants", "Skirt", "Tights");
+            case "hat": return PickRandom("Cowboy hat", "Fedora", "Flat cap", "Beret", "Sun Hat", "Top Hat");
+            case "shoe": return PickRandom("Sneakers", "Boots", "Loafers", "Sandals", "Heels", "Fancy Shoes");
+            case "full": return PickRandom("Jumpsuit", "Overalls", "Dress", "Morph suit", "Robe", "Suit Set");
+            default: return "Clothing Item";
         }
     }
 
-    private string RandomMaterial()
-    {
-        return PickRandom("Cotton", "Leather", "Wool", "Fur", "Silk");
-    }
-
-    private string RandomStyle()
-    {
-        return PickRandom("Ren", "1890's", "1920's", "1960's", "Modern", "Futuristic", "Fantasy");
-    }
-
-    private string PickRandom(params string[] options)
-    {
-        return options[Random.Range(0, options.Length)];
-    }
+    private string RandomMaterial() => PickRandom("Cotton", "Leather", "Wool", "Fur", "Silk");
+    private string RandomStyle() => PickRandom("Ren", "1890's", "1920's", "1960's", "Modern", "Futuristic", "Fantasy");
+    private string PickRandom(params string[] options) => options[Random.Range(0, options.Length)];
 
     private bool UsesFabricMaterial(string piece)
     {
@@ -297,23 +291,15 @@ public class DeskPurchaseManager : MonoBehaviour
 
     private void SaveFabricAmount()
     {
-        if (PersistentGameData.Instance != null)
-            PersistentGameData.Instance.fabricAmount = fabricAmount;
+        if (PersistentGameData.Instance != null) PersistentGameData.Instance.fabricAmount = fabricAmount;
     }
 
     private void UpdateDisplays()
     {
-        if (fabricLabel != null)
-            fabricLabel.text = fabricAmount.ToString();
-
-        if (pendingDeliveriesLabel != null)
-            pendingDeliveriesLabel.text = pendingCostumeDeliveries.Count.ToString();
+        if (fabricLabel != null) fabricLabel.text = fabricAmount.ToString();
+        if (pendingDeliveriesLabel != null) pendingDeliveriesLabel.text = pendingCostumeDeliveries.Count.ToString();
     }
 
     [System.Serializable]
-    private class PendingCostumeDelivery
-    {
-        public StorageManager.StoredClothingItem item;
-        public int weeksRemaining;
-    }
+    private class PendingCostumeDelivery { public StorageManager.StoredClothingItem item; public int weeksRemaining; }
 }

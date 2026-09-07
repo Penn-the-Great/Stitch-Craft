@@ -79,11 +79,6 @@ public class TimelineHandler : MonoBehaviour
         timer -= deltaTime;
         totalChapterTime += deltaTime;
 
-     if (debugMode && Time.time - lastDebugLogTime >= 1f)
-    {
-        Debug.Log($"⏱️ Timer: {timer:F2} seconds remaining | Week {currentWeek}");
-        lastDebugLogTime = Time.time;
-    }
 
     if (timer <= 0f && !weekEndTriggered)
     {

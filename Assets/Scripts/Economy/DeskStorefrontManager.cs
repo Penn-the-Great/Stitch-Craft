@@ -82,10 +82,18 @@ public class DeskStorefrontManager : MonoBehaviour
         ClothingOffer offer = GetClothingOffer(index);
         if (offer == null || offer.purchased || DeskPurchaseManager.Instance == null) return;
 
+        Debug.Log($"BuyClothingOffer: attempting to buy offer index {index} ({offer.displayName}) cost:{offer.cost} weeks:{offer.deliveryWeeks}");
+
+        // IMPORTANT: call with exactly 3 arguments to match DeskPurchaseManager signature
         bool purchased = DeskPurchaseManager.Instance.BuySpecificCostume(
             offer.ToStoredClothingItem(), offer.cost, offer.deliveryWeeks);
 
-        if (!purchased) return;
+        if (!purchased)
+        {
+            Debug.Log($"BuyClothingOffer: purchase failed for {offer.displayName}");
+            return;
+        }
+
         offer.purchased = true;
         RefreshOfferButtons();
     }
@@ -157,7 +165,6 @@ public class DeskStorefrontManager : MonoBehaviour
     {
         if (requirement != null && requirement.useRequiredColor && Random.value <= requiredAttributeChance)
         {
-            // If a required color exists, pick from pool with same family if possible.
             ColorFamily requiredFamily = ColorFamilyUtil.GetFamily(requirement.requiredColor);
             List<Color> familyMatches = new List<Color>();
             for (int i = 0; i < allowedClothingColors.Count; i++)
@@ -169,7 +176,7 @@ public class DeskStorefrontManager : MonoBehaviour
             if (familyMatches.Count > 0)
                 return familyMatches[Random.Range(0, familyMatches.Count)];
 
-            return requirement.requiredColor; // fallback if no pool match
+            return requirement.requiredColor;
         }
 
         return RandomClothingColor();

@@ -26,20 +26,14 @@ public class StorageManager : MonoBehaviour
 
     void Awake()
     {
-        // Singleton pattern
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
         LoadStorageFromJson();
     }
 
     /// <summary>
-    /// Adds a clothing item to storage
+    /// Adds a clothing item to storage (from a TopProperty)
     /// </summary>
     public void AddItemToStorage(TopProperty property)
     {
@@ -58,15 +52,15 @@ public class StorageManager : MonoBehaviour
         SaveStorageToJson();
     }
 
+    /// <summary>
+    /// Adds a clothing item to storage (stored item struct)
+    /// </summary>
     public void AddItemToStorage(StoredClothingItem item)
     {
         storedItems.Add(item);
         SaveStorageToJson();
     }
 
-    /// <summary>
-    /// Removes an item from storage by index
-    /// </summary>
     public void RemoveItemFromStorage(int index)
     {
         if (index >= 0 && index < storedItems.Count)
@@ -76,25 +70,10 @@ public class StorageManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Gets all stored items
-    /// </summary>
-    public List<StoredClothingItem> GetAllStoredItems()
-    {
-        return new List<StoredClothingItem>(storedItems);
-    }
+    public List<StoredClothingItem> GetAllStoredItems() => new List<StoredClothingItem>(storedItems);
 
-    /// <summary>
-    /// Gets stored item count
-    /// </summary>
-    public int GetStorageCount()
-    {
-        return storedItems.Count;
-    }
+    public int GetStorageCount() => storedItems.Count;
 
-    /// <summary>
-    /// Clears all storage
-    /// </summary>
     public void ClearStorage()
     {
         storedItems.Clear();
@@ -108,10 +87,12 @@ public class StorageManager : MonoBehaviour
         string json = JsonUtility.ToJson(wrapper);
         PlayerPrefs.SetString(STORAGE_KEY, json);
         PlayerPrefs.Save();
+        Debug.Log($"SaveStorageToJson: saved {storedItems.Count} items to PlayerPrefs.");
     }
 
     private void LoadStorageFromJson()
     {
+        storedItems = new List<StoredClothingItem>();
         if (PlayerPrefs.HasKey(STORAGE_KEY))
         {
             string json = PlayerPrefs.GetString(STORAGE_KEY);
@@ -119,13 +100,30 @@ public class StorageManager : MonoBehaviour
             if (wrapper != null && wrapper.items != null)
             {
                 storedItems = wrapper.items;
+                Debug.Log($"LoadStorageFromJson: loaded {storedItems.Count} items from PlayerPrefs.");
             }
+            else
+            {
+                Debug.Log("LoadStorageFromJson: wrapper or items null after JSON parse.");
+            }
+        }
+        else
+        {
+            Debug.Log("LoadStorageFromJson: no storage key present in PlayerPrefs.");
+        }
+    }
+
+    // Debug helper
+    public void DebugPrintStoredItems()
+    {
+        Debug.Log($"Stored items count: {storedItems.Count}");
+        for (int i = 0; i < storedItems.Count; i++)
+        {
+            var it = storedItems[i];
+            Debug.Log($"Stored[{i}] = {it.displayName} ({it.piece}) grade:{it.grade}");
         }
     }
 
     [System.Serializable]
-    private class StorageWrapper
-    {
-        public List<StoredClothingItem> items;
-    }
+    private class StorageWrapper { public List<StoredClothingItem> items; }
 }

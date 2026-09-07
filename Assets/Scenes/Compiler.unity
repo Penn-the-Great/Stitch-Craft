@@ -369,13 +369,13 @@ MonoBehaviour:
   hangerPrefab: {fileID: 3416951486861600703, guid: 3ef72f8e6505743eaad4eaf26cfc72bf, type: 3}
   pieceSprites:
   - piece: Button Up
-    sprite: {fileID: 3286163911610860551, guid: 71acdb37551774174b643ad57a829181, type: 3}
+    sprite: {fileID: 21300000, guid: bd88ad6e44dfb43a0abfec65cc950d91, type: 3}
   - piece: Tank Top
-    sprite: {fileID: 3286163911610860551, guid: 4bbae9e6a6acf4867a790939989a6b2c, type: 3}
+    sprite: {fileID: 21300000, guid: 767d43fd1f63a489e95ae0a30c524abe, type: 3}
   - piece: Vest
-    sprite: {fileID: 3286163911610860551, guid: ad361eb9537d548c0ab6d6bb9038a0f7, type: 3}
+    sprite: {fileID: 21300000, guid: 9c988b8af8233434f8c1f09fce5f18c1, type: 3}
   - piece: Blouse
-    sprite: {fileID: 3286163911610860551, guid: 9d04b66c7921945de8bc2e30364387d6, type: 3}
+    sprite: {fileID: 21300000, guid: bd4ed11752cfd4b4dadaa2ac08ce8eca, type: 3}
   - piece: T-Shirt
     sprite: {fileID: 21300000, guid: e8727effe8d4f4e27a1b82bc39ccf78b, type: 3}
   submitButton: {fileID: 1992838554}
