@@ -728,7 +728,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3169753293475408795}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -743,7 +743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -678.3, y: 0}
+  m_AnchoredPosition: {x: -678.3, y: -0}
   m_SizeDelta: {x: 145.84, y: 66.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8702856331274983433
@@ -803,6 +803,8 @@ MonoBehaviour:
   styleText: {fileID: 4877237215473995896}
   gradeText: {fileID: 7079797618593058459}
   colorImage: {fileID: 8546337702982995990}
+  pieceSprites: []
+  defaultColorSprite: {fileID: 0}
 --- !u!114 &8130709660573405962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,11 +819,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TopProperty
   presetName: 
   displayName: 
+  piece: 
   color: {r: 0, g: 0, b: 0, a: 0}
   material: 
   style: 
   grade: 0
-  piece: 
+  cost: 0
+  cacheDetectedColorFamily: 1
+  detectedFamily: 10
 --- !u!1 &3512177296523129110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,6 +1274,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TopPropertySpawner
   prefabToSpawn: {fileID: 3416951486861600703, guid: 3ef72f8e6505743eaad4eaf26cfc72bf, type: 3}
   targetCanvas: {fileID: 7811583247556452649}
+  allowedClothingColors: []
+  allowedFabricColors: []
+  requireBudget: 1
+  topCost: 20
+  bottomCost: 25
+  hatCost: 12
+  shoeCost: 18
+  fullOutfitCost: 45
+  gradeAExtraCost: 20
+  gradeBExtraCost: 12
+  gradeCExtraCost: 6
 --- !u!1 &6413784185811630514
 GameObject:
   m_ObjectHideFlags: 0

@@ -159,8 +159,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '? out of ? sotumes'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f52b87c188af544abaf6247616331b2e, type: 2}
-  m_sharedMaterial: {fileID: -1201927688473214197, guid: f52b87c188af544abaf6247616331b2e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 169c28273e4a0421b8892b9f2e041bab, type: 2}
+  m_sharedMaterial: {fileID: -5074054125387248035, guid: 169c28273e4a0421b8892b9f2e041bab, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -363,6 +363,8 @@ MonoBehaviour:
   mannequinDropArea: {fileID: 1759316237}
   mannequinRoot: {fileID: 1906112292}
   hangerCanvas: {fileID: 0}
+  playerCanvasTag: WorkspaceCanvas
+  playerCanvasName: Player canvas
   mannequinClothingPrefab: {fileID: 1002907530821015718, guid: 38af693f0e4f24ce8847cbc36d893165, type: 3}
   hangerPrefab: {fileID: 3416951486861600703, guid: 3ef72f8e6505743eaad4eaf26cfc72bf, type: 3}
   pieceSprites:
@@ -405,6 +407,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   slideDuration: 0.75
+  returnWornPiecesOnDestroy: 1
+  returnedHangerStartPosition: {x: 0, y: 0}
+  returnedHangerSpacing: 120
 --- !u!4 &642242387
 Transform:
   m_ObjectHideFlags: 0
@@ -942,7 +947,7 @@ GameObject:
   - component: {fileID: 1972403494}
   - component: {fileID: 1972403495}
   m_Layer: 5
-  m_Name: X
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -957,14 +962,14 @@ RectTransform:
   m_GameObject: {fileID: 1972403487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 688685581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 340, y: 193}
+  m_AnchoredPosition: {x: 325.2, y: 219.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1972403490
@@ -1043,7 +1048,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1f4149eb6fb504fecb4278552cdcc16c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0744a37e99c934583b0d011dc3447e2d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
