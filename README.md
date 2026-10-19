@@ -2,9 +2,9 @@
 ### Work with Dennis the costume designer of a failing community theater to make the best damn costumes that the audience has ever seen!
 
 
-![Title of Stitch-Craft](Assets/Imports/Icon.png)
+![Title of Stitch-Craft](Assets/Imports/Thumbnail.png)
 
-(The official thumbnail image will go here, but it's just the desktop icon as a placeholder rn.)
+
 
 ## How can i try it?
 
@@ -14,11 +14,10 @@ Download link and instructions will also go here as well for people who can't us
 
 ## What are some features of the game?
 - You can adjust volume in the settings
-- When the game starts, you get a list of requirements from the director of the theater that sets the requirements of your costumes to pass the chapter.
-- You can get costumes with specific properties like color, material, time period, etc., through playing a sewing minigame, buy them from the internet, or pull them from your storage.
-- Get more specific costume requirements like whether the character needs pants vs a skirt or hat vs no hat from fitting actors
-- Put costume pieces together in the compiler room on a mannequin to submit your costumes.
-- Survive all 6 weeks of a community production, and win the chapter by submitting costumes that fit within the style requirments
+- You can sew costumes with certain properties and colors in the sewing minigame
+- You can store costumes in the costume storage for later
+- You can purchase costumes from Slamazon that get delivered to your storage
+- You can talk to Dennis, the costume designer and choose dialogue lines that lead you down different dialogue branches
 
 
 ## Acknoledgements
