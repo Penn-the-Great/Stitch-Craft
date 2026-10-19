@@ -32,7 +32,6 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     void Start()
     {
-        // Check if this hanger is in storage based on parent canvas
         storageCanvas = GameObject.FindWithTag(storageCanvasTag)?.GetComponent<Canvas>();
         if (storageCanvas != null && rectTransform.IsChildOf(storageCanvas.transform))
         {
@@ -45,7 +44,6 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
             targetY = primarySnapY;
         }
 
-        // Immediately snap to correct Y
         Vector2 pos = rectTransform.anchoredPosition;
         pos.y = targetY;
         rectTransform.anchoredPosition = pos;
@@ -53,7 +51,6 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     void Update()
     {
-        // Try to find storage canvas if not found yet
         if (storageCanvas == null)
         {
             GameObject storageCanvasObj = GameObject.FindWithTag(storageCanvasTag);
@@ -64,7 +61,6 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
             }
         }
 
-        // Lerp to target Y when not dragging
         if (!isDragging)
         {
             float currentY = rectTransform.anchoredPosition.y;
@@ -115,11 +111,11 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (TryMoveToCompiler(eventData))
             return;
 
-        // Check threshold on release
+
         float currentY = rectTransform.anchoredPosition.y;
         bool isStorageSceneLoaded = SceneManager.GetSceneByName(storageSceneName).isLoaded;
 
-        // Check if in storage threshold and NOT already in storage
+
         if (isStorageSceneLoaded && storageCanvas != null && !isInStorage)
         {
             float distanceToSecondary = Mathf.Abs(currentY - secondarySnapY);
@@ -131,7 +127,6 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
             }
         }
 
-        // Check if in workspace threshold AND currently in storage
         if (isInStorage)
         {
             float distanceToPrimary = Mathf.Abs(currentY - primarySnapY);
@@ -143,7 +138,6 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
             }
         }
 
-        // If not moved to storage/workspace, just snap to current target
         targetY = isInStorage ? secondarySnapY : primarySnapY;
         if (debugMode) Debug.Log($"Released outside threshold. Snapping to Y: {targetY}, Is in storage: {isInStorage}");
     }
@@ -191,22 +185,19 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
             return;
         }
 
-        // Save to StorageManager
         if (StorageManager.Instance != null)
         {
             StorageManager.Instance.AddItemToStorage(properties);
             if (debugMode) Debug.Log($"Saved to StorageManager: {properties.displayName}");
         }
 
-        // Save current position before spawning
         Vector2 currentPosition = rectTransform.anchoredPosition;
 
         if (debugMode) Debug.Log($"Moving to storage: {properties.displayName}");
 
-        // Spawn new hanger in storage at current position
+
         SpawnInStorage(properties, currentPosition);
 
-        // Destroy original hanger
         Destroy(gameObject);
     }
 
@@ -225,7 +216,7 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
             return;
         }
 
-        // Remove from StorageManager
+
         if (StorageManager.Instance != null)
         {
             int count = StorageManager.Instance.GetStorageCount();
@@ -236,15 +227,15 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
             }
         }
 
-        // Save current position before spawning
+
         Vector2 currentPosition = rectTransform.anchoredPosition;
 
         if (debugMode) Debug.Log($"Moving from storage: {properties.displayName}");
 
-        // Spawn new hanger in workspace at current position
+    
         SpawnInWorkspace(properties, currentPosition);
 
-        // Destroy storage hanger
+       
         Destroy(gameObject);
     }
 

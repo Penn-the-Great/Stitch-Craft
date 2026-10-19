@@ -1,10 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-/// <summary>
-/// Manages persistent storage of hanger objects across scenes.
-/// Handles serialization/deserialization of clothing items.
-/// </summary>
+
 public class StorageManager : MonoBehaviour
 {
     public static StorageManager Instance { get; private set; }
@@ -32,9 +29,7 @@ public class StorageManager : MonoBehaviour
         LoadStorageFromJson();
     }
 
-    /// <summary>
-    /// Adds a clothing item to storage (from a TopProperty)
-    /// </summary>
+
     public void AddItemToStorage(TopProperty property)
     {
         var item = new StoredClothingItem
@@ -52,9 +47,7 @@ public class StorageManager : MonoBehaviour
         SaveStorageToJson();
     }
 
-    /// <summary>
-    /// Adds a clothing item to storage (stored item struct)
-    /// </summary>
+
     public void AddItemToStorage(StoredClothingItem item)
     {
         storedItems.Add(item);
@@ -113,7 +106,6 @@ public class StorageManager : MonoBehaviour
         }
     }
 
-    // Debug helper
     public void DebugPrintStoredItems()
     {
         Debug.Log($"Stored items count: {storedItems.Count}");

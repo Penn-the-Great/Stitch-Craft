@@ -35,7 +35,7 @@ public class HoverUI : MonoBehaviour
     {
         if (isShowing && currentRect != null)
         {
-            UpdateTargetPosition(currentRect); // Always update target position
+            UpdateTargetPosition(currentRect);
             propertyPanel.transform.position = Vector3.Lerp(
                 propertyPanel.transform.position, targetPosition, Time.deltaTime * 12f);
         }
@@ -52,7 +52,7 @@ public class HoverUI : MonoBehaviour
 
         currentRect = hangerRect;
         UpdateTargetPosition(currentRect);
-        propertyPanel.transform.position = targetPosition; // Instantly snap
+        propertyPanel.transform.position = targetPosition;
         isShowing = true;
         propertyPanel.SetActive(true);
     }

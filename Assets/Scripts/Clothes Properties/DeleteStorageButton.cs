@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Button to delete all items from storage
-/// </summary>
+
 public class DeleteStorageButton : MonoBehaviour
 {
     [SerializeField] private bool debugMode = false;

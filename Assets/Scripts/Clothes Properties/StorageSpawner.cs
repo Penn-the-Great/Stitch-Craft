@@ -1,10 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-/// <summary>
-/// Spawns stored clothing items when Storage scene loads.
-/// Listens for DeskPurchaseManager.onDeliveryArrived and can spawn single delivered items immediately.
-/// </summary>
+
 public class StorageSpawner : MonoBehaviour
 {
     [SerializeField] private Canvas storageCanvas;
@@ -102,7 +99,6 @@ public class StorageSpawner : MonoBehaviour
         }
     }
 
-    // Spawn a single delivered item into the currently-open storage UI (does NOT modify StorageManager).
     public void SpawnSingleItem(StorageManager.StoredClothingItem item)
     {
         if (storageCanvas == null || hangerPrefab == null || item == null) return;

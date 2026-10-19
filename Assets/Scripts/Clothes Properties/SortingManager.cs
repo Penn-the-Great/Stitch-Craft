@@ -2,9 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-/// <summary>
-/// Manages sorting of hangers in storage by different property types
-/// </summary>
+
 public class SortingManager : MonoBehaviour
 {
     public static SortingManager Instance { get; private set; }
@@ -30,7 +28,6 @@ public class SortingManager : MonoBehaviour
 
     void Update()
     {
-        // Handle lerping movement
         if (isLerping)
         {
             UpdateLerp();
@@ -72,7 +69,7 @@ public class SortingManager : MonoBehaviour
 
     private void SortBy(SortType sortType)
     {
-        // Get all hangers in storage
+       
         GetStorageHangers();
 
         if (sortedHangers.Count == 0)
@@ -81,7 +78,7 @@ public class SortingManager : MonoBehaviour
             return;
         }
 
-        // Sort based on type
+     
         switch (sortType)
         {
             case SortType.Color:
@@ -105,7 +102,7 @@ public class SortingManager : MonoBehaviour
                 break;
         }
 
-        // Calculate target positions and start lerping
+       
         CalculateTargetPositions();
         isLerping = true;
     }
@@ -116,7 +113,7 @@ public class SortingManager : MonoBehaviour
 
         if (sortedHangers.Count == 0) return;
 
-        // Shuffle the list
+       
         for (int i = sortedHangers.Count - 1; i > 0; i--)
         {
             int randomIndex = Random.Range(0, i + 1);
@@ -127,7 +124,7 @@ public class SortingManager : MonoBehaviour
 
         if (debugMode) Debug.Log("Randomized hanger order");
 
-        // Calculate target positions and start lerping
+ 
         CalculateTargetPositions();
         isLerping = true;
     }
@@ -136,7 +133,7 @@ public class SortingManager : MonoBehaviour
     {
         sortedHangers.Clear();
 
-        // Find all hangers in storage canvas
+
         DraggableLerpImage[] allHangers = storageCanvas.GetComponentsInChildren<DraggableLerpImage>();
         foreach (DraggableLerpImage hanger in allHangers)
         {
@@ -177,7 +174,7 @@ public class SortingManager : MonoBehaviour
 
             Vector2 currentPos = rt.anchoredPosition;
 
-            // Check if we've reached the target
+
             if (Vector2.Distance(currentPos, targetPos) > 1f)
             {
                 allFinished = false;
@@ -186,12 +183,12 @@ public class SortingManager : MonoBehaviour
             }
             else
             {
-                // Snap to target
+              
                 rt.anchoredPosition = targetPos;
             }
         }
 
-        // Stop lerping when all hangers have reached their targets
+       
         if (allFinished)
         {
             isLerping = false;
@@ -201,10 +198,9 @@ public class SortingManager : MonoBehaviour
 
     private int GetColorOrder(Color color)
     {
-        // Convert color to HSV and sort by hue for rainbow order
+       
         Color.RGBToHSV(color, out float hue, out float saturation, out float value);
         
-        // Rainbow order: Red (0) -> Yellow -> Green -> Cyan -> Blue -> Magenta
         return Mathf.RoundToInt(hue * 360f);
     }
 

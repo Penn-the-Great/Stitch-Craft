@@ -85,6 +85,5 @@ public class CustomPropertiesBehaviour : MonoBehaviour
         if (cacheDetectedColorFamily)
             detectedFamily = ColorFamilyUtil.GetFamily(color);
 
-        // Apply values to visuals/UI/etc. here
     }
 }

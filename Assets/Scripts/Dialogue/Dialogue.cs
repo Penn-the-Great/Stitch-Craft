@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -27,6 +28,8 @@ public class DialogueSession
 
 public class Dialogue : MonoBehaviour
 {
+    public static event Action<Dialogue, string> SessionFinished;
+
     [SerializeField] private GameObject DialogueBox;
     [SerializeField] private TMP_Text DialogueText;
     [SerializeField] private GameObject NextLinePrompt;
@@ -164,6 +167,7 @@ public class Dialogue : MonoBehaviour
 
     private void EndDialogue()
     {
+        SessionFinished?.Invoke(this, currentSession.SessionName);
         ChoiceButton1.gameObject.SetActive(false);
         ChoiceButton2.gameObject.SetActive(false);
         DialogueBox.SetActive(false);
@@ -195,6 +199,20 @@ public class Dialogue : MonoBehaviour
         lineIndex = 0;
         playingChoice = false;
         StartCoroutine(WriteLine());
+    }
+
+    public void StartDialogueSession(string sessionName)
+    {
+        for (int i = 0; i < DialogueSessions.Length; i++)
+        {
+            if (DialogueSessions[i].SessionName == sessionName)
+            {
+                StartDialogueSession(i);
+                return;
+            }
+        }
+
+        Debug.LogWarning($"Dialogue session '{sessionName}' does not exist.");
     }
 
     public void StartDialogue()

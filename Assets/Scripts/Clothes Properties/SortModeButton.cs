@@ -2,9 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// Button to cycle through sorting modes
-/// </summary>
+
 public class SortModeButton : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI buttonText;
@@ -39,12 +37,10 @@ public class SortModeButton : MonoBehaviour
 
     private void CycleSortMode()
     {
-        // Cycle to next sort mode
         currentSortMode = (SortMode)(((int)currentSortMode + 1) % 5);
 
         if (debugMode) Debug.Log($"Cycled to sort mode: {currentSortMode}");
 
-        // Apply sort or exit sort mode
         if (currentSortMode == SortMode.None)
         {
             SortingManager.Instance.ExitSortMode();
@@ -57,7 +53,6 @@ public class SortModeButton : MonoBehaviour
                 SortingManager.Instance.EnterSortMode();
             }
 
-            // Sort by current mode
             switch (currentSortMode)
             {
                 case SortMode.Color:
