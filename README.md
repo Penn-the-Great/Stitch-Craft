@@ -2,7 +2,7 @@
 ### Work with Dennis the costume designer of a failing community theater to make the best damn costumes that the audience has ever seen!
 
 
-![Title of Stitch-Craft](Assets/Imports/Thumbnail.png)
+![Title of Stitch-Craft](Assets/Imports/Title.png)
 
 
 
