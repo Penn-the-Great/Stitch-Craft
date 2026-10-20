@@ -26,6 +26,7 @@ public class TimelineHandler : MonoBehaviour
     public ShopNavigation shopNavigation;
 
     [Header("Events")]
+    public UnityEvent onTimerStart;
     public UnityEvent onPreWeekStart;
     public UnityEvent onWeekTimerStart;
     public UnityEvent onWeekEnd;
@@ -35,6 +36,7 @@ public class TimelineHandler : MonoBehaviour
     private int chapter = 1;
     private int currentWeek = 1;
     private int weeksThisChapter = 6;
+    [SerializeField, Min(0.1f)]
     private float weekLengthSeconds = 8 * 60f;
     private float timer = 0f;
     private float totalChapterTime = 0f;
@@ -42,6 +44,7 @@ public class TimelineHandler : MonoBehaviour
     private bool waitingToStartWeek = false;
     private Coroutine timesUpCoroutine;
     private bool weekEndTriggered = false;
+    private bool timerStartTriggered = false;
     private float lastDebugLogTime = 0f;
 
 
@@ -226,6 +229,13 @@ public void TransitionToNextScene()
         timer = weekLengthSeconds;
         timerRunning = true;
         waitingToStartWeek = false;
+
+        if (!timerStartTriggered)
+        {
+            timerStartTriggered = true;
+            onTimerStart?.Invoke();
+        }
+
         onWeekTimerStart?.Invoke();
     }
 

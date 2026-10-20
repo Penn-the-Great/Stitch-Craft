@@ -3311,6 +3311,21 @@ MonoBehaviour:
   timesUpGraphic: {fileID: 1762220204}
   nextSceneName: Dialogue and end
   shopNavigation: {fileID: 1214516291}
+  onTimerStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6581595617452558579}
+        m_TargetAssemblyTypeName: TutorialDialogueManager, Assembly-CSharp
+        m_MethodName: StartTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onPreWeekStart:
     m_PersistentCalls:
       m_Calls:
@@ -3328,19 +3343,7 @@ MonoBehaviour:
         m_CallState: 2
   onWeekTimerStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6581595617452558579}
-        m_TargetAssemblyTypeName: TutorialDialogueManager, Assembly-CSharp
-        m_MethodName: StartTutorial
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onWeekEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -3362,6 +3365,7 @@ MonoBehaviour:
   onFreeplayEnd:
     m_PersistentCalls:
       m_Calls: []
+  weekLengthSeconds: 45
 --- !u!4 &1284318424
 Transform:
   m_ObjectHideFlags: 0
@@ -6916,7 +6920,7 @@ MonoBehaviour:
   dialogueSource: {fileID: 8258527270560430681}
   tutorialEndSessionName: End tutorial
   postTutorialSceneName: Shop
-  postTutorialSessionName: End tutorial
+  postTutorialSessionName: 
   onTutorialCompleted:
     m_PersistentCalls:
       m_Calls:
