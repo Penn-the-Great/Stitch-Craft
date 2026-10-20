@@ -8,8 +8,15 @@ public class VolumeSettings : MonoBehaviour
     void Start()
     {
         float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        volumeSlider.value = savedVolume;
         AudioListener.volume = savedVolume;
+
+        if (volumeSlider == null)
+        {
+            Debug.LogWarning("VolumeSettings: no volume slider is assigned.");
+            return;
+        }
+
+        volumeSlider.value = savedVolume;
         volumeSlider.onValueChanged.AddListener(SetVolume);
     }
 

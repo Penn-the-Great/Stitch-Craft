@@ -41,6 +41,11 @@ public class SceneTransitionManager : MonoBehaviour
             if (canvas)
             {
                 var faderObj = Instantiate(sliderFaderPrefab, canvas);
+                Canvas overlayCanvas = faderObj.GetComponent<Canvas>();
+                if (overlayCanvas == null)
+                    overlayCanvas = faderObj.AddComponent<Canvas>();
+                overlayCanvas.overrideSorting = true;
+                overlayCanvas.sortingOrder = 10000;
                 var fader = faderObj.GetComponent<SceneSlider>();
                 
                 if (fader)
@@ -64,6 +69,11 @@ public class SceneTransitionManager : MonoBehaviour
             if (canvas)
             {
                 var faderObj = Instantiate(sliderFaderPrefab, canvas);
+                Canvas overlayCanvas = faderObj.GetComponent<Canvas>();
+                if (overlayCanvas == null)
+                    overlayCanvas = faderObj.AddComponent<Canvas>();
+                overlayCanvas.overrideSorting = true;
+                overlayCanvas.sortingOrder = 10000;
                 var fader = faderObj.GetComponent<SceneSlider>();
                 
                 if (fader)

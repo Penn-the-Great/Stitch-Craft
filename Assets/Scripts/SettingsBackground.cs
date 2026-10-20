@@ -31,7 +31,7 @@ public class DiagonalGridGenerator : MonoBehaviour
     public float scrollSpeed = 18.0f;
 
     private readonly List<RectTransform> generatedCells = new List<RectTransform>();
-    private readonly List<RotatingCell> rotatingCells = new List<RotatingCell>();
+    private readonly List<float> rotationSpeeds = new List<float>();
     private bool refreshPending;
     private bool isRefreshing;
     private RectTransform cachedParentRect;
@@ -62,11 +62,11 @@ public class DiagonalGridGenerator : MonoBehaviour
         if (refreshPending)
             RefreshGrid();
         
-        for (int i = 0; i < rotatingCells.Count; i++)
+        for (int i = 0; i < generatedCells.Count && i < rotationSpeeds.Count; i++)
         {
-            RotatingCell rotator = rotatingCells[i];
-            if (rotator != null && rotator.rect != null)
-                rotator.rect.Rotate(0, 0, rotator.rotationSpeed * Time.deltaTime);
+            RectTransform cell = generatedCells[i];
+            if (cell != null)
+                cell.Rotate(0, 0, rotationSpeeds[i] * Time.deltaTime);
         }
     }
 
@@ -158,10 +158,6 @@ public class DiagonalGridGenerator : MonoBehaviour
             rect.sizeDelta = cellSize;
             rect.localScale = Vector3.one;
 
-            RotatingCell rotator = newCell.AddComponent<RotatingCell>();
-            rotator.rect = rect;
-            rotatingCells.Add(rotator);
-
             generatedCells.Add(rect);
         }
 
@@ -176,8 +172,8 @@ public class DiagonalGridGenerator : MonoBehaviour
                     DestroyImmediate(cell.gameObject);
             }
 
-            if (i < rotatingCells.Count)
-                rotatingCells.RemoveAt(i);
+            if (i < rotationSpeeds.Count)
+                rotationSpeeds.RemoveAt(i);
             generatedCells.RemoveAt(i);
         }
 
@@ -206,10 +202,6 @@ public class DiagonalGridGenerator : MonoBehaviour
                 rect.anchoredPosition = new Vector2(posX, posY);
                 rect.localScale = Vector3.one;
 
-                RotatingCell rotator = rect.GetComponent<RotatingCell>();
-                if (rotator != null)
-                    rotator.rowIndex = y;
-
                 rect.name = $"Cell_{x}_{y}";
                 index++;
             }
@@ -223,7 +215,7 @@ public class DiagonalGridGenerator : MonoBehaviour
     {
         generatedCells.Clear();
 
-        for (int i = 0; i < parentRect.childCount; i++)
+        for (int i = parentRect.childCount - 1; i >= 0; i--)
         {
             RectTransform child = parentRect.GetChild(i) as RectTransform;
             if (child == null)
@@ -232,7 +224,10 @@ public class DiagonalGridGenerator : MonoBehaviour
             if (!child.name.StartsWith("Cell_"))
                 continue;
 
-            generatedCells.Add(child);
+            if (Application.isPlaying)
+                Destroy(child.gameObject);
+            else
+                DestroyImmediate(child.gameObject);
         }
     }
 
@@ -290,7 +285,7 @@ public class DiagonalGridGenerator : MonoBehaviour
 
     private void CacheAndRandomizeRotations()
     {
-        rotatingCells.Clear();
+        rotationSpeeds.Clear();
         
         for (int i = 0; i < generatedCells.Count; i++)
         {
@@ -298,22 +293,8 @@ public class DiagonalGridGenerator : MonoBehaviour
             if (cell == null)
                 continue;
             
-            RotatingCell rotator = cell.GetComponent<RotatingCell>();
-            if (rotator == null)
-                rotator = cell.gameObject.AddComponent<RotatingCell>();
-            
-            rotator.rect = cell;
             float speed = Random.Range(15f, 90f);
-            rotator.rotationSpeed = Random.value > 0.5f ? speed : -speed;
-            
-            rotatingCells.Add(rotator);
+            rotationSpeeds.Add(Random.value > 0.5f ? speed : -speed);
         }
-    }
-
-    private class RotatingCell : MonoBehaviour
-    {
-        public RectTransform rect;
-        public int rowIndex;
-        public float rotationSpeed;
     }
 }

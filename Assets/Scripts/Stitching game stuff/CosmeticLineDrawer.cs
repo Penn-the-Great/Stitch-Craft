@@ -22,6 +22,7 @@ public class CosmeticLineDrawer : MonoBehaviour
         lr.useWorldSpace = true;
         lr.startWidth = lineWidth;
         lr.endWidth = lineWidth;
+        lr.enabled = false;
     }
 
     private void OnEnable()
@@ -89,6 +90,8 @@ public class CosmeticLineDrawer : MonoBehaviour
     public void SetDrawingEnabled(bool enabled)
     {
         this.enabled = enabled;
+        if (lr != null)
+            lr.enabled = enabled;
         if (!enabled) isDrawing = false;
     }
 }

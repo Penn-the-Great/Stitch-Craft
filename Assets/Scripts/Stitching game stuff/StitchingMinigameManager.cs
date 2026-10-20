@@ -41,6 +41,9 @@ public class StitchingMinigameManager : MonoBehaviour
 
     private void Awake()
     {
+        if (cosmeticLineDrawer != null)
+            cosmeticLineDrawer.SetDrawingEnabled(false);
+
         drawingRect = drawingPhase.GetComponent<RectTransform>();
         timingRect = timingPhase.GetComponent<RectTransform>();
         pressingRect = pressingPhase.GetComponent<RectTransform>();

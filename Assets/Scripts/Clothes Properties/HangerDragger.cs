@@ -330,6 +330,14 @@ public class DraggableLerpImage : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private Canvas GetWorkspaceCanvas()
     {
+        GameObject taggedWorkspace = GameObject.FindWithTag("WorkspaceCanvas");
+        if (taggedWorkspace != null)
+        {
+            Canvas taggedCanvas = taggedWorkspace.GetComponent<Canvas>();
+            if (taggedCanvas != null)
+                return taggedCanvas;
+        }
+
         Canvas[] allCanvases = FindObjectsOfType<Canvas>();
         foreach (Canvas canvas in allCanvases)
         {

@@ -913,8 +913,70 @@ MonoBehaviour:
   - hat
   - shoe
   - full
-  allowedClothingColors: []
-  allowedFabricColors: []
+  allowedClothingColors:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
+  - {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+  - {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
+  - {r: 0.3773585, g: 0, b: 0, a: 1}
+  - {r: 0.5660378, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
+  - {r: 0.3962264, g: 0.1660151, b: 0, a: 1}
+  - {r: 0.6792453, g: 0.26545218, b: 0, a: 1}
+  - {r: 1, g: 0.53691274, b: 0.25, a: 1}
+  - {r: 0.38679248, g: 0.25156528, b: 0, a: 1}
+  - {r: 0.7075472, g: 0.45782462, b: 0, a: 1}
+  - {r: 1, g: 0.7342857, b: 0.25, a: 1}
+  - {r: 0.17937858, g: 0.3018868, b: 0, a: 1}
+  - {r: 0.3533911, g: 0.5943396, b: 0, a: 1}
+  - {r: 0.8262579, g: 1, b: 0.5707547, a: 1}
+  - {r: 0, g: 0.3301887, b: 0.20230849, a: 1}
+  - {r: 0, g: 0.735849, b: 0.4521482, a: 1}
+  - {r: 0.48584908, g: 1, b: 0.7965392, a: 1}
+  - {r: 0, g: 0.23029165, b: 0.3301887, a: 1}
+  - {r: 0, g: 0.52462023, b: 0.754717, a: 1}
+  - {r: 0.514151, g: 0.8524004, b: 1, a: 1}
+  - {r: 0.10435208, g: 0.13788305, b: 0.3301887, a: 1}
+  - {r: 0.18356179, g: 0.25710356, b: 0.7075472, a: 1}
+  - {r: 0.6462264, g: 0.6955902, b: 1, a: 1}
+  - {r: 0.19607843, g: 0.12156863, b: 0.35686275, a: 1}
+  - {r: 0.43962458, g: 0.26855645, b: 0.8018868, a: 1}
+  - {r: 0.6702168, g: 0.53844786, b: 0.9433962, a: 1}
+  - {r: 0.3019608, g: 0.08235294, b: 0.30588236, a: 1}
+  - {r: 0.6509434, g: 0.25485048, b: 0.6509434, a: 1}
+  - {r: 0.9433962, g: 0.6541474, b: 0.9402176, a: 1}
+  allowedFabricColors:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.34117648, g: 0.34117648, b: 0.34117648, a: 1}
+  - {r: 0.6784314, g: 0.6784314, b: 0.6784314, a: 1}
+  - {r: 0.98039216, g: 0.98039216, b: 0.98039216, a: 1}
+  - {r: 0.3764706, g: 0, b: 0.003921569, a: 1}
+  - {r: 0.5647059, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.4745098, b: 0.4745098, a: 1}
+  - {r: 0.39607844, g: 0.16078432, b: 0, a: 1}
+  - {r: 0.6745098, g: 0.26666668, b: 0.007843138, a: 1}
+  - {r: 1, g: 0.5372549, b: 0.2509804, a: 1}
+  - {r: 0.3882353, g: 0.2509804, b: 0.003921569, a: 1}
+  - {r: 0.7058824, g: 0.45882353, b: 0, a: 1}
+  - {r: 1, g: 0.73333335, b: 0.2509804, a: 1}
+  - {r: 0.18039216, g: 0.3019608, b: 0.003921569, a: 1}
+  - {r: 0.35686275, g: 0.59607846, b: 0, a: 1}
+  - {r: 0.827451, g: 1, b: 0.57254905, a: 1}
+  - {r: 0.003921569, g: 0.32941177, b: 0.20392157, a: 1}
+  - {r: 0, g: 0.7372549, b: 0.4509804, a: 1}
+  - {r: 0.48235294, g: 1, b: 0.79607844, a: 1}
+  - {r: 0.007843138, g: 0.23137255, b: 0.32941177, a: 1}
+  - {r: 0, g: 0.5254902, b: 0.7529412, a: 1}
+  - {r: 0.5137255, g: 0.8509804, b: 1, a: 1}
+  - {r: 0.105882354, g: 0.13725491, b: 0.32941177, a: 1}
+  - {r: 0.18431373, g: 0.25882354, b: 0.7058824, a: 1}
+  - {r: 0.64705884, g: 0.69411767, b: 1, a: 1}
+  - {r: 0.19607843, g: 0.12156863, b: 0.35686275, a: 1}
+  - {r: 0.4392157, g: 0.26666668, b: 0.8, a: 1}
+  - {r: 0.6745098, g: 0.5372549, b: 0.94509804, a: 1}
+  - {r: 0.3019608, g: 0.08235294, b: 0.30588236, a: 1}
+  - {r: 0.6509804, g: 0.2509804, b: 0.6509804, a: 1}
+  - {r: 0.94509804, g: 0.654902, b: 0.9411765, a: 1}
   fastDeliveryExtraCost: 30
   slowDeliveryWeeks: 3
   fastDeliveryWeeks: 1
@@ -3365,7 +3427,7 @@ MonoBehaviour:
   onFreeplayEnd:
     m_PersistentCalls:
       m_Calls: []
-  weekLengthSeconds: 45
+  weekLengthSeconds: 180
 --- !u!4 &1284318424
 Transform:
   m_ObjectHideFlags: 0
@@ -4974,6 +5036,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4312237400158570771, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312237400158570771, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312237400158570771, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312237400158570771, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4312237400158570771, guid: f83fd164d51654d5d9d17ec9fa468413, type: 3}
@@ -6923,19 +6997,7 @@ MonoBehaviour:
   postTutorialSessionName: 
   onTutorialCompleted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8258527270560430681}
-        m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
-        m_MethodName: StartDialogueSession
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: End tutorial
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6986139549667495148
 GameObject:
   m_ObjectHideFlags: 0

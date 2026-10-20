@@ -29,6 +29,10 @@ public class HoverUI : MonoBehaviour
     {
         if (colorImage != null)
             originalColorSprite = colorImage.sprite;
+
+        Graphic[] graphics = GetComponentsInChildren<Graphic>(true);
+        foreach (Graphic graphic in graphics)
+            graphic.raycastTarget = false;
     }
 
     void Update()

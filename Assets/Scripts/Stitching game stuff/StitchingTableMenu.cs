@@ -184,10 +184,12 @@ public void ApplyFinalGradeAndSpawn(char finalGrade)
 
     if (workspaceCanvas == null) return;
 
-    GameObject craftedHanger = Instantiate(hangerPrefab, workspaceCanvas.transform);
+    GameObject craftedHanger = Instantiate(hangerPrefab, workspaceCanvas.transform, false);
     RectTransform craftedRect = craftedHanger.GetComponent<RectTransform>();
     if (craftedRect != null)
+    {
         craftedRect.anchoredPosition = craftedSpawnPosition;
+    }
 
     TopProperty item = craftedHanger.GetComponent<TopProperty>();
     if (item != null)
@@ -232,10 +234,18 @@ public void ApplyFinalGradeAndSpawn(char finalGrade)
 
     private Canvas GetWorkspaceCanvas()
     {
+        GameObject taggedWorkspace = GameObject.FindWithTag("WorkspaceCanvas");
+        if (taggedWorkspace != null)
+        {
+            Canvas taggedCanvas = taggedWorkspace.GetComponent<Canvas>();
+            if (taggedCanvas != null)
+                return taggedCanvas;
+        }
+
         Canvas[] canvases = FindObjectsOfType<Canvas>();
         foreach (Canvas canvas in canvases)
         {
-            if (!canvas.CompareTag("StorageCanvas"))
+            if (!canvas.CompareTag("StorageCanvas") && !canvas.CompareTag("Slider Canvas"))
                 return canvas;
         }
 
