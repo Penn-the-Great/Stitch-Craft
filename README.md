@@ -8,9 +8,7 @@
 
 ## How can i try it?
 
-Demo is currently in development, but will be added here!
-
-Download link and instructions will also go here as well for people who can't use the Itch.io link.
+Visit the Itch.io link here and play it directly in the web! - https://peneroni.itch.io/stitch-craft
 
 ## What are some features of the game?
 - You can adjust volume in the settings
