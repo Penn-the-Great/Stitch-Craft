@@ -35,12 +35,12 @@ public class TimingPhaseController : MonoBehaviour
 
         if (position.y > MarkerLimit)
         {
-            position.y = MarkerLimit;   // clamp
+            position.y = MarkerLimit;   
             direction = -1;
         }
         else if (position.y < -MarkerLimit)
         {
-            position.y = -MarkerLimit;  // clamp
+            position.y = -MarkerLimit; 
             direction = 1;
         }
 
@@ -56,7 +56,7 @@ public class TimingPhaseController : MonoBehaviour
 
     public void PressTimingButton()
     {
-        // Use anchoredPosition for BOTH so they're in same coordinate space
+       
         float markerY = movingMarker.anchoredPosition.y;
         float zoneCenterY = successZone.anchoredPosition.y;
         float halfZoneHeight = successZone.rect.height * 0.5f;

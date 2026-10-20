@@ -38,13 +38,13 @@ public class SceneSlider : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(0, screenHeight);
     }
 
-    // Original method - single scene load
+ 
     public void BeginTransition(string nextScene)
     {
         BeginTransition(nextScene, LoadSceneMode.Single);
     }
 
-    // New overload - supports additive loading
+    
     public void BeginTransition(string nextScene, LoadSceneMode mode)
     {
         sceneToLoad = nextScene;
@@ -53,7 +53,6 @@ public class SceneSlider : MonoBehaviour
         StartCoroutine(SlideAndChangeScene());
     }
 
-    // New method - unload a scene
     public void BeginUnload(string nextScene)
     {
         sceneToUnload = nextScene;

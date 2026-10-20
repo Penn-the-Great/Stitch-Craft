@@ -65,7 +65,6 @@ public class ChapterObjectiveManager : MonoBehaviour
 
     private IEnumerator EnsureMeetingRoomLoadedThenRefreshUI()
     {
-        // Wait until Shop is active/loaded (if you transition to it)
         while (!SceneManager.GetSceneByName(shopSceneName).isLoaded)
             yield return null;
 
@@ -88,7 +87,7 @@ public class ChapterObjectiveManager : MonoBehaviour
             _isLoadingMeetingRoom = false;
         }
 
-        // allow one frame for scene objects to initialize
+       
         yield return null;
         TryBindUIAndRefresh();
     }

@@ -5,8 +5,8 @@ public class CirclePoofPiece : MonoBehaviour
 {
     [SerializeField] private Graphic graphic;
     [SerializeField] private float lifetime = 0.6f;
-    [SerializeField] private float gravity = 700f;          // UI units/sec^2
-    [SerializeField] private float spinDamping = 6f;        // higher = faster decay
+    [SerializeField] private float gravity = 700f;
+    [SerializeField] private float spinDamping = 6f;        
 
     private Vector2 velocity;
     private float angularVelocity;
@@ -30,15 +30,12 @@ public class CirclePoofPiece : MonoBehaviour
         float dt = Time.deltaTime;
         age += dt;
 
-        // motion
         velocity.y -= gravity * dt;
         rect.anchoredPosition += velocity * dt;
 
-        // spin with decay
         rect.localEulerAngles += new Vector3(0f, 0f, angularVelocity * dt);
         angularVelocity = Mathf.Lerp(angularVelocity, 0f, spinDamping * dt);
 
-        // fade out
         float t = age / lifetime;
         if (graphic != null)
         {

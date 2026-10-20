@@ -7,9 +7,9 @@ public class StitchingMinigameManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text accuracyText;
 
-    [SerializeField] private GameObject drawingPhase;   // phase 1
-    [SerializeField] private GameObject timingPhase;    // phase 2
-    [SerializeField] private GameObject pressingPhase;  // phase 3
+    [SerializeField] private GameObject drawingPhase;  
+    [SerializeField] private GameObject timingPhase;    
+    [SerializeField] private GameObject pressingPhase;  
     [SerializeField] private PressingPhaseController pressingPhaseController;
     [SerializeField] private DrawingPhaseController drawingPhaseController;
     [SerializeField] private CosmeticLineDrawer cosmeticLineDrawer;
@@ -107,8 +107,8 @@ public class StitchingMinigameManager : MonoBehaviour
 
         float w = GetScreenWidthInCanvasUnits(timingRect);
 
-        timingRect.anchoredPosition = timingCenter + Vector2.right * w; // start right
-        Vector2 drawingOutLeft = drawingCenter + Vector2.left * w;      // pushed left
+        timingRect.anchoredPosition = timingCenter + Vector2.right * w; 
+        Vector2 drawingOutLeft = drawingCenter + Vector2.left * w;      
 
         Coroutine inCo = StartCoroutine(SlideRect(timingRect, timingRect.anchoredPosition, timingCenter, transitionDuration));
         Coroutine outCo = StartCoroutine(SlideRect(drawingRect, drawingRect.anchoredPosition, drawingOutLeft, transitionDuration));
@@ -116,7 +116,7 @@ public class StitchingMinigameManager : MonoBehaviour
         yield return outCo;
 
         drawingPhase.SetActive(false);
-        drawingRect.anchoredPosition = drawingCenter; // reset for replay
+        drawingRect.anchoredPosition = drawingCenter; 
 
         isTransitioning = false;
     }
@@ -137,8 +137,8 @@ public class StitchingMinigameManager : MonoBehaviour
 
         float h = GetScreenHeightInCanvasUnits(pressingRect);
 
-        pressingRect.anchoredPosition = pressingCenter + Vector2.down * h; // start below
-        Vector2 timingOutUp = timingCenter + Vector2.up * h;               // pushed up
+        pressingRect.anchoredPosition = pressingCenter + Vector2.down * h; 
+        Vector2 timingOutUp = timingCenter + Vector2.up * h;               
 
         Coroutine inCo = StartCoroutine(SlideRect(pressingRect, pressingRect.anchoredPosition, pressingCenter, transitionDuration));
         Coroutine outCo = StartCoroutine(SlideRect(timingRect, timingRect.anchoredPosition, timingOutUp, transitionDuration));
@@ -146,7 +146,7 @@ public class StitchingMinigameManager : MonoBehaviour
         yield return outCo;
 
         timingPhase.SetActive(false);
-        timingRect.anchoredPosition = timingCenter; // reset for replay
+        timingRect.anchoredPosition = timingCenter; 
 
         pressingPhaseController.BeginPhase3();
         isTransitioning = false;

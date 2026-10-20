@@ -16,10 +16,10 @@ public class GlobalButtonSound : MonoBehaviour {
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        // Find every button in the current scene
+      
         Button[] allButtons = Resources.FindObjectsOfTypeAll<Button>();
-        foreach (Button btn in allButtons) {
-            // Clear previous listeners to avoid double-firing if buttons persist
+        foreach (Button btn in allButtons) 
+        {
             btn.onClick.RemoveListener(PlaySound);
             btn.onClick.AddListener(PlaySound);
         }

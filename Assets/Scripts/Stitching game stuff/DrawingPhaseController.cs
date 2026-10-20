@@ -71,10 +71,10 @@ public class DrawingPhaseController : MonoBehaviour
         if (!isDrawing)
             return;
 
-        // Cosmetic line drawing (UI only)
+        
         AddUILinePointAtMouse();
 
-        // Optional: keep guide penalty logic
+      
         CheckGuideSensorForPenalty();
     }
 

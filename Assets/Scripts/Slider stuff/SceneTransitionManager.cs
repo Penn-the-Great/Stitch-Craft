@@ -19,17 +19,13 @@ public class SceneTransitionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    /// <summary>
-    /// Transition to a scene (single or additive load)
-    /// </summary>
+  
     public void TransitionToScene(string sceneName, LoadSceneMode mode = LoadSceneMode.Single)
     {
         StartCoroutine(DoTransition(sceneName, mode));
     }
 
-    /// <summary>
-    /// Unload a specific scene
-    /// </summary>
+
     public void UnloadScene(string sceneName)
     {
         StartCoroutine(DoUnload(sceneName));

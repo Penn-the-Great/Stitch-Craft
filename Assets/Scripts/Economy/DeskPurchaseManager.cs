@@ -3,11 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-/// <summary>
-/// Handles purchases and pending deliveries.
-/// Logs key events and, when delivering, attempts to spawn the delivered item
-/// into an open StorageSpawner so the player sees deliveries immediately.
-/// </summary>
+
 public class DeskPurchaseManager : MonoBehaviour
 {
     public static DeskPurchaseManager Instance { get; private set; }
@@ -195,11 +191,11 @@ public class DeskPurchaseManager : MonoBehaviour
             new GameObject("StorageManager").AddComponent<StorageManager>();
         }
 
-        // Persist delivered item
+        
         StorageManager.Instance.AddItemToStorage(item);
         Debug.Log($"DeliverCostume: persisted item. Storage count now = {StorageManager.Instance.GetStorageCount()}");
 
-        // If Storage scene is open and a StorageSpawner exists, spawn the single delivered item immediately.
+        
         StorageSpawner spawner = FindObjectOfType<StorageSpawner>();
         if (spawner != null)
         {

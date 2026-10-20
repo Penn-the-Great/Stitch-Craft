@@ -63,7 +63,6 @@ public class TimelineHandler : MonoBehaviour
             chapter = PersistentGameData.Instance.selectedChapter;
         }
 
-        // Auto-find ShopNavigation if not assigned
         if (shopNavigation == null)
             shopNavigation = FindObjectOfType<ShopNavigation>();
 
@@ -100,13 +99,13 @@ public class TimelineHandler : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.T))
             {
                 timer = 0f;
-                Debug.Log("⏱️ DEBUG: Timer forced to end");
+                Debug.Log("Timer forced to end");
             }
 
             if (Input.GetKeyDown(KeyCode.R))
             {
                 PrepareChapter();
-                Debug.Log("🔄 DEBUG: Chapter restarted");
+                Debug.Log("Chapter restarted");
             }
 
             if (Input.GetKeyDown(KeyCode.N))
@@ -117,7 +116,7 @@ public class TimelineHandler : MonoBehaviour
                     UpdateWeekLabel();
                     RefreshWeeklySystems();
                     timer = weekLengthSeconds;
-                    Debug.Log($"⏭️ DEBUG: Advanced to Week {currentWeek}");
+                    Debug.Log($"Advanced to Week {currentWeek}");
                 }
             }
 
@@ -127,7 +126,7 @@ public class TimelineHandler : MonoBehaviour
             UpdateWeekLabel();
             RefreshWeeklySystems();
             timer = weekLengthSeconds;
-            Debug.Log($"🏁 DEBUG: Skipped to last week (Week {currentWeek})");
+            Debug.Log($"Skipped to last week (Week {currentWeek})");
             }
         }
     }
@@ -139,18 +138,18 @@ public void TransitionToNextScene()
         if (SceneTransitionManager.Instance != null)
         {
             SceneTransitionManager.Instance.TransitionToScene(nextSceneName, LoadSceneMode.Single);
-            Debug.Log($"🚪 Transitioning to next scene: {nextSceneName}");
+            Debug.Log($"Transitioning to next scene: {nextSceneName}");
         }
         else
         {
-            Debug.LogError("❌ SceneTransitionManager.Instance is NULL! Make sure it exists in the scene.");
+            Debug.LogError("SceneTransitionManager.Instance is NULL! Make sure it exists in the scene.");
             // Fallback: Load scene directly
             SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
         }
     }
     else
     {
-        Debug.LogWarning("⚠️ nextSceneName is not set in TimelineHandler!");
+        Debug.LogWarning("nextSceneName is not set in TimelineHandler!");
     }
 }
 
@@ -164,24 +163,24 @@ public void TransitionToNextScene()
            if (timesUpGraphic) 
         {
             timesUpGraphic.SetActive(true);
-            Debug.Log("✅ Graphic activated");
+            Debug.Log("Graphic activated");
         }
         else
-            Debug.LogError("❌ timesUpGraphic is NULL before wait!");
+            Debug.LogError("timesUpGraphic is NULL before wait!");
         
         Debug.Log("⏳ Starting 4 second wait...");
         yield return new WaitForSeconds(4f);
-        Debug.Log("✅ Wait completed");
+        Debug.Log("Wait completed");
         
         if (timesUpGraphic) 
         {
             timesUpGraphic.SetActive(false);
-            Debug.Log("✅ Graphic deactivated");
+            Debug.Log("Graphic deactivated");
         }
         else
-            Debug.LogWarning("⚠️ timesUpGraphic is NULL after wait!");
+            Debug.LogWarning("timesUpGraphic is NULL after wait!");
 
-            Debug.Log("📅 Chapter ended");
+            Debug.Log("Chapter ended");
             timerRunning = false;
             onChapterEnd?.Invoke();
             
@@ -191,7 +190,6 @@ public void TransitionToNextScene()
             }
                     else
         {
-            // Transition to next scene after chapter ends
             TransitionToNextScene();
         }
 

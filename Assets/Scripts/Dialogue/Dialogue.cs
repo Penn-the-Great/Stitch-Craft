@@ -47,10 +47,37 @@ public class Dialogue : MonoBehaviour
     private int lineIndex = 0;
     private int returnLineIndex = 0;
     private bool playingChoice;
+    private bool isWritingLine;
+    private bool skipTyping;
+
+    private void Awake()
+    {
+        if (ChoiceButton1 != null)
+            ChoiceButton1.onClick.AddListener(ChooseFirstOption);
+
+        if (ChoiceButton2 != null)
+            ChoiceButton2.onClick.AddListener(ChooseSecondOption);
+    }
+
+    private void OnDestroy()
+    {
+        if (ChoiceButton1 != null)
+            ChoiceButton1.onClick.RemoveListener(ChooseFirstOption);
+
+        if (ChoiceButton2 != null)
+            ChoiceButton2.onClick.RemoveListener(ChooseSecondOption);
+    }
 
     private void Update()
     {
-        if (NextLinePrompt.activeInHierarchy && Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0))
+            return;
+
+        if (isWritingLine)
+        {
+            skipTyping = true;
+        }
+        else if (NextLinePrompt.activeInHierarchy)
         {
             NextLine();
         }
@@ -59,6 +86,8 @@ public class Dialogue : MonoBehaviour
     private IEnumerator WriteLine()
     {
         DialogueText.text = "";
+        isWritingLine = true;
+        skipTyping = false;
 
         DialogueLine line = currentLines[lineIndex];
         SpeakerText.text = line.Speaker;
@@ -66,8 +95,17 @@ public class Dialogue : MonoBehaviour
         foreach (char c in line.Text)
         {
             DialogueText.text += c;
+
+            if (skipTyping)
+            {
+                DialogueText.text = line.Text;
+                break;
+            }
+
             yield return new WaitForSeconds(TypeSpeed);
         }
+
+        isWritingLine = false;
 
         if (line.Choices != null && line.Choices.Length > 0 && !playingChoice)
         {
@@ -167,11 +205,12 @@ public class Dialogue : MonoBehaviour
 
     private void EndDialogue()
     {
-        SessionFinished?.Invoke(this, currentSession.SessionName);
+        string finishedSessionName = currentSession.SessionName;
         ChoiceButton1.gameObject.SetActive(false);
         ChoiceButton2.gameObject.SetActive(false);
         DialogueBox.SetActive(false);
         NextLinePrompt.SetActive(false);
+        SessionFinished?.Invoke(this, finishedSessionName);
     }
 
     private void StartDialogueSession(int sessionIndex)
@@ -190,10 +229,21 @@ public class Dialogue : MonoBehaviour
             return;
         }
 
+        if (!gameObject.activeInHierarchy)
+            gameObject.SetActive(true);
+
+        if (!gameObject.activeInHierarchy)
+        {
+            Debug.LogError($"Dialogue '{name}' is under an inactive parent and cannot start its coroutine.", this);
+            return;
+        }
+
+        if (DialogueBox != null && !DialogueBox.activeSelf)
+            DialogueBox.SetActive(true);
+
         NextLinePrompt.SetActive(false);
         ChoiceButton1.gameObject.SetActive(false);
         ChoiceButton2.gameObject.SetActive(false);
-        DialogueBox.SetActive(true);
 
         currentLines = currentSession.Lines;
         lineIndex = 0;
@@ -205,7 +255,7 @@ public class Dialogue : MonoBehaviour
     {
         for (int i = 0; i < DialogueSessions.Length; i++)
         {
-            if (DialogueSessions[i].SessionName == sessionName)
+            if (string.Equals(DialogueSessions[i].SessionName?.Trim(), sessionName?.Trim(), StringComparison.OrdinalIgnoreCase))
             {
                 StartDialogueSession(i);
                 return;
@@ -213,6 +263,49 @@ public class Dialogue : MonoBehaviour
         }
 
         Debug.LogWarning($"Dialogue session '{sessionName}' does not exist.");
+    }
+
+    public bool HasSession(string sessionName)
+    {
+        foreach (DialogueSession session in DialogueSessions)
+        {
+            if (string.Equals(session.SessionName?.Trim(), sessionName?.Trim(), StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
+    }
+
+    public void StartTutorialDialogue(string sessionName)
+    {
+        Debug.Log($"Dialogue '{name}': StartTutorialDialogue called for session '{sessionName}'.", this);
+
+        if (TutorialDialogueManager.Instance == null || !TutorialDialogueManager.Instance.IsTutorialActive)
+        {
+            Debug.LogWarning($"Dialogue '{name}': tutorial dialogue blocked because tutorial mode is inactive or the manager is missing.", this);
+            return;
+        }
+
+        if (!gameObject.activeInHierarchy)
+            gameObject.SetActive(true);
+
+        if (!gameObject.activeInHierarchy)
+        {
+            Debug.LogError($"Dialogue '{name}' is under an inactive parent and cannot start its coroutine.", this);
+            return;
+        }
+
+        if (DialogueBox != null && !DialogueBox.activeSelf)
+            DialogueBox.SetActive(true);
+
+        Debug.Log($"Dialogue '{name}': starting tutorial session '{sessionName}'.", this);
+        StartDialogueSession(sessionName);
+    }
+
+    public void StartTutorialEndDialogue(string sessionName)
+    {
+        Debug.Log($"Dialogue '{name}': starting tutorial end session '{sessionName}'.", this);
+        StartDialogueSession(sessionName);
     }
 
     public void StartDialogue()

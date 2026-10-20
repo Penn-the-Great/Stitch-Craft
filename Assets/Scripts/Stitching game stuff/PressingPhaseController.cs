@@ -52,7 +52,6 @@ public void EndPhase3()
         {
             SpawnCircle();
 
-            // delay before next spawn (except after last)
             if (i < circlesToSpawn - 1)
                 yield return new WaitForSeconds(secondsBetweenSpawns);
         }

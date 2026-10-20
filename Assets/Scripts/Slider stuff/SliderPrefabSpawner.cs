@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SliderPrefabSpawner : MonoBehaviour
 {
-    public GameObject sliderFaderPrefab; // assign in Inspector
-    public string nextSceneName;         // set in Inspector (e.g., "MainMenu")
+    public GameObject sliderFaderPrefab;
+    public string nextSceneName;
 
     public void OnButtonClick()
     {

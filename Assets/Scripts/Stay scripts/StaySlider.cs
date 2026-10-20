@@ -7,7 +7,7 @@ public class Stay : MonoBehaviour
 
     void Awake()
     {
-        // If instance exists but the gameobject was destroyed, clear it
+        
         if (instance != null && instance.gameObject == null)
         {
             instance = null;

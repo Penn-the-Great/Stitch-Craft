@@ -1,21 +1,21 @@
-using TMPro; // Gives access to TMP_Dropdown and TMP_Text.
-using UnityEngine; // Unity basics.
-using UnityEngine.UI; // Gives access to Button, Image, Transform.
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class StitchingTableMenu : MonoBehaviour // Controls the stitching table creation menu.
+public class StitchingTableMenu : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown pieceDropdown; // Top, bottom, hat, shoe, full.
-    [SerializeField] private TMP_Dropdown typeDropdown; // Basic shirt, sweater, jeans, etc.
-    [SerializeField] private TMP_Dropdown styleDropdown; // Modern, fantasy, 1920s, etc.
+    [SerializeField] private TMP_Dropdown pieceDropdown;
+    [SerializeField] private TMP_Dropdown typeDropdown;
+    [SerializeField] private TMP_Dropdown styleDropdown;
 
-    [SerializeField] private Transform fabricListParent; // Where fabric buttons spawn.
-    [SerializeField] private FabricOptionButton fabricButtonPrefab; // Button prefab for one fabric.
-    [SerializeField] private float fabricButtonHeight = 48f; // Height for each fabric row.
+    [SerializeField] private Transform fabricListParent;
+    [SerializeField] private FabricOptionButton fabricButtonPrefab;
+    [SerializeField] private float fabricButtonHeight = 48f;
 
     [Header("Crafted Clothing Spawn")]
-    [SerializeField] private GameObject hangerPrefab; // Hanger prefab to spawn after crafting.
-    [SerializeField] private Canvas workspaceCanvas; // Canvas where crafted clothing should appear.
-    [SerializeField] private Vector2 craftedSpawnPosition = Vector2.zero; // Spawn position on the workspace canvas.
+    [SerializeField] private GameObject hangerPrefab;
+    [SerializeField] private Canvas workspaceCanvas;
+    [SerializeField] private Vector2 craftedSpawnPosition = Vector2.zero;
     [SerializeField] private StitchingMinigameManager minigameManager;
 
 private CanvasGroup workspaceCanvasGroup;
@@ -32,19 +32,20 @@ private int pendingCost;
 private bool hasPendingCraft;
 
     private TopProperty pendingCraftedItem;
-    [SerializeField] private Button createButton; // Button that creates clothing.
-    private FabricInventoryManager.FabricStack selectedFabric; // Currently selected fabric.
+    [SerializeField] private Button createButton;
+    private FabricInventoryManager.FabricStack selectedFabric;
 
-    private void Start() // Runs when menu opens.
+    private void Start()
     {
-        pieceDropdown.onValueChanged.AddListener(OnPieceChanged); // Update type menu when piece changes.
-        createButton.onClick.AddListener(CreateClothing); // Run CreateClothing when clicked.
+        pieceDropdown.onValueChanged.AddListener(OnPieceChanged);
+        createButton.onClick.AddListener(CreateClothing);
 
-        FillPieceDropdown(); // Add piece options.
-        FillStyleDropdown(); // Add style options.
-        OnPieceChanged(0); // Fill type options for first piece.
-        ConfigureFabricListLayout(); // Make fabric buttons stack from the top with no gaps.
-        RefreshFabricList(); // Show owned fabrics.
+        FillPieceDropdown();
+        FillStyleDropdown();
+        OnPieceChanged(0);
+        ConfigureFabricListLayout();
+        RefreshFabricList();
+        UpdateCreateButtonInteractability();
     }
 
     private void OnEnable()
@@ -99,47 +100,54 @@ private void SetWorkspaceCanvasVisible(bool visible)
 }
 
 
-    private void FillPieceDropdown() // Adds piece choices.
+    private void FillPieceDropdown()
     {
-        pieceDropdown.ClearOptions(); // Remove old options.
-        pieceDropdown.AddOptions(new System.Collections.Generic.List<string> { "top", "bottom", "hat", "shoe", "full" }); // Add new ones.
+        pieceDropdown.ClearOptions();
+        pieceDropdown.AddOptions(new System.Collections.Generic.List<string> { "top", "bottom", "hat", "shoe", "full" });
     }
 
-    private void FillStyleDropdown() // Adds style choices.
+    private void FillStyleDropdown()
     {
-        styleDropdown.ClearOptions(); // Remove old styles.
-        styleDropdown.AddOptions(new System.Collections.Generic.List<string> { "Modern", "Fantasy", "Ren", "1920's", "1960's", "Futuristic" }); // Add styles.
+        styleDropdown.ClearOptions();
+        styleDropdown.AddOptions(new System.Collections.Generic.List<string> { "Modern", "Fantasy", "Ren", "1920's", "1960's", "Futuristic" });
     }
 
-    private void OnPieceChanged(int index) // Runs when player chooses top/bottom/etc.
+    private void OnPieceChanged(int index)
     {
-        string piece = pieceDropdown.options[index].text; // Get selected piece text.
-        typeDropdown.ClearOptions(); // Clear old clothing types.
+        string piece = pieceDropdown.options[index].text;
+        typeDropdown.ClearOptions();
 
-        if (piece == "top") typeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Basic shirt", "Button up", "Sweater", "Blouse" }); // Top types.
-        if (piece == "bottom") typeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Jeans", "Slacks", "Shorts", "Skirt" }); // Bottom types.
-        if (piece == "hat") typeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Beret", "Fedora", "Top Hat", "Sun Hat" }); // Hat types.
-        if (piece == "shoe") typeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Sneakers", "Boots", "Loafers", "Heels" }); // Shoe types.
-        if (piece == "full") typeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Dress", "Jumpsuit", "Robe", "Suit Set" }); // Full outfit types.
+        if (piece == "top") typeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Basic shirt", "Button up", "Sweater", "Blouse" });
+        if (piece == "bottom") typeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Jeans", "Slacks", "Shorts", "Skirt" });
+        if (piece == "hat") typeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Beret", "Fedora", "Top Hat", "Sun Hat" });
+        if (piece == "shoe") typeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Sneakers", "Boots", "Loafers", "Heels" });
+        if (piece == "full") typeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Dress", "Jumpsuit", "Robe", "Suit Set" });
     }
 
-    private void RefreshFabricList() // Rebuilds fabric buttons.
+    private void RefreshFabricList()
     {
-        foreach (Transform child in fabricListParent) Destroy(child.gameObject); // Delete old buttons.
+        foreach (Transform child in fabricListParent) Destroy(child.gameObject);
 
-        foreach (var fabric in FabricInventoryManager.Instance.Fabrics) // Loop through owned fabrics.
+        foreach (var fabric in FabricInventoryManager.Instance.Fabrics)
         {
-            FabricOptionButton button = Instantiate(fabricButtonPrefab, fabricListParent); // Spawn a fabric button.
-            button.transform.localScale = Vector3.one; // Keep prefab scale normal after spawning.
-            SetFabricButtonHeight(button); // Keep each row a predictable height.
-            button.Setup(fabric, selectedFabric == fabric, SelectFabric); // Give it fabric data and click behavior.
+            FabricOptionButton button = Instantiate(fabricButtonPrefab, fabricListParent);
+            button.transform.localScale = Vector3.one;
+            SetFabricButtonHeight(button);
+            button.Setup(fabric, selectedFabric == fabric, SelectFabric);
         }
     }
 
-    private void SelectFabric(FabricInventoryManager.FabricStack fabric) // Runs when fabric is clicked.
+    private void SelectFabric(FabricInventoryManager.FabricStack fabric)
     {
-        selectedFabric = fabric; // Remember selected fabric.
-        RefreshFabricList(); // Refresh checkmarks.
+        selectedFabric = fabric;
+        RefreshFabricList();
+        UpdateCreateButtonInteractability();
+    }
+
+    private void UpdateCreateButtonInteractability()
+    {
+        if (createButton != null)
+            createButton.interactable = selectedFabric != null;
     }
 
 private void CreateClothing()
@@ -151,10 +159,8 @@ private void CreateClothing()
     Color selectedColor = selectedFabric.color;
     selectedColor.a = 1f;
 
-    // Spend ONCE
     if (!FabricInventoryManager.Instance.TryUseFabric(selectedFabric)) return;
 
-    // Save pending craft data
     pendingPiece = pieceDropdown.options[pieceDropdown.value].text;
     pendingDisplayName = typeDropdown.options[typeDropdown.value].text;
     pendingStyle = styleDropdown.options[styleDropdown.value].text;
@@ -165,6 +171,7 @@ private void CreateClothing()
     hasPendingCraft = true;
     selectedFabric = null;
     RefreshFabricList();
+    UpdateCreateButtonInteractability();
 }
 
 public void ApplyFinalGradeAndSpawn(char finalGrade)
@@ -197,41 +204,41 @@ public void ApplyFinalGradeAndSpawn(char finalGrade)
     hasPendingCraft = false;
 }
 
-    private void ConfigureFabricListLayout() // Sets layout behavior without resizing the parent transform.
+    private void ConfigureFabricListLayout()
     {
-        if (fabricListParent == null) return; // Stop if no parent was assigned.
+        if (fabricListParent == null) return;
 
-        VerticalLayoutGroup layoutGroup = fabricListParent.GetComponent<VerticalLayoutGroup>(); // Look for layout.
+        VerticalLayoutGroup layoutGroup = fabricListParent.GetComponent<VerticalLayoutGroup>();
         if (layoutGroup == null)
-            layoutGroup = fabricListParent.gameObject.AddComponent<VerticalLayoutGroup>(); // Add one if missing.
+            layoutGroup = fabricListParent.gameObject.AddComponent<VerticalLayoutGroup>();
 
-        layoutGroup.childAlignment = TextAnchor.UpperCenter; // Stack from the top.
-        layoutGroup.spacing = 0f; // No gaps between rows.
-        layoutGroup.childControlWidth = false; // Do not change child width.
-        layoutGroup.childControlHeight = false; // Use the row height from each button's LayoutElement.
-        layoutGroup.childForceExpandWidth = false; // Do not stretch children horizontally.
-        layoutGroup.childForceExpandHeight = false; // Do not stretch children vertically.
+        layoutGroup.childAlignment = TextAnchor.UpperCenter;
+        layoutGroup.spacing = 0f;
+        layoutGroup.childControlWidth = false;
+        layoutGroup.childControlHeight = false;
+        layoutGroup.childForceExpandWidth = false;
+        layoutGroup.childForceExpandHeight = false;
     }
 
-    private void SetFabricButtonHeight(FabricOptionButton button) // Gives each fabric row a consistent height.
+    private void SetFabricButtonHeight(FabricOptionButton button)
     {
-        LayoutElement layoutElement = button.GetComponent<LayoutElement>(); // Look for row layout settings.
+        LayoutElement layoutElement = button.GetComponent<LayoutElement>();
         if (layoutElement == null)
-            layoutElement = button.gameObject.AddComponent<LayoutElement>(); // Add settings if missing.
+            layoutElement = button.gameObject.AddComponent<LayoutElement>();
 
-        layoutElement.preferredHeight = fabricButtonHeight; // Use the height from the Inspector.
-        layoutElement.minHeight = fabricButtonHeight; // Prevent rows from collapsing smaller.
+        layoutElement.preferredHeight = fabricButtonHeight;
+        layoutElement.minHeight = fabricButtonHeight;
     }
 
-    private Canvas GetWorkspaceCanvas() // Finds a non-storage canvas in the active scene.
+    private Canvas GetWorkspaceCanvas()
     {
-        Canvas[] canvases = FindObjectsOfType<Canvas>(); // Get all canvases.
-        foreach (Canvas canvas in canvases) // Check each canvas.
+        Canvas[] canvases = FindObjectsOfType<Canvas>();
+        foreach (Canvas canvas in canvases)
         {
-            if (!canvas.CompareTag("StorageCanvas")) // Skip the storage canvas.
-                return canvas; // Use the first normal workspace canvas.
+            if (!canvas.CompareTag("StorageCanvas"))
+                return canvas;
         }
 
-        return null; // No workspace canvas found.
+        return null;
     }
 }

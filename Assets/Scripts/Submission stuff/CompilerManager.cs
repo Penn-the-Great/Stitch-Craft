@@ -19,14 +19,14 @@ public class CompilerManager : MonoBehaviour
     [System.Serializable]
     public class PieceSize
     {
-        public string piece; // e.g. "Blouse", "T-shirt", or fallback keys like "top"
-        public Vector2 widthHeight = new Vector2(300f, 300f); // x = width, y = height
+        public string piece; 
+        public Vector2 widthHeight = new Vector2(300f, 300f);
     }
 
     [System.Serializable]
     public class PiecePosition
     {
-        public string piece; // e.g. "Blouse", "T-shirt", or fallback keys like "top"
+        public string piece; 
         public Vector2 anchoredPosition = Vector2.zero;
     }
 
@@ -157,17 +157,15 @@ public class CompilerManager : MonoBehaviour
         RectTransform rt = clothingObject.GetComponent<RectTransform>();
         if (rt != null)
         {
-            // Position: variant first, then normalized piece fallback
             Vector2 position = GetAnchoredPositionForPiece(properties.displayName);
             if (position == defaultAnchoredPosition)
                 position = GetAnchoredPositionForPiece(pieceKey);
             rt.anchoredPosition = position;
 
-            // Size: variant first, then normalized piece fallback
             Vector2 size = GetWidthHeightForPiece(properties.displayName);
             if (size == defaultWidthHeight)
                 size = GetWidthHeightForPiece(pieceKey);
-            rt.sizeDelta = size; // x = width, y = height
+            rt.sizeDelta = size; 
         }
 
         TopProperty newProperties = clothingObject.GetComponent<TopProperty>();
@@ -176,7 +174,6 @@ public class CompilerManager : MonoBehaviour
         Image image = clothingObject.GetComponent<Image>();
         if (image != null)
         {
-            // Sprite: variant first, then normalized piece fallback
             Sprite sprite = GetSpriteForPiece(properties.displayName);
             if (sprite == null)
                 sprite = GetSpriteForPiece(pieceKey);
@@ -455,7 +452,7 @@ public class CompilerManager : MonoBehaviour
         return null;
     }
 
-    // Compares against pieceSizes[].piece
+   
     private Vector2 GetWidthHeightForPiece(string pieceName)
     {
         if (string.IsNullOrWhiteSpace(pieceName) || pieceSizes == null)
@@ -473,7 +470,6 @@ public class CompilerManager : MonoBehaviour
         return defaultWidthHeight;
     }
 
-    // Compares against piecePositions[].piece
     private Vector2 GetAnchoredPositionForPiece(string pieceName)
     {
         if (string.IsNullOrWhiteSpace(pieceName) || piecePositions == null)

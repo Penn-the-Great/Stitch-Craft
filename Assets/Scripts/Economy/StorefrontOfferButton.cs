@@ -2,10 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Storefront button: shows color swatch and icon for clothing pieces.
-/// Make sure iconImage and pieceIcons are assigned in the inspector.
-/// </summary>
+
 public class StorefrontOfferButton : MonoBehaviour
 {
     public enum OfferType { Clothing, Fabric }
@@ -16,7 +13,7 @@ public class StorefrontOfferButton : MonoBehaviour
     [SerializeField] private TMP_Text offerText;
     [SerializeField] private Image colorImage;
     [SerializeField] private Image iconImage;
-    [SerializeField] private Sprite[] pieceIcons; // order: top, bottom, hat, shoe, full
+    [SerializeField] private Sprite[] pieceIcons; 
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private string emptyText = "No offer";
 
